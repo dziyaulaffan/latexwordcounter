@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LaTeX Word Counter</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%231B4332' x='15' y='20' width='8' height='60' rx='2'/><rect fill='%231B4332' x='30' y='20' width='8' height='60' rx='2'/><rect fill='%231B4332' x='45' y='20' width='8' height='60' rx='2'/><rect fill='%231B4332' x='60' y='20' width='8' height='60' rx='2'/><line stroke='%231B4332' stroke-width='8' stroke-linecap='round' x1='10' y1='50' x2='75' y2='50'/></svg>">
 <style>
   :root {
     --bg: #FDFBF7;
@@ -336,6 +335,7 @@
     </div>
     <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
       <button class="help-toggle-btn" id="about-btn">About</button>
+      <button class="help-toggle-btn" id="privacy-btn">Privacy</button>
       <button class="help-toggle-btn" id="help-btn">How this works</button>
       <button class="help-toggle-btn" id="changelog-btn">Changelog</button>
       <button class="bug-report-btn" id="bug-btn">Report bug <span class="bug-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 8h-1.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5s-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H5v2h1.09c-.05.33-.09.66-.09 1v1H5v2h1v1c0 .34.04.67.09 1H5v2h1.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H19v-2h-1.09c.05-.33.09-.66.09-1v-1h1v-2h-1v-1c0-.34-.04-.67-.09-1H19V8zm-6 8h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></span></button>
@@ -350,10 +350,14 @@
     <p>This tool was developed to provide a purpose-built alternative. It performs single-pass parsing of LaTeX source entirely within the browser, requiring no server, no compilation step, and no external dependencies. The parser identifies and classifies the full structure of a <code>.tex</code> file: preamble content, sectioning commands, citation keys, figure captions, table environments, footnotes, mathematical expressions, and bibliography entries. Each element is assigned a typed token, and the word count is computed from whichever categories the user has toggled on. A colour-coded verbose view offers full transparency over every classification decision, allowing authors to verify precisely how each part of their document has been treated before submission.</p>
     <p>The goal was something fast, transparent, and accurate enough to trust with a binding word limit—without requiring users to learn TeXcount flags or accept Overleaf's conservative defaults.</p>
 
+    <p style="margin-top:0.75rem; font-size:0.82rem; color:var(--text-muted);">Affan · Land Economy Tripos · University of Cambridge</p>
+  </div>
+
+  <!-- PRIVACY -->
+  <div class="help-section" id="privacy-section">
     <h3>Privacy</h3>
     <p>All word counting happens entirely within the browser. No LaTeX source is transmitted, uploaded, or stored on any server at any point. The tool runs as a self-contained HTML file with no external connections, so document content never leaves the machine it is opened on.</p>
-
-    <p style="margin-top:0.75rem; font-size:0.82rem; color:var(--text-muted);">Affan · Land Economy Tripos · University of Cambridge</p>
+    <p>The entire source code is visible and open-source (MIT License). You can verify these privacy claims by viewing the page source (right-click → "View Page Source" or Ctrl+U). No tracking, no analytics, no cookies. Any preferences you set are stored only in your browser.</p>
   </div>
 
   <!-- HELP -->
@@ -443,7 +447,8 @@
   <div class="help-section" id="bug-section">
     <h3>Report a bug</h3>
     <p>If you encounter unexpected behaviour, an incorrect word count, or a parsing error, please report it so it can be fixed.</p>
-    <p style="margin-top:0.5rem;"><strong>Issue tracker:</strong> <a href="https://github.com/dziyaulaffan/latexwordcounter/issues" style="color:var(--green-muted);">github.com/dziyaulaffan/latexwordcounter/issues</a></p>
+    <p style="margin-top:0.5rem;"><strong>Email:</strong> <a href="mailto:bugs@latexwordcounter.com" style="color:var(--green-muted);">bugs@latexwordcounter.com</a></p>
+    <p><strong>Issue tracker:</strong> <a href="https://github.com/affan/latex-word-counter/issues" style="color:var(--green-muted);">github.com/affan/latex-word-counter/issues</a></p>
     <p style="margin-top:0.5rem; font-size:0.82rem; color:var(--text-muted);">When reporting, please include the LaTeX source (or a minimal example) that produces the incorrect result, the expected word count, and which toggles were active.</p>
   </div>
 
@@ -553,7 +558,7 @@
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ================================================================
 // LaTeX Word Counter — Vanilla JavaScript
 // ================================================================
@@ -1108,6 +1113,14 @@ function getIncExcBreakdown(toggles) {
     aboutBtn.textContent = open ? 'Hide about' : 'About';
   });
 
+  // Privacy toggle
+  const privacySection = document.getElementById('privacy-section');
+  const privacyBtn = document.getElementById('privacy-btn');
+  privacyBtn.addEventListener('click', () => {
+    const open = privacySection.classList.toggle('visible');
+    privacyBtn.textContent = open ? 'Hide privacy' : 'Privacy';
+  });
+
   // Changelog toggle
   const changelogSection = document.getElementById('changelog-section');
   const changelogBtn = document.getElementById('changelog-btn');
@@ -1306,12 +1319,71 @@ function getIncExcBreakdown(toggles) {
     return html;
   }
 
+  // --- localStorage persistence ---
+  const STORAGE_KEY = 'latexwc_prefs';
+
+  function savePrefs() {
+    try {
+      const prefs = {
+        toggles: {
+          cite: togs.cite.checked,
+          caption: togs.caption.checked,
+          table: togs.table.checked,
+          footnote: togs.footnote.checked,
+          math: togs.math.checked,
+          headings: togs.headings.checked,
+          bib: togs.bib.checked
+        },
+        zoom: zoomSlider.value,
+        zoomLocked: zoomLocked,
+        darkMode: document.body.classList.contains('dark-mode')
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
+    } catch (e) { /* storage unavailable, silently ignore */ }
+  }
+
+  function loadPrefs() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const prefs = JSON.parse(raw);
+
+      // Restore toggles
+      if (prefs.toggles) {
+        for (const key in prefs.toggles) {
+          if (togs[key]) togs[key].checked = prefs.toggles[key];
+        }
+      }
+
+      // Restore zoom
+      if (prefs.zoom !== undefined) {
+        zoomSlider.value = prefs.zoom;
+        inputEl.style.fontSize = prefs.zoom + 'px';
+        zoomVal.textContent = Math.round(prefs.zoom) + 'px';
+      }
+
+      // Restore zoom lock
+      if (prefs.zoomLocked) {
+        zoomLocked = true;
+        zoomSlider.classList.add('locked');
+        zoomLock.classList.add('locked');
+        zoomLock.textContent = 'Locked';
+      }
+
+      // Restore dark mode
+      if (prefs.darkMode) {
+        document.body.classList.add('dark-mode');
+        darkBtn.textContent = '\u2600';
+      }
+    } catch (e) { /* storage unavailable or corrupt, silently ignore */ }
+  }
+
   // --- Events ---
   countBtn.addEventListener('click', runCount);
   inputEl.addEventListener('keydown', e => {
     if (e.key==='Enter' && (e.ctrlKey||e.metaKey)) { e.preventDefault(); runCount(); }
   });
-  Object.values(togs).forEach(el => el.addEventListener('change', updateDisplay));
+  Object.values(togs).forEach(el => el.addEventListener('change', () => { updateDisplay(); savePrefs(); }));
   targetEl.addEventListener('input', updateDisplay);
 
   // Tab switching
@@ -1343,6 +1415,7 @@ function getIncExcBreakdown(toggles) {
   darkBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
     darkBtn.textContent = document.body.classList.contains('dark-mode') ? '\u2600' : '\u263D';
+    savePrefs();
   });
 
   // --- Zoom slider + lock ---
@@ -1355,14 +1428,20 @@ function getIncExcBreakdown(toggles) {
     const size = zoomSlider.value;
     inputEl.style.fontSize = size + 'px';
     zoomVal.textContent = Math.round(size) + 'px';
+    savePrefs();
   });
 
   zoomLock.addEventListener('click', () => {
     zoomLocked = !zoomLocked;
-    zoomLock.classList.toggle('locked', zoomLocked);
-    zoomLock.textContent = zoomLocked ? 'Unlock' : 'Lock';
     zoomSlider.classList.toggle('locked', zoomLocked);
+    zoomLock.classList.toggle('locked', zoomLocked);
+    zoomLock.textContent = zoomLocked ? 'Locked' : 'Lock';
+    savePrefs();
   });
+
+  // --- Load saved preferences on init ---
+  loadPrefs();
+
 })();
 </script>
 </body>
