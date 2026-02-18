@@ -13,7 +13,7 @@ This tool provides a fast, transparent alternative that runs entirely in your br
 - **Single-pass parsing** of LaTeX source with no compilation required
 - **Selective counting** - choose which elements to include (body text, footnotes, captions, etc.)
 - **Colour-coded verbose view** showing exactly how each part of your document was classified
-- **Handles LaTeX structure properly** - recognizes preamble, citations, math environments, tables, figures, bibliography entries
+- **Handles LaTeX structure properly** - recognises preamble, citations, math environments, tables, figures, bibliography entries
 - **Complete privacy** - all processing happens client-side, nothing is uploaded or stored
 
 ## Usage
@@ -24,7 +24,7 @@ Open the HTML file in any browser, paste your LaTeX source, and get an accurate 
 
 Pure HTML/CSS/JavaScript implementation with no external dependencies or server requirements. The parser performs structural analysis of `.tex` files, assigns typed tokens to each element, and computes counts based on user-selected categories.
 
-Built to solve a real problem: trusting a word count tool with binding submission limits for Cambridge coursework.
+Built to solve a real problem: trusting a word count tool with binding submission limits for coursework.
 
 ## Privacy
 
