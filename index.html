@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LaTeX Word Counter</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23FDFBF7'/%3E%3Cg stroke='%231B4332' stroke-width='2.4' stroke-linecap='round'%3E%3Cline x1='8' y1='7' x2='8' y2='25'/%3E%3Cline x1='13' y1='7' x2='13' y2='25'/%3E%3Cline x1='18' y1='7' x2='18' y2='25'/%3E%3Cline x1='23' y1='7' x2='23' y2='25'/%3E%3Cline x1='5' y1='20' x2='26' y2='10'/%3E%3C/g%3E%3C/svg%3E">
 <style>
   :root {
     --bg: #FDFBF7;
@@ -447,9 +448,8 @@
   <div class="help-section" id="bug-section">
     <h3>Report a bug</h3>
     <p>If you encounter unexpected behaviour, an incorrect word count, or a parsing error, please report it so it can be fixed.</p>
-    <p style="margin-top:0.5rem;"><strong>Email:</strong> <a href="mailto:bugs@latexwordcounter.com" style="color:var(--green-muted);">bugs@latexwordcounter.com</a></p>
-    <p><strong>Issue tracker:</strong> <a href="https://github.com/affan/latex-word-counter/issues" style="color:var(--green-muted);">github.com/affan/latex-word-counter/issues</a></p>
-    <p style="margin-top:0.5rem; font-size:0.82rem; color:var(--text-muted);">When reporting, please include the LaTeX source (or a minimal example) that produces the incorrect result, the expected word count, and which toggles were active.</p>
+    <p style="margin-top:0.5rem;"><strong>Issue tracker:</strong> <a href="https://github.com/affan/latex-word-counter/issues" style="color:var(--green-muted);">github.com/affan/latex-word-counter/issues</a></p>
+    <p style="margin-top:0.5rem; font-size:0.82rem; color:var(--text-muted);">When reporting, it would be helpful to include the LaTeX source (or a minimal example) that produces the incorrect result, the expected word count, and which toggles were active.</p>
   </div>
 
   <!-- INPUT -->
@@ -513,9 +513,9 @@
         <div class="progress-label" id="progress-label"></div>
       </div>
       <div class="keyword-section" id="keyword-section" style="display:none;">
-        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.6rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
           <h4 style="margin-bottom:0;">Keyword density (top 20)</h4>
-          <span style="font-size:0.72rem; color:var(--text-light); font-style:italic;">Excludes common words: the, a, is, of, and, etc.</span>
+          <label class="toggle-item" style="font-size:0.72rem; color:var(--text-light);"><input type="checkbox" id="tog-stopwords" checked style="accent-color:var(--green-muted); width:12px; height:12px;"> Exclude common words</label>
         </div>
         <div class="keyword-grid" id="keyword-grid"></div>
       </div>
@@ -949,11 +949,14 @@ const STOP_WORDS = new Set([
   'et','al','pp','eg','ie','cf','p','e','de','la','le','el','von','van','der'
 ]);
 
-function computeKeywords(tokens, toggles, totalWords) {
+function computeKeywords(tokens, toggles, totalWords, filterStopWords) {
   const freq = {};
   function add(text) {
     text.replace(/[~$&\\{}[\]]/g,' ').replace(/[^\w\s'-]/g,' ').toLowerCase()
-      .split(/\s+/).forEach(w => { if (w.length>2 && /[a-z]/.test(w) && !STOP_WORDS.has(w)) freq[w]=(freq[w]||0)+1; });
+      .split(/\s+/).forEach(w => {
+        if (w.length>2 && /[a-z]/.test(w) && (!filterStopWords || !STOP_WORDS.has(w)))
+          freq[w]=(freq[w]||0)+1;
+      });
   }
   for (const tok of tokens) {
     if (tok.type==='body') add(tok.text);
@@ -1183,7 +1186,8 @@ function getIncExcBreakdown(toggles) {
     renderStructure(currentTokens, toggles, c.total);
 
     // Keywords
-    const kw = computeKeywords(currentTokens, toggles, c.total);
+    const filterStop = document.getElementById('tog-stopwords').checked;
+    const kw = computeKeywords(currentTokens, toggles, c.total, filterStop);
     if (kw.length > 0) {
       keywordSec.style.display = '';
       keywordGrid.innerHTML = kw.map(k =>
@@ -1336,7 +1340,8 @@ function getIncExcBreakdown(toggles) {
         },
         zoom: zoomSlider.value,
         zoomLocked: zoomLocked,
-        darkMode: document.body.classList.contains('dark-mode')
+        darkMode: document.body.classList.contains('dark-mode'),
+        excludeStopWords: document.getElementById('tog-stopwords').checked
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
     } catch (e) { /* storage unavailable, silently ignore */ }
@@ -1375,6 +1380,11 @@ function getIncExcBreakdown(toggles) {
         document.body.classList.add('dark-mode');
         darkBtn.textContent = '\u2600';
       }
+
+      // Restore stop words preference
+      if (prefs.excludeStopWords !== undefined) {
+        document.getElementById('tog-stopwords').checked = prefs.excludeStopWords;
+      }
     } catch (e) { /* storage unavailable or corrupt, silently ignore */ }
   }
 
@@ -1384,6 +1394,7 @@ function getIncExcBreakdown(toggles) {
     if (e.key==='Enter' && (e.ctrlKey||e.metaKey)) { e.preventDefault(); runCount(); }
   });
   Object.values(togs).forEach(el => el.addEventListener('change', () => { updateDisplay(); savePrefs(); }));
+  document.getElementById('tog-stopwords').addEventListener('change', () => { updateDisplay(); savePrefs(); });
   targetEl.addEventListener('input', updateDisplay);
 
   // Tab switching
