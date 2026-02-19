@@ -257,7 +257,7 @@
   /* KEYWORDS */
   .keyword-section { margin-top: 1.25rem; padding: 1rem 1.1rem; background: #fff; border: 1px solid var(--border-light); border-radius: 4px; }
   .keyword-section h4 { font-size: 0.82rem; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.6rem; }
-  .keyword-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 1.5rem; font-size: 0.8rem; }
+  .keyword-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(10, auto); grid-auto-flow: column; gap: 0.3rem 1.5rem; font-size: 0.8rem; }
   .keyword-row { display: flex; justify-content: space-between; align-items: center; padding: 0.2rem 0; }
   .keyword-word { color: var(--text); }
   .keyword-stats { font-family: 'Courier New',monospace; font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; }
@@ -951,10 +951,11 @@ const STOP_WORDS = new Set([
 
 function computeKeywords(tokens, toggles, totalWords, filterStopWords) {
   const freq = {};
+  const minLen = filterStopWords ? 3 : 1;
   function add(text) {
     text.replace(/[~$&\\{}[\]]/g,' ').replace(/[^\w\s'-]/g,' ').toLowerCase()
       .split(/\s+/).forEach(w => {
-        if (w.length>2 && /[a-z]/.test(w) && (!filterStopWords || !STOP_WORDS.has(w)))
+        if (w.length >= minLen && /[a-z]/.test(w) && (!filterStopWords || !STOP_WORDS.has(w)))
           freq[w]=(freq[w]||0)+1;
       });
   }
