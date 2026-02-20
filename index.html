@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LaTeX Word Counter</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23FDFBF7'/%3E%3Cg stroke='%231B4332' stroke-width='2.4' stroke-linecap='round'%3E%3Cline x1='8' y1='7' x2='8' y2='25'/%3E%3Cline x1='13' y1='7' x2='13' y2='25'/%3E%3Cline x1='18' y1='7' x2='18' y2='25'/%3E%3Cline x1='23' y1='7' x2='23' y2='25'/%3E%3Cline x1='5' y1='20' x2='26' y2='10'/%3E%3C/g%3E%3C/svg%3E">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="94d8458d-34b9-4858-beb1-d650b54ed88b"></script>
 <style>
   :root {
     --bg: #FDFBF7;
@@ -28,6 +29,7 @@
     --clr-footnote: #FFF3CD;
     --clr-math: #DAEEF8;
     --clr-heading: #E0E8D0;
+    --clr-abstract: #D5EAF0;
     --clr-command: #F5E6D3;
     --clr-comment: #FFD6D6;
     --clr-preamble: #FDDEDE;
@@ -62,6 +64,7 @@
     --clr-footnote: #3A3520;
     --clr-math: #1E3040;
     --clr-heading: #2D3425;
+    --clr-abstract: #1E3338;
     --clr-command: #352E25;
     --clr-comment: #3D2525;
     --clr-preamble: #3D2828;
@@ -304,6 +307,7 @@
   .tok-footnote { background: var(--clr-footnote); border-radius: 2px; padding: 0 2px; }
   .tok-math { background: var(--clr-math); border-radius: 2px; padding: 0 2px; }
   .tok-heading { background: var(--clr-heading); border-radius: 2px; padding: 0 2px; }
+  .tok-abstract { background: var(--clr-abstract); border-radius: 2px; padding: 0 2px; }
   .tok-command { background: var(--clr-command); border-radius: 2px; padding: 0 1px; color: #6B5A47; }
   .tok-comment { background: var(--clr-comment); border-radius: 2px; padding: 0 1px; color: #8B4444; text-decoration: line-through; }
   .tok-preamble { background: var(--clr-preamble); border-radius: 2px; padding: 0 1px; }
@@ -357,8 +361,9 @@
   <!-- PRIVACY -->
   <div class="help-section" id="privacy-section">
     <h3>Privacy</h3>
-    <p>All word counting happens entirely within the browser. No LaTeX source is transmitted, uploaded, or stored on any server at any point. The tool runs as a self-contained HTML file with no external connections, so document content never leaves the machine it is opened on.</p>
-    <p>The entire source code is visible and open-source (MIT License). You can verify these privacy claims by viewing the page source (right-click → "View Page Source" or Ctrl+U). No tracking, no analytics, no cookies. Any preferences you set are stored only in your browser.</p>
+    <p>All word counting happens entirely within the browser. No LaTeX source is transmitted, uploaded, or stored on any server at any point. The tool runs as a self-contained HTML file, so document content never leaves the machine it is opened on.</p>
+    <p>The site uses <a href="https://umami.is" style="color:var(--green-muted);">Umami</a> for anonymous, cookie-free analytics. Umami collects only aggregate usage data such as page views and visitor counts — it does not track individual users, does not use cookies, and does not collect any personal information or document content. All analytics data is anonymous and cannot be used to identify any individual visitor.</p>
+    <p>The entire source code is visible and open-source (MIT License). You can verify these claims by viewing the page source (right-click → "View Page Source" or Ctrl+U). Any preferences you set (such as dark mode or toggle states) are stored only in your browser's local storage and are never transmitted.</p>
   </div>
 
   <!-- HELP -->
@@ -385,6 +390,8 @@
       <dd>Display math (<code>equation</code>, <code>align</code>, etc.) and inline math (<code>$...$</code>). Each variable, number, or symbol command counts as 1 word. The summary separately shows "Math expressions" — the number of display-math blocks.</dd>
       <dt>Headings</dt>
       <dd>The text inside <code>\section{}</code>, <code>\subsection{}</code>, and <code>\subsubsection{}</code> commands. When off, heading titles are excluded from the total.</dd>
+      <dt>Abstract</dt>
+      <dd>All text inside <code>\begin{abstract}...\end{abstract}</code> environments. Many word limits explicitly include or exclude the abstract — this toggle lets you match your assignment's rules.</dd>
       <dt>Bibliography</dt>
       <dd>Everything inside <code>\begin{thebibliography}...\end{thebibliography}</code>.</dd>
     </dl>
@@ -412,6 +419,7 @@
       <tr><td><span class="help-swatch" style="background:var(--clr-footnote)"></span></td><td>Footnotes</td></tr>
       <tr><td><span class="help-swatch" style="background:var(--clr-math)"></span></td><td>Mathematics</td></tr>
       <tr><td><span class="help-swatch" style="background:var(--clr-heading)"></span></td><td>Headings</td></tr>
+      <tr><td><span class="help-swatch" style="background:var(--clr-abstract)"></span></td><td>Abstract</td></tr>
       <tr><td><span class="help-swatch" style="background:var(--clr-bib)"></span></td><td>Bibliography</td></tr>
       <tr><td><span class="help-swatch" style="background:var(--clr-command)"></span></td><td>LaTeX commands — never counted</td></tr>
       <tr><td><span class="help-swatch" style="background:var(--clr-comment)"></span></td><td>Comments — never counted</td></tr>
@@ -476,6 +484,7 @@
       <label class="toggle-item"><input type="checkbox" id="tog-footnote" checked> Footnotes</label>
       <label class="toggle-item"><input type="checkbox" id="tog-math" checked> Mathematics</label>
       <label class="toggle-item"><input type="checkbox" id="tog-headings" checked> Headings</label>
+      <label class="toggle-item"><input type="checkbox" id="tog-abstract" checked> Abstract</label>
       <label class="toggle-item"><input type="checkbox" id="tog-bib" checked> Bibliography</label>
     </div>
     <div class="target-input">
@@ -504,6 +513,7 @@
         <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-footnote)"></span>Footnotes</span><span class="value" id="wc-footnote">0</span></div>
         <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-math)"></span>Math words</span><span class="value" id="wc-math">0</span></div>
         <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-heading)"></span>Headings</span><span class="value" id="wc-headings">0</span></div>
+        <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-abstract)"></span>Abstract</span><span class="value" id="wc-abstract">0</span></div>
         <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-bib)"></span>Bibliography</span><span class="value" id="wc-bib">0</span></div>
         <div class="summary-card"><span class="label">Math expressions</span><span class="value" id="wc-mathblocks">0</span></div>
         <div class="summary-card total"><span class="label">Total counted words</span><span class="value" id="wc-total">0</span></div>
@@ -542,6 +552,7 @@
         <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-footnote)"></span> Footnote</div>
         <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-math)"></span> Math</div>
         <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-heading)"></span> Heading</div>
+        <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-abstract)"></span> Abstract</div>
         <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-bib)"></span> Bibliography</div>
         <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-command)"></span> Command</div>
         <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-comment)"></span> Comment</div>
@@ -596,7 +607,7 @@ function parseLatex(source) {
   function currentEnv() { return envStack[envStack.length - 1]; }
 
   function textTypeForEnv(env) {
-    const map = { figure:'caption', table:'table', bib:'bib', math:'math', footnote:'footnote' };
+    const map = { figure:'caption', table:'table', bib:'bib', math:'math', footnote:'footnote', abstract:'abstract' };
     return map[env] || 'body';
   }
 
@@ -605,6 +616,7 @@ function parseLatex(source) {
     if (n === 'figure') return 'figure';
     if (['table','tabular','tabularx','longtable'].includes(n)) return 'table';
     if (n === 'thebibliography') return 'bib';
+    if (n === 'abstract') return 'abstract';
     if (['equation','align','gather','multline','flalign','eqnarray','displaymath','math'].includes(n)) return 'math';
     return null;
   }
@@ -833,7 +845,7 @@ function countMathWords(text) {
 }
 
 function computeWordCounts(tokens, toggles) {
-  let body=0, cite=0, caption=0, table=0, footnote=0, math=0, headings=0, bib=0, mathBlocks=0;
+  let body=0, cite=0, caption=0, table=0, footnote=0, math=0, headings=0, abstract=0, bib=0, mathBlocks=0;
   for (const tok of tokens) {
     switch (tok.type) {
       case 'body':     body += countWords(tok.text); break;
@@ -842,13 +854,14 @@ function computeWordCounts(tokens, toggles) {
       case 'table':    if (toggles.table) table += countWords(tok.text); break;
       case 'footnote': if (toggles.footnote) footnote += countWords(tok.text); break;
       case 'heading':  if (toggles.headings) headings += countWords(tok.text); break;
+      case 'abstract': if (toggles.abstract) abstract += countWords(tok.text); break;
       case 'math':     if (tok.isMathBlock) mathBlocks++; if (toggles.math) math += countMathWords(tok.text); break;
       case 'bib':      if (toggles.bib) bib += countWords(tok.text); break;
       case 'structural': if (tok.isMathBlock) mathBlocks++; break;
     }
   }
-  return { body, cite, caption, table, footnote, math, headings, bib,
-           total: body+cite+caption+table+footnote+math+headings+bib, mathBlocks };
+  return { body, cite, caption, table, footnote, math, headings, abstract, bib,
+           total: body+cite+caption+table+footnote+math+headings+abstract+bib, mathBlocks };
 }
 
 
@@ -964,6 +977,7 @@ function computeKeywords(tokens, toggles, totalWords, filterStopWords) {
     if (tok.type==='caption' && toggles.caption) add(tok.text);
     if (tok.type==='table' && toggles.table) add(tok.text);
     if (tok.type==='footnote' && toggles.footnote) add(tok.text);
+    if (tok.type==='abstract' && toggles.abstract) add(tok.text);
     if (tok.type==='bib' && toggles.bib) add(tok.text);
   }
   return Object.entries(freq)
@@ -993,6 +1007,7 @@ function renderVerboseCategories(tokens, toggles) {
       case 'footnote':  cls=toggles.footnote?'tok-footnote':'tok-excluded'; break;
       case 'math':      cls=toggles.math?'tok-math':'tok-excluded'; break;
       case 'heading':   cls=toggles.headings?'tok-heading':'tok-excluded'; break;
+      case 'abstract':  cls=toggles.abstract?'tok-abstract':'tok-excluded'; break;
       case 'bib':       cls=toggles.bib?'tok-bib':'tok-excluded'; break;
       case 'command':   cls='tok-command'; break;
       case 'comment':   cls='tok-comment'; break;
@@ -1010,7 +1025,7 @@ function renderVerboseCategories(tokens, toggles) {
  * Content tokens are split per-word; non-content tokens get whole-token spans.
  */
 function renderVerboseIncExc(tokens, toggles) {
-  const contentTypes = {body:1,cite:1,caption:1,table:1,footnote:1,math:1,heading:1,bib:1};
+  const contentTypes = {body:1,cite:1,caption:1,table:1,footnote:1,math:1,heading:1,abstract:1,bib:1};
   const parts = [];
   for (let i = 0; i < tokens.length; i++) {
     const tok = tokens[i];
@@ -1023,22 +1038,14 @@ function renderVerboseIncExc(tokens, toggles) {
       case 'footnote':  included = toggles.footnote; break;
       case 'math':      included = toggles.math; break;
       case 'heading':   included = toggles.headings; break;
+      case 'abstract':  included = toggles.abstract; break;
       case 'bib':       included = toggles.bib; break;
       default:          included = false;
     }
 
     if (tok.type in contentTypes) {
       const cls = included ? 'tok-inc' : 'tok-exc';
-      // Split into words and whitespace
-      const segs = tok.text.split(/(\S+)/);
-      for (let j = 0; j < segs.length; j++) {
-        if (segs[j].length === 0) continue;
-        if (/\S/.test(segs[j])) {
-          parts.push('<span class="', cls, '">', escapeHtml(segs[j]), '</span>');
-        } else {
-          parts.push(escapeHtml(segs[j]));
-        }
-      }
+      parts.push('<span class="', cls, '">', escapeHtml(tok.text), '</span>');
     } else {
       parts.push('<span class="tok-exc">', escapeHtml(tok.text), '</span>');
     }
@@ -1056,6 +1063,7 @@ function getIncExcBreakdown(toggles) {
   if (toggles.footnote) inc.push('footnotes'); else exc.push('footnotes');
   if (toggles.math) inc.push('math'); else exc.push('math');
   if (toggles.headings) inc.push('headings'); else exc.push('headings');
+  if (toggles.abstract) inc.push('abstract'); else exc.push('abstract');
   if (toggles.bib) inc.push('bibliography'); else exc.push('bibliography');
   return { inc: inc.join(', '), exc: exc.join(', ') };
 }
@@ -1089,6 +1097,7 @@ function getIncExcBreakdown(toggles) {
     caption:document.getElementById('wc-caption'), table:document.getElementById('wc-table'),
     footnote:document.getElementById('wc-footnote'), math:document.getElementById('wc-math'),
     headings:document.getElementById('wc-headings'),
+    abstract:document.getElementById('wc-abstract'),
     bib:document.getElementById('wc-bib'), mathBlocks:document.getElementById('wc-mathblocks'),
     total:document.getElementById('wc-total')
   };
@@ -1097,6 +1106,7 @@ function getIncExcBreakdown(toggles) {
     cite:document.getElementById('tog-cite'), caption:document.getElementById('tog-caption'),
     table:document.getElementById('tog-table'), footnote:document.getElementById('tog-footnote'),
     math:document.getElementById('tog-math'), headings:document.getElementById('tog-headings'),
+    abstract:document.getElementById('tog-abstract'),
     bib:document.getElementById('tog-bib')
   };
 
@@ -1143,7 +1153,7 @@ function getIncExcBreakdown(toggles) {
   function getToggles() {
     return { cite:togs.cite.checked, caption:togs.caption.checked, table:togs.table.checked,
              footnote:togs.footnote.checked, math:togs.math.checked, headings:togs.headings.checked,
-             bib:togs.bib.checked };
+             abstract:togs.abstract.checked, bib:togs.bib.checked };
   }
 
   function runCount() {
@@ -1167,6 +1177,7 @@ function getIncExcBreakdown(toggles) {
     wcEls.footnote.textContent = c.footnote.toLocaleString();
     wcEls.math.textContent = c.math.toLocaleString();
     wcEls.headings.textContent = c.headings.toLocaleString();
+    wcEls.abstract.textContent = c.abstract.toLocaleString();
     wcEls.bib.textContent = c.bib.toLocaleString();
     wcEls.mathBlocks.textContent = c.mathBlocks.toLocaleString();
     wcEls.total.textContent = c.total.toLocaleString();
@@ -1337,6 +1348,7 @@ function getIncExcBreakdown(toggles) {
           footnote: togs.footnote.checked,
           math: togs.math.checked,
           headings: togs.headings.checked,
+          abstract: togs.abstract.checked,
           bib: togs.bib.checked
         },
         zoom: zoomSlider.value,
