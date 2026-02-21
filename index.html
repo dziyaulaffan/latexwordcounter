@@ -7,587 +7,426 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23FDFBF7'/%3E%3Cg stroke='%231B4332' stroke-width='2.4' stroke-linecap='round'%3E%3Cline x1='8' y1='7' x2='8' y2='25'/%3E%3Cline x1='13' y1='7' x2='13' y2='25'/%3E%3Cline x1='18' y1='7' x2='18' y2='25'/%3E%3Cline x1='23' y1='7' x2='23' y2='25'/%3E%3Cline x1='5' y1='20' x2='26' y2='10'/%3E%3C/g%3E%3C/svg%3E">
 <script defer src="https://cloud.umami.is/script.js" data-website-id="94d8458d-34b9-4858-beb1-d650b54ed88b"></script>
 <style>
-  :root {
-    --bg: #FDFBF7;
-    --bg-alt: #F5F1EB;
-    --green: #1B4332;
-    --green-light: #2D6A4F;
-    --green-muted: #40916C;
-    --green-faint: #D8F3DC;
-    --text: #1A1A1A;
-    --text-muted: #6B6B6B;
-    --text-light: #999;
-    --border: #D5CEBC;
-    --border-light: #E8E2D6;
-
-    --clr-body: #EDEDED;
-    --clr-cite: #D4EDDA;
-    --clr-caption: #CCE5FF;
-    --clr-table: #FFE8CC;
-    --clr-bib: #E8D5F5;
-    --clr-footnote: #FFF3CD;
-    --clr-math: #DAEEF8;
-    --clr-heading: #E0E8D0;
-    --clr-abstract: #D5EAF0;
-    --clr-command: #F5E6D3;
-    --clr-comment: #FFD6D6;
-    --clr-preamble: #FDDEDE;
-    --clr-structural: #E5DAF0;
-    --clr-excluded: #F0EDE8;
-
-    --clr-included: #D4EDDA;
-    --clr-inc-border: #A3D9A5;
-    --clr-excluded-red: #FDDEDE;
-    --clr-exc-border: #F5B7B1;
-  }
-
-  body.dark-mode {
-    --bg: #1E1D26;
-    --bg-alt: #272631;
-    --green: #7FBFA0;
-    --green-light: #9AD4B5;
-    --green-muted: #6BAF8D;
-    --green-faint: #2A3D32;
-    --text: #E0DDD8;
-    --text-muted: #A09B93;
-    --text-light: #706C66;
-    --border: #3D3B47;
-    --border-light: #33313C;
-    --clr-body: #2C2B35;
-    --clr-cite: #253D2D;
-    --clr-caption: #1E3348;
-    --clr-table: #3D3020;
-    --clr-bib: #312540;
-    --clr-footnote: #3A3520;
-    --clr-math: #1E3040;
-    --clr-heading: #2D3425;
-    --clr-abstract: #1E3338;
-    --clr-command: #352E25;
-    --clr-comment: #3D2525;
-    --clr-preamble: #3D2828;
-    --clr-structural: #2E2840;
-    --clr-excluded: #2A2930;
-    --clr-included: #253D2D;
-    --clr-excluded-red: #3D2828;
-  }
-  body.dark-mode .summary-card { background: var(--bg-alt); }
-  body.dark-mode .summary-card.total { background: #2D5A42; border-color: #2D5A42; }
-  body.dark-mode .summary-card.total .label { color: rgba(255,255,255,0.7); }
-  body.dark-mode .summary-card.total .value { color: #fff; }
-  body.dark-mode textarea { background: var(--bg-alt); color: var(--text); border-color: var(--border); }
-  body.dark-mode .verbose-view { background: var(--bg-alt); color: var(--text); }
-  body.dark-mode .help-section { background: var(--bg-alt); }
-  body.dark-mode .zoom-lock-btn { background: var(--bg-alt); color: var(--text-muted); }
-  body.dark-mode .zoom-lock-btn.locked { background: var(--green); color: #1E1D26; }
-  body.dark-mode .verbose-mode-btn { background: var(--bg-alt); color: var(--text-muted); border-color: var(--border); }
-  body.dark-mode .verbose-mode-btn.active { background: var(--green); color: #1E1D26; }
-  body.dark-mode .struct-total { background: #2D5A42; }
-  body.dark-mode .target-input input { background: var(--bg-alt); color: var(--text); border-color: var(--border); }
-  body.dark-mode .struct-row { background: var(--bg-alt); }
-  body.dark-mode .struct-row.depth-1 { background: var(--bg-alt); }
-  body.dark-mode .struct-row.depth-2 { background: #252430; }
-  body.dark-mode .struct-row.depth-3 { background: #22212C; }
-  body.dark-mode .struct-row.has-children:hover { background: #2E2D38; }
-  body.dark-mode .tok-command { color: #B0A08A; }
-  body.dark-mode .tok-comment { color: #A06060; }
-  body.dark-mode .tok-structural { color: #8070A0; }
-  body.dark-mode .tok-excluded { color: #666; }
-  body.dark-mode .tok-exc { color: #A06060; }
-  body.dark-mode .keyword-section { background: var(--bg-alt); border-color: var(--border-light); }
-  body.dark-mode .plain-para-row { background: var(--bg-alt); border-color: var(--border-light); }
-  body.dark-mode .mode-toggle-btn { background: var(--bg-alt); color: var(--text-muted); border-color: var(--border); }
-  body.dark-mode .mode-toggle-btn.plain { background: #2E3D55; border-color: #4A6380; color: #89B4D4; }
-
-  .dark-toggle-btn {
-    font-family: 'Georgia',serif; font-size: 0.82rem; color: var(--green-muted); background: none;
-    border: 1px solid var(--border); border-radius: 3px; padding: 0.3rem 0.6rem; cursor: pointer;
-    transition: border-color 0.2s, color 0.2s; line-height: 1;
-    font-variant-emoji: text; /* Force text rendering, prevent emoji on mobile */
-  }
-  .dark-toggle-btn:hover { color: var(--green); border-color: var(--green-muted); }
-
-  /* Mode toggle */
-  .mode-toggle-btn {
-    font-family: 'Georgia',serif; font-size: 0.78rem; color: var(--green-muted); background: none;
-    border: 1px solid var(--border); border-radius: 3px; padding: 0.3rem 0.65rem; cursor: pointer;
-    transition: border-color 0.2s, color 0.2s, background 0.2s; white-space: nowrap;
-  }
-  .mode-toggle-btn:hover { color: var(--green); border-color: var(--green-muted); }
-  .mode-toggle-btn.plain { background: #EBF4FF; border-color: #9BBDD4; color: #2E6491; }
-
-  .bug-report-btn {
-    font-family: 'Georgia',serif; font-size: 0.82rem; color: var(--green-muted); background: none;
-    border: 1px solid var(--border); border-radius: 3px; padding: 0.3rem 0.75rem; cursor: pointer;
-    transition: border-color 0.2s, color 0.2s; display: flex; align-items: center; gap: 0.3rem;
-  }
-  .bug-report-btn:hover { color: var(--green); border-color: var(--green-muted); }
-  .bug-icon { display: inline-block; width: 15px; height: 15px; position: relative; }
-  .bug-icon svg { width: 100%; height: 100%; fill: currentColor; }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Georgia','Times New Roman',serif; background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
-  .app { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
-
-  header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.75rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
-  header h1 { font-size: 1.6rem; font-weight: 700; color: var(--green); letter-spacing: -0.02em; }
-  .help-toggle-btn {
-    font-family: 'Georgia',serif; font-size: 0.82rem; color: var(--green-muted); background: none;
-    border: 1px solid var(--border); border-radius: 3px; padding: 0.3rem 0.75rem; cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .help-toggle-btn:hover { color: var(--green); border-color: var(--green-muted); }
-
-  .help-section { display: none; margin-bottom: 1.5rem; padding: 1.25rem 1.5rem; background: #fff; border: 1px solid var(--border-light); border-radius: 4px; font-size: 0.84rem; line-height: 1.7; }
-  .help-section.visible { display: block; }
-  .help-section h3 { font-size: 0.95rem; color: var(--green); margin: 1rem 0 0.4rem; }
-  .help-section h3:first-child { margin-top: 0; }
-  .help-section p { margin-bottom: 0.5rem; text-align: justify; }
-  .help-section code { font-family: 'Courier New',monospace; font-size: 0.8rem; background: var(--bg-alt); padding: 0.1rem 0.35rem; border-radius: 2px; }
-  .help-dl { margin: 0.4rem 0 0.5rem; }
-  .help-dl dt { font-weight: 600; color: var(--green); margin-top: 0.35rem; }
-  .help-dl dd { margin-left: 1rem; margin-bottom: 0.15rem; text-align: justify; }
-  .help-colour-table { margin: 0.5rem 0; border-collapse: collapse; width: 100%; font-size: 0.82rem; }
-  .help-colour-table td { padding: 0.3rem 0.6rem; border-bottom: 1px solid var(--border-light); }
-  .help-colour-table td:first-child { width: 18px; padding-right: 0; }
-  .help-swatch { display: inline-block; width: 14px; height: 14px; border-radius: 2px; border: 1px solid rgba(0,0,0,0.1); }
-
-  .input-section { margin-bottom: 1.25rem; }
-  .input-section label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
-  textarea { width: 100%; height: 420px; padding: 1rem; font-family: 'Courier New','Consolas',monospace; font-size: 0.83rem; line-height: 1.5; border: 1px solid var(--border); border-radius: 4px 4px 0 0; background: #fff; color: var(--text); resize: vertical; transition: border-color 0.2s; }
-  textarea:focus { outline: none; border-color: var(--green-muted); }
-  textarea::placeholder { color: var(--text-light); font-style: italic; }
-  .zoom-bar {
-    display: flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.75rem;
-    background: var(--bg-alt); border: 1px solid var(--border); border-top: none;
-    border-radius: 0 0 4px 4px; font-size: 0.72rem; color: var(--text-muted);
-  }
-  .zoom-bar label { white-space: nowrap; }
-  .zoom-bar input[type="range"] { flex: 1; height: 4px; accent-color: var(--green-muted); cursor: pointer; }
-  .zoom-bar input[type="range"].locked { opacity: 0.4; pointer-events: none; }
-  .zoom-bar .zoom-val { font-family: 'Courier New',monospace; min-width: 32px; text-align: center; }
-  .zoom-lock-btn {
-    font-family: 'Georgia',serif; font-size: 0.7rem; color: var(--text-muted);
-    background: #fff; border: 1px solid var(--border); border-radius: 3px;
-    padding: 0.15rem 0.45rem; cursor: pointer; white-space: nowrap;
-    transition: background 0.15s, color 0.15s;
-  }
-  .zoom-lock-btn.locked { background: var(--green); color: #fff; border-color: var(--green); }
-
-  .controls { display: flex; flex-wrap: wrap; gap: 0.75rem 2rem; align-items: flex-start; margin-bottom: 1.25rem; padding: 0.85rem 1.1rem; background: var(--bg-alt); border: 1px solid var(--border-light); border-radius: 4px; }
-  .toggles { display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; flex: 1; }
-  .toggle-item { display: flex; align-items: center; gap: 0.35rem; cursor: pointer; font-size: 0.8rem; user-select: none; }
-  .toggle-item input[type="checkbox"] { accent-color: var(--green); width: 14px; height: 14px; cursor: pointer; }
-  .target-input { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; white-space: nowrap; }
-  .target-input label { color: var(--text-muted); }
-  .target-input input[type="number"] { width: 140px; padding: 0.25rem 0.45rem; font-family: 'Courier New',monospace; font-size: 0.8rem; border: 1px solid var(--border); border-radius: 3px; background: #fff; }
-  .target-input input:focus { outline: none; border-color: var(--green-muted); }
-
-  /* Controls section hidden in plain text mode */
-  .controls.latex-only { transition: opacity 0.2s; }
-  body.plain-text-mode .controls.latex-only { opacity: 0.4; pointer-events: none; }
-
-  .count-btn { display: block; width: 100%; padding: 0.7rem; font-family: 'Georgia',serif; font-size: 0.95rem; font-weight: 600; color: #fff; background: var(--green); border: none; border-radius: 4px; cursor: pointer; transition: background 0.2s; margin-bottom: 1.5rem; }
-  .count-btn:hover { background: var(--green-light); }
-  .count-btn:active { background: #143728; }
-
-  .results { display: none; } .results.visible { display: block; }
-  .tab-bar { display: flex; justify-content: center; border-bottom: 2px solid var(--border); margin-bottom: 1.25rem; }
-  .tab-btn { padding: 0.55rem 1.2rem; font-family: 'Georgia',serif; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -2px; cursor: pointer; transition: color 0.2s, border-color 0.2s; flex: 1; text-align: center; }
-  .tab-btn:hover { color: var(--green-light); } .tab-btn.active { color: var(--green); border-bottom-color: var(--green); }
-  .tab-panel { display: none; } .tab-panel.active { display: block; }
-
-  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 1rem; }
-  .summary-card { padding: 0.7rem 0.85rem; background: #fff; border: 1px solid var(--border-light); border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
-  .summary-card .label { font-size: 0.8rem; color: var(--text-muted); } .summary-card .value { font-family: 'Courier New',monospace; font-size: 1.05rem; font-weight: 700; color: var(--green); }
-  .summary-card.total { grid-column: 1 / -1; background: var(--green); border-color: var(--green); }
-  .summary-card.total .label { color: rgba(255,255,255,0.8); font-weight: 600; } .summary-card.total .value { color: #fff; font-size: 1.3rem; }
-  .swatch { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 0.35rem; vertical-align: middle; border: 1px solid rgba(0,0,0,0.1); }
-
-  .progress-section { margin-top: 0.4rem; } .progress-section.hidden { display: none; }
-  .progress-bar-container { width: 100%; height: 20px; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
-  .progress-bar-fill { height: 100%; background: var(--green-muted); transition: width 0.4s ease; border-radius: 2px; }
-  .progress-bar-fill.over { background: #C0392B; }
-  .progress-label { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.25rem; text-align: right; font-family: 'Courier New',monospace; }
-
-  /* Plain text summary — simplified */
-  .plain-summary-grid { display: grid; grid-template-columns: 1fr; gap: 0.6rem; margin-bottom: 1rem; }
-
-  /* Structure tree */
-  .struct-total {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 0.75rem 1rem; background: var(--green); color: #fff; border-radius: 4px;
-    user-select: none; margin-bottom: 0.5rem; font-weight: 600;
-  }
-  .struct-total .struct-wc { font-family: 'Courier New',monospace; font-size: 1.1rem; }
-  .struct-expand-all {
-    display: none; font-family: 'Georgia',serif; font-size: 0.78rem; color: var(--green-muted);
-    background: none; border: 1px solid var(--border); border-radius: 3px;
-    padding: 0.3rem 0.7rem; cursor: pointer; margin-bottom: 0.5rem;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .struct-expand-all.visible { display: inline-block; }
-  .struct-expand-all:hover { color: var(--green); border-color: var(--green-muted); }
-  .struct-tree { display: none; border: 1px solid var(--border-light); border-radius: 4px; overflow: hidden; }
-  .struct-tree.expanded { display: block; }
-
-  .struct-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 0.5rem 0.85rem; border-bottom: 1px solid var(--border-light);
-  }
-  .struct-row:last-child { border-bottom: none; }
-  .struct-row.depth-1 { padding-left: 0.85rem; font-weight: 600; background: #fff; }
-  .struct-row.depth-2 { padding-left: 1.8rem; background: #FCFCF9; }
-  .struct-row.depth-3 { padding-left: 2.8rem; font-size: 0.8rem; color: var(--text-muted); background: #FAFAF6; }
-  .struct-row.depth-4 { padding-left: 3.6rem; font-size: 0.78rem; color: var(--text-light); background: #F7F5F0; }
-  .struct-row.has-children { cursor: pointer; }
-  .struct-row.has-children:hover { background: var(--bg-alt); }
-
-  .struct-chevron {
-    display: inline-block; width: 12px; font-size: 0.7rem; color: var(--text-light);
-    margin-right: 0.4rem; transition: transform 0.15s; flex-shrink: 0;
-  }
-  .struct-chevron.open { transform: rotate(90deg); }
-  .struct-placeholder { display: inline-block; width: 12px; margin-right: 0.4rem; flex-shrink: 0; }
-  .struct-children { display: none; }
-  .struct-children.open { display: block; }
-
-  .struct-row .struct-wc { font-family: 'Courier New',monospace; font-size: 0.85rem; color: var(--text); font-weight: 600; white-space: nowrap; margin-left: 1rem; }
-  .struct-row.expanded-parent .struct-wc { color: var(--text-light); font-weight: 400; }
-  .struct-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; min-width: 0; }
-  .struct-bar-wrap { width: 80px; height: 6px; background: var(--bg-alt); border-radius: 3px; overflow: hidden; margin-left: 0.75rem; flex-shrink: 0; }
-  .struct-bar { height: 100%; background: var(--green-muted); border-radius: 3px; transition: width 0.3s; }
-
-  /* Plain text paragraph rows */
-  .plain-para-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 0.55rem 0.85rem; border-bottom: 1px solid var(--border-light);
-    background: #fff;
-  }
-  .plain-para-row:last-child { border-bottom: none; }
-  .plain-para-preview { font-size: 0.8rem; color: var(--text-muted); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: 'Courier New',monospace; }
-  .plain-para-wc { font-family: 'Courier New',monospace; font-size: 0.85rem; color: var(--text); font-weight: 600; white-space: nowrap; margin-left: 1rem; }
-  .plain-para-bar-wrap { width: 80px; height: 6px; background: var(--bg-alt); border-radius: 3px; overflow: hidden; margin-left: 0.75rem; flex-shrink: 0; }
-  .plain-para-bar { height: 100%; background: var(--green-muted); border-radius: 3px; }
-
-  /* Keywords */
-  .keyword-section { margin-top: 1.25rem; padding: 1rem 1.1rem; background: #fff; border: 1px solid var(--border-light); border-radius: 4px; }
-  .keyword-section h4 { font-size: 0.82rem; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.6rem; }
-  .keyword-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(10, auto); grid-auto-flow: column; gap: 0.3rem 1.5rem; font-size: 0.8rem; }
-  .keyword-row { display: flex; justify-content: space-between; align-items: center; padding: 0.2rem 0; }
-  .keyword-word { color: var(--text); }
-  .keyword-stats { font-family: 'Courier New',monospace; font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; }
-
-  /* Verbose */
-  .verbose-controls {
-    display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;
-  }
-  .verbose-mode-toggle {
-    display: flex; border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
-  }
-  .verbose-mode-btn {
-    font-family: 'Georgia',serif; font-size: 0.78rem; padding: 0.35rem 0.85rem;
-    background: #fff; border: none; cursor: pointer; color: var(--text-muted);
-    transition: background 0.15s, color 0.15s; border-right: 1px solid var(--border);
-  }
-  .verbose-mode-btn:last-child { border-right: none; }
-  .verbose-mode-btn.active { background: var(--green); color: #fff; }
-  .verbose-mode-btn:hover:not(.active) { background: var(--bg-alt); }
-
-  .legend {
-    display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; padding: 0.65rem 0.85rem;
-    background: var(--bg-alt); border: 1px solid var(--border-light); border-radius: 4px;
-    margin-bottom: 1rem; font-size: 0.75rem;
-  }
-  .legend-item { display: flex; align-items: center; gap: 0.3rem; }
-  .legend-swatch { display: inline-block; width: 12px; height: 12px; border-radius: 2px; border: 1px solid rgba(0,0,0,0.1); flex-shrink: 0; }
-
-  .verbose-view {
-    font-family: 'Courier New','Consolas',monospace; font-size: 0.8rem; line-height: 1.7;
-    padding: 1.1rem; background: #fff; border: 1px solid var(--border-light); border-radius: 4px;
-    white-space: pre-wrap; word-wrap: break-word; max-height: 550px; overflow-y: auto;
-  }
-
-  .tok-body { background: var(--clr-body); border-radius: 2px; padding: 0 1px; }
-  .tok-cite { background: var(--clr-cite); border-radius: 2px; padding: 0 2px; }
-  .tok-caption { background: var(--clr-caption); border-radius: 2px; padding: 0 2px; }
-  .tok-table { background: var(--clr-table); border-radius: 2px; padding: 0 2px; }
-  .tok-bib { background: var(--clr-bib); border-radius: 2px; padding: 0 2px; }
-  .tok-footnote { background: var(--clr-footnote); border-radius: 2px; padding: 0 2px; }
-  .tok-math { background: var(--clr-math); border-radius: 2px; padding: 0 2px; }
-  .tok-heading { background: var(--clr-heading); border-radius: 2px; padding: 0 2px; }
-  .tok-abstract { background: var(--clr-abstract); border-radius: 2px; padding: 0 2px; }
-  .tok-command { background: var(--clr-command); border-radius: 2px; padding: 0 1px; color: #6B5A47; }
-  .tok-comment { background: var(--clr-comment); border-radius: 2px; padding: 0 1px; color: #8B4444; text-decoration: line-through; }
-  .tok-preamble { background: var(--clr-preamble); border-radius: 2px; padding: 0 1px; }
-  .tok-structural { background: var(--clr-structural); border-radius: 2px; padding: 0 1px; color: #5B4580; }
-  .tok-excluded { background: var(--clr-excluded); border-radius: 2px; padding: 0 1px; color: #999; }
-
-  /* Word-level inc/exc spans — no padding so whitespace gaps are visible between words */
-  .tok-inc { background: var(--clr-included); border-radius: 2px; padding: 0 1px; }
-  .tok-exc { background: var(--clr-excluded-red); border-radius: 2px; padding: 0 1px; color: #9E5A5A; }
-
-  .inc-breakdown { font-size: 0.72rem; color: var(--text-muted); margin-left: 0.15rem; }
-
-  @media (max-width: 640px) {
-    .summary-grid { grid-template-columns: 1fr; }
-    .keyword-grid { grid-template-columns: 1fr; }
-    .controls { flex-direction: column; }
-    .app { padding: 1rem; }
-    header { flex-direction: column; gap: 0.5rem; }
-    .header-left { display: flex; flex-direction: column; gap: 0.1rem; }
-  }
+:root{--bg:#FDFBF7;--bg-alt:#F5F1EB;--green:#1B4332;--green-light:#2D6A4F;--green-muted:#40916C;--text:#1A1A1A;--text-muted:#6B6B6B;--text-light:#999;--border:#D5CEBC;--border-light:#E8E2D6;--clr-body:#EDEDED;--clr-cite:#D4EDDA;--clr-caption:#CCE5FF;--clr-table:#FFE8CC;--clr-bib:#E8D5F5;--clr-footnote:#FFF3CD;--clr-math:#DAEEF8;--clr-heading:#E0E8D0;--clr-abstract:#D5EAF0;--clr-command:#F5E6D3;--clr-comment:#FFD6D6;--clr-preamble:#FDDEDE;--clr-structural:#E5DAF0;--clr-excluded:#F0EDE8;--clr-included:#D4EDDA;--clr-excluded-red:#FDDEDE;}
+body.dark-mode{--bg:#1E1D26;--bg-alt:#272631;--green:#7FBFA0;--green-light:#9AD4B5;--green-muted:#6BAF8D;--text:#E0DDD8;--text-muted:#A09B93;--text-light:#706C66;--border:#3D3B47;--border-light:#33313C;--clr-body:#2C2B35;--clr-cite:#253D2D;--clr-caption:#1E3348;--clr-table:#3D3020;--clr-bib:#312540;--clr-footnote:#3A3520;--clr-math:#1E3040;--clr-heading:#2D3425;--clr-abstract:#1E3338;--clr-command:#352E25;--clr-comment:#3D2525;--clr-preamble:#3D2828;--clr-structural:#2E2840;--clr-excluded:#2A2930;--clr-included:#253D2D;--clr-excluded-red:#3D2828;}
+body.dark-mode .summary-card{background:var(--bg-alt);}
+body.dark-mode .summary-card.total{background:#2D5A42;border-color:#2D5A42;}
+body.dark-mode .summary-card.total .label{color:rgba(255,255,255,0.7);}
+body.dark-mode .summary-card.total .value{color:#fff;}
+body.dark-mode textarea{background:var(--bg-alt);color:var(--text);border-color:var(--border);}
+body.dark-mode .verbose-view{background:var(--bg-alt);color:var(--text);}
+body.dark-mode .help-section{background:var(--bg-alt);}
+body.dark-mode .zoom-lock-btn{background:var(--bg-alt);color:var(--text-muted);}
+body.dark-mode .zoom-lock-btn.locked{background:var(--green);color:#1E1D26;}
+body.dark-mode .verbose-mode-btn{background:var(--bg-alt);color:var(--text-muted);}
+body.dark-mode .verbose-mode-btn.active{background:var(--green);color:#1E1D26;}
+body.dark-mode .struct-total{background:#2D5A42;}
+body.dark-mode .target-input input{background:var(--bg-alt);color:var(--text);border-color:var(--border);}
+body.dark-mode .struct-row{background:var(--bg-alt);}
+body.dark-mode .struct-row.depth-1{background:var(--bg-alt);}
+body.dark-mode .struct-row.depth-2{background:#252430;}
+body.dark-mode .struct-row.depth-3{background:#22212C;}
+body.dark-mode .struct-row.has-children:hover{background:#2E2D38;}
+body.dark-mode .tok-command{color:#B0A08A;}
+body.dark-mode .tok-comment{color:#A06060;}
+body.dark-mode .tok-structural{color:#8070A0;}
+body.dark-mode .tok-excluded{color:#666;}
+body.dark-mode .tok-exc{color:#A06060;}
+body.dark-mode .keyword-section{background:var(--bg-alt);}
+body.dark-mode .plain-para-row{background:var(--bg-alt);}
+body.dark-mode .mode-toggle-btn.plain{background:#2E3D55;border-color:#4A6380;color:#89B4D4;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Georgia','Times New Roman',serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;}
+.app{max-width:960px;margin:0 auto;padding:2rem 1.5rem 4rem;}
+header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);}
+header h1{font-size:1.6rem;font-weight:700;color:var(--green);letter-spacing:-0.02em;}
+.dark-toggle-btn{font-family:'Georgia',serif;font-size:0.82rem;color:var(--green-muted);background:none;border:1px solid var(--border);border-radius:3px;padding:0.3rem 0.6rem;cursor:pointer;transition:border-color 0.2s,color 0.2s;line-height:1;font-variant-emoji:text;}
+.dark-toggle-btn:hover{color:var(--green);border-color:var(--green-muted);}
+.help-toggle-btn{font-family:'Georgia',serif;font-size:0.82rem;color:var(--green-muted);background:none;border:1px solid var(--border);border-radius:3px;padding:0.3rem 0.75rem;cursor:pointer;transition:border-color 0.2s,color 0.2s;}
+.help-toggle-btn:hover{color:var(--green);border-color:var(--green-muted);}
+.bug-report-btn{font-family:'Georgia',serif;font-size:0.82rem;color:var(--green-muted);background:none;border:1px solid var(--border);border-radius:3px;padding:0.3rem 0.75rem;cursor:pointer;transition:border-color 0.2s,color 0.2s;display:flex;align-items:center;gap:0.3rem;}
+.bug-report-btn:hover{color:var(--green);border-color:var(--green-muted);}
+.bug-icon{display:inline-block;width:15px;height:15px;}
+.bug-icon svg{width:100%;height:100%;fill:currentColor;}
+/* Mode toggle — beside the input label */
+.mode-toggle-btn{font-family:'Georgia',serif;font-size:0.72rem;color:var(--green-muted);background:none;border:1px solid var(--border);border-radius:3px;padding:0.2rem 0.55rem;cursor:pointer;transition:border-color 0.2s,color 0.2s,background 0.2s;white-space:nowrap;line-height:1.4;}
+.mode-toggle-btn:hover{color:var(--green);border-color:var(--green-muted);}
+.mode-toggle-btn.plain{background:#EBF4FF;border-color:#9BBDD4;color:#2E6491;}
+body.dark-mode .mode-toggle-btn{background:none;color:var(--text-muted);border-color:var(--border);}
+.help-section{display:none;margin-bottom:1.5rem;padding:1.25rem 1.5rem;background:#fff;border:1px solid var(--border-light);border-radius:4px;font-size:0.84rem;line-height:1.7;}
+.help-section.visible{display:block;}
+.help-section h3{font-size:0.95rem;color:var(--green);margin:1rem 0 0.4rem;}
+.help-section h3:first-child{margin-top:0;}
+.help-section p{margin-bottom:0.5rem;text-align:justify;}
+.help-section code{font-family:'Courier New',monospace;font-size:0.8rem;background:var(--bg-alt);padding:0.1rem 0.35rem;border-radius:2px;}
+.help-dl{margin:0.4rem 0 0.5rem;}
+.help-dl dt{font-weight:600;color:var(--green);margin-top:0.35rem;}
+.help-dl dd{margin-left:1rem;margin-bottom:0.15rem;text-align:justify;}
+.help-colour-table{margin:0.5rem 0;border-collapse:collapse;width:100%;font-size:0.82rem;}
+.help-colour-table td{padding:0.3rem 0.6rem;border-bottom:1px solid var(--border-light);}
+.help-colour-table td:first-child{width:18px;padding-right:0;}
+.help-swatch{display:inline-block;width:14px;height:14px;border-radius:2px;border:1px solid rgba(0,0,0,0.1);}
+/* Input area */
+.input-section{margin-bottom:1.25rem;}
+.input-label-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;}
+.input-label-left{display:flex;align-items:center;gap:0.55rem;}
+.input-label-left label{font-size:0.82rem;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:0.06em;}
+textarea{width:100%;height:420px;padding:1rem;font-family:'Courier New','Consolas',monospace;font-size:0.83rem;line-height:1.5;border:1px solid var(--border);border-radius:4px 4px 0 0;background:#fff;color:var(--text);resize:vertical;transition:border-color 0.2s;}
+textarea:focus{outline:none;border-color:var(--green-muted);}
+textarea::placeholder{color:var(--text-light);font-style:italic;}
+.zoom-bar{display:flex;align-items:center;gap:0.5rem;padding:0.35rem 0.75rem;background:var(--bg-alt);border:1px solid var(--border);border-top:none;border-radius:0 0 4px 4px;font-size:0.72rem;color:var(--text-muted);}
+.zoom-bar label{white-space:nowrap;}
+.zoom-bar input[type="range"]{flex:1;height:4px;accent-color:var(--green-muted);cursor:pointer;}
+.zoom-bar input[type="range"].locked{opacity:0.4;pointer-events:none;}
+.zoom-bar .zoom-val{font-family:'Courier New',monospace;min-width:32px;text-align:center;}
+.zoom-lock-btn{font-family:'Georgia',serif;font-size:0.7rem;color:var(--text-muted);background:#fff;border:1px solid var(--border);border-radius:3px;padding:0.15rem 0.45rem;cursor:pointer;white-space:nowrap;transition:background 0.15s,color 0.15s;}
+.zoom-lock-btn.locked{background:var(--green);color:#fff;border-color:var(--green);}
+/* Controls */
+.controls{display:flex;flex-wrap:wrap;gap:0.75rem 2rem;align-items:flex-start;margin-bottom:1.25rem;padding:0.85rem 1.1rem;background:var(--bg-alt);border:1px solid var(--border-light);border-radius:4px;}
+.toggles{display:flex;flex-wrap:wrap;gap:0.4rem 1.25rem;flex:1;}
+.toggle-item{display:flex;align-items:center;gap:0.35rem;cursor:pointer;font-size:0.8rem;user-select:none;}
+.toggle-item input[type="checkbox"]{accent-color:var(--green);width:14px;height:14px;cursor:pointer;}
+.target-input{display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;white-space:nowrap;}
+.target-input label{color:var(--text-muted);}
+.target-input input[type="number"]{width:140px;padding:0.25rem 0.45rem;font-family:'Courier New',monospace;font-size:0.8rem;border:1px solid var(--border);border-radius:3px;background:#fff;}
+.target-input input:focus{outline:none;border-color:var(--green-muted);}
+/* Button */
+.count-btn{display:block;width:100%;padding:0.7rem;font-family:'Georgia',serif;font-size:0.95rem;font-weight:600;color:#fff;background:var(--green);border:none;border-radius:4px;cursor:pointer;transition:background 0.2s;margin-bottom:1.5rem;}
+.count-btn:hover{background:var(--green-light);}
+.count-btn:active{background:#143728;}
+/* Results */
+.results{display:none;}.results.visible{display:block;}
+.tab-bar{display:flex;justify-content:center;border-bottom:2px solid var(--border);margin-bottom:1.25rem;}
+.tab-btn{padding:0.55rem 1.2rem;font-family:'Georgia',serif;font-size:0.85rem;font-weight:600;color:var(--text-muted);background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;cursor:pointer;transition:color 0.2s,border-color 0.2s;flex:1;text-align:center;}
+.tab-btn:hover{color:var(--green-light);}.tab-btn.active{color:var(--green);border-bottom-color:var(--green);}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
+/* Summary */
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-bottom:1rem;}
+.summary-card{padding:0.7rem 0.85rem;background:#fff;border:1px solid var(--border-light);border-radius:4px;display:flex;justify-content:space-between;align-items:center;}
+.summary-card .label{font-size:0.8rem;color:var(--text-muted);}
+.summary-card .value{font-family:'Courier New',monospace;font-size:1.05rem;font-weight:700;color:var(--green);}
+.summary-card.total{grid-column:1/-1;background:var(--green);border-color:var(--green);}
+.summary-card.total .label{color:rgba(255,255,255,0.8);font-weight:600;}
+.summary-card.total .value{color:#fff;font-size:1.3rem;}
+.swatch{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:0.35rem;vertical-align:middle;border:1px solid rgba(0,0,0,0.1);}
+.plain-summary-grid{display:grid;grid-template-columns:1fr;gap:0.6rem;margin-bottom:1rem;}
+/* Progress */
+.progress-section{margin-top:0.4rem;}.progress-section.hidden{display:none;}
+.progress-bar-container{width:100%;height:20px;background:var(--bg-alt);border:1px solid var(--border);border-radius:3px;overflow:hidden;}
+.progress-bar-fill{height:100%;background:var(--green-muted);transition:width 0.4s ease;border-radius:2px;}
+.progress-bar-fill.over{background:#C0392B;}
+.progress-label{font-size:0.78rem;color:var(--text-muted);margin-top:0.25rem;text-align:right;font-family:'Courier New',monospace;}
+/* Keywords */
+.keyword-section{margin-top:1.25rem;padding:1rem 1.1rem;background:#fff;border:1px solid var(--border-light);border-radius:4px;}
+.keyword-section h4{font-size:0.82rem;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.6rem;}
+.keyword-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(10,auto);grid-auto-flow:column;gap:0.3rem 1.5rem;font-size:0.8rem;}
+.keyword-row{display:flex;justify-content:space-between;align-items:center;padding:0.2rem 0;}
+.keyword-word{color:var(--text);}
+.keyword-stats{font-family:'Courier New',monospace;font-size:0.75rem;color:var(--text-muted);white-space:nowrap;}
+/* Structure */
+.struct-total{display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1rem;background:var(--green);color:#fff;border-radius:4px;user-select:none;margin-bottom:0.5rem;font-weight:600;}
+.struct-total .struct-wc{font-family:'Courier New',monospace;font-size:1.1rem;}
+.struct-expand-all{display:none;font-family:'Georgia',serif;font-size:0.78rem;color:var(--green-muted);background:none;border:1px solid var(--border);border-radius:3px;padding:0.3rem 0.7rem;cursor:pointer;margin-bottom:0.5rem;transition:border-color 0.2s,color 0.2s;}
+.struct-expand-all.visible{display:inline-block;}
+.struct-expand-all:hover{color:var(--green);border-color:var(--green-muted);}
+.struct-tree{display:none;border:1px solid var(--border-light);border-radius:4px;overflow:hidden;}
+.struct-tree.expanded{display:block;}
+.struct-row{display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0.85rem;border-bottom:1px solid var(--border-light);}
+.struct-row:last-child{border-bottom:none;}
+.struct-row.depth-1{padding-left:0.85rem;font-weight:600;background:#fff;}
+.struct-row.depth-2{padding-left:1.8rem;background:#FCFCF9;}
+.struct-row.depth-3{padding-left:2.8rem;font-size:0.8rem;color:var(--text-muted);background:#FAFAF6;}
+.struct-row.depth-4{padding-left:3.6rem;font-size:0.78rem;color:var(--text-light);background:#F7F5F0;}
+.struct-row.has-children{cursor:pointer;}
+.struct-row.has-children:hover{background:var(--bg-alt);}
+.struct-chevron{display:inline-block;width:12px;font-size:0.7rem;color:var(--text-light);margin-right:0.4rem;transition:transform 0.15s;flex-shrink:0;}
+.struct-chevron.open{transform:rotate(90deg);}
+.struct-placeholder{display:inline-block;width:12px;margin-right:0.4rem;flex-shrink:0;}
+.struct-children{display:none;}
+.struct-children.open{display:block;}
+.struct-row .struct-wc{font-family:'Courier New',monospace;font-size:0.85rem;color:var(--text);font-weight:600;white-space:nowrap;margin-left:1rem;}
+.struct-row.expanded-parent .struct-wc{color:var(--text-light);font-weight:400;}
+.struct-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0;}
+.struct-bar-wrap{width:80px;height:6px;background:var(--bg-alt);border-radius:3px;overflow:hidden;margin-left:0.75rem;flex-shrink:0;}
+.struct-bar{height:100%;background:var(--green-muted);border-radius:3px;transition:width 0.3s;}
+/* Plain paragraphs */
+.plain-para-row{display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0.85rem;border-bottom:1px solid var(--border-light);background:#fff;}
+.plain-para-row:last-child{border-bottom:none;}
+.plain-para-preview{font-size:0.8rem;color:var(--text-muted);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:'Courier New',monospace;}
+.plain-para-wc{font-family:'Courier New',monospace;font-size:0.85rem;color:var(--text);font-weight:600;white-space:nowrap;margin-left:1rem;}
+.plain-para-bar-wrap{width:80px;height:6px;background:var(--bg-alt);border-radius:3px;overflow:hidden;margin-left:0.75rem;flex-shrink:0;}
+.plain-para-bar{height:100%;background:var(--green-muted);border-radius:3px;}
+/* Verbose */
+.verbose-controls{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;}
+.verbose-mode-toggle{display:flex;border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+.verbose-mode-btn{font-family:'Georgia',serif;font-size:0.78rem;padding:0.35rem 0.85rem;background:#fff;border:none;cursor:pointer;color:var(--text-muted);transition:background 0.15s,color 0.15s;border-right:1px solid var(--border);}
+.verbose-mode-btn:last-child{border-right:none;}
+.verbose-mode-btn.active{background:var(--green);color:#fff;}
+.verbose-mode-btn:hover:not(.active){background:var(--bg-alt);}
+.legend{display:flex;flex-wrap:wrap;gap:0.4rem 1rem;padding:0.65rem 0.85rem;background:var(--bg-alt);border:1px solid var(--border-light);border-radius:4px;margin-bottom:1rem;font-size:0.75rem;}
+.legend-item{display:flex;align-items:center;gap:0.3rem;}
+.legend-swatch{display:inline-block;width:12px;height:12px;border-radius:2px;border:1px solid rgba(0,0,0,0.1);flex-shrink:0;}
+.verbose-view{font-family:'Courier New','Consolas',monospace;font-size:0.8rem;line-height:1.7;padding:1.1rem;background:#fff;border:1px solid var(--border-light);border-radius:4px;white-space:pre-wrap;word-wrap:break-word;max-height:550px;overflow-y:auto;}
+/* Token colours */
+.tok-body{background:var(--clr-body);border-radius:2px;padding:0 1px;}
+.tok-cite{background:var(--clr-cite);border-radius:2px;padding:0 2px;}
+.tok-caption{background:var(--clr-caption);border-radius:2px;padding:0 2px;}
+.tok-table{background:var(--clr-table);border-radius:2px;padding:0 2px;}
+.tok-bib{background:var(--clr-bib);border-radius:2px;padding:0 2px;}
+.tok-footnote{background:var(--clr-footnote);border-radius:2px;padding:0 2px;}
+.tok-math{background:var(--clr-math);border-radius:2px;padding:0 2px;}
+.tok-heading{background:var(--clr-heading);border-radius:2px;padding:0 2px;}
+.tok-abstract{background:var(--clr-abstract);border-radius:2px;padding:0 2px;}
+.tok-command{background:var(--clr-command);border-radius:2px;padding:0 1px;color:#6B5A47;}
+.tok-comment{background:var(--clr-comment);border-radius:2px;padding:0 1px;color:#8B4444;text-decoration:line-through;}
+.tok-preamble{background:var(--clr-preamble);border-radius:2px;padding:0 1px;}
+.tok-structural{background:var(--clr-structural);border-radius:2px;padding:0 1px;color:#5B4580;}
+.tok-excluded{background:var(--clr-excluded);border-radius:2px;padding:0 1px;color:#999;}
+/* Word-level inc/exc — whitespace left unstyled so chips appear discrete */
+.tok-inc{background:var(--clr-included);border-radius:2px;padding:0 1px;}
+.tok-exc{background:var(--clr-excluded-red);border-radius:2px;padding:0 1px;color:#9E5A5A;}
+.inc-breakdown{font-size:0.72rem;color:var(--text-muted);margin-left:0.15rem;}
+@media(max-width:640px){.summary-grid{grid-template-columns:1fr;}.keyword-grid{grid-template-columns:1fr;}.controls{flex-direction:column;}.app{padding:1rem;}header{flex-direction:column;gap:0.5rem;}}
 </style>
 </head>
 <body>
 <div class="app">
-
-  <header>
-    <div class="header-left">
-      <h1>LaTeX Word Counter</h1>
-      <p style="font-size:0.72rem; color:var(--text-light); margin-top:0.1rem; font-style:italic;" id="mode-subtitle">LaTeX mode &mdash; commands, environments, and % comments are parsed</p>
-    </div>
-    <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
-      <button class="help-toggle-btn" id="about-btn">About</button>
-      <button class="help-toggle-btn" id="privacy-btn">Privacy</button>
-      <button class="help-toggle-btn" id="help-btn">How this works</button>
-      <button class="help-toggle-btn" id="changelog-btn">Changelog</button>
-      <button class="bug-report-btn" id="bug-btn">Report bug <span class="bug-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 8h-1.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5s-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H5v2h1.09c-.05.33-.09.66-.09 1v1H5v2h1v1c0 .34.04.67.09 1H5v2h1.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H19v-2h-1.09c.05-.33.09-.66.09-1v-1h1v-2h-1v-1c0-.34-.04-.67-.09-1H19V8zm-6 8h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></span></button>
-      <button class="mode-toggle-btn" id="mode-btn" title="Switch between LaTeX and plain text counting">Aa Plain Text</button>
-      <button class="dark-toggle-btn" id="dark-btn" title="Toggle dark mode">&#x263D;&#xFE0E;</button>
-    </div>
-  </header>
-
-  <!-- ABOUT -->
-  <div class="help-section" id="about-section">
-    <h3>About this tool</h3>
-    <p>Existing word counting solutions are poorly suited to LaTeX documents. General-purpose counters process raw source as plain text, producing inflated totals that include commands, preamble declarations, and environment syntax. TeXcount and Overleaf's built-in counter offer greater accuracy but present their own limitations: Overleaf's default "Total Words" counts only body text as interpreted by TeXcount, systematically excluding bibliography entries, citations, captions, and footnotes. TeXcount itself can be configured to include these elements, but doing so requires modifying command-line flags or compilation settings—a process that introduces friction disproportionate to the task of checking a document against a word limit.</p>
-    <p>This tool was developed to provide a purpose-built alternative. It performs single-pass parsing of LaTeX source entirely within the browser, requiring no server, no compilation step, and no external dependencies. The parser identifies and classifies the full structure of a <code>.tex</code> file: preamble content, sectioning commands, citation keys, figure captions, table environments, footnotes, mathematical expressions, and bibliography entries. Each element is assigned a typed token, and the word count is computed from whichever categories the user has toggled on. A colour-coded verbose view offers full transparency over every classification decision, allowing authors to verify precisely how each part of their document has been treated before submission.</p>
-    <p>A plain text mode is also available for counting essays and other documents not written in LaTeX — switch using the <strong>Aa Plain Text</strong> button in the header. In plain text mode, every word is counted without any LaTeX parsing, and the structure tab shows a word count per paragraph.</p>
-    <p style="margin-top:0.75rem; font-size:0.82rem; color:var(--text-muted);">Affan · Land Economy Tripos · University of Cambridge</p>
+<header>
+  <div>
+    <h1>LaTeX Word Counter</h1>
+    <p style="font-size:0.72rem;color:var(--text-light);margin-top:0.1rem;font-style:italic;">created by Affan :) &nbsp;&middot;&nbsp;</p>
   </div>
-
-  <!-- PRIVACY -->
-  <div class="help-section" id="privacy-section">
-    <h3>Privacy</h3>
-    <p>All word counting happens entirely within the browser. No LaTeX source is transmitted, uploaded, or stored on any server at any point. The tool runs as a self-contained HTML file, so document content never leaves the machine it is opened on.</p>
-    <p>The site uses <a href="https://umami.is" style="color:var(--green-muted);">Umami</a> for anonymous, cookie-free analytics. Umami collects only aggregate usage data such as page views and visitor counts — it does not track individual users, does not use cookies, and does not collect any personal information or document content. All analytics data is anonymous and cannot be used to identify any individual visitor.</p>
-    <p>The entire source code is visible and open-source (MIT License). You can verify these claims by viewing the page source (right-click → "View Page Source" or Ctrl+U). Any preferences you set (such as dark mode or toggle states) are stored only in your browser's local storage and are never transmitted.</p>
+  <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
+    <button class="help-toggle-btn" id="about-btn">About</button>
+    <button class="help-toggle-btn" id="privacy-btn">Privacy</button>
+    <button class="help-toggle-btn" id="help-btn">How this works</button>
+    <button class="help-toggle-btn" id="changelog-btn">Changelog</button>
+    <button class="bug-report-btn" id="bug-btn">Report bug <span class="bug-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 8h-1.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5s-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H5v2h1.09c-.05.33-.09.66-.09 1v1H5v2h1v1c0 .34.04.67.09 1H5v2h1.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H19v-2h-1.09c.05-.33.09-.66.09-1v-1h1v-2h-1v-1c0-.34-.04-.67-.09-1H19V8zm-6 8h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></span></button>
+    <button class="dark-toggle-btn" id="dark-btn" title="Toggle dark mode">&#x263D;&#xFE0E;</button>
   </div>
+</header>
 
-  <!-- HELP -->
-  <div class="help-section" id="help-section">
-    <h3>Getting started</h3>
-    <p>Paste your entire <code>.tex</code> file into the text area — preamble, <code>\begin{document}</code>, bibliography and all. The counter automatically strips the preamble and parses the rest. Press <strong>Count Words</strong> or <strong>Ctrl+Enter</strong>.</p>
-    <p>For plain essays or documents not written in LaTeX, click <strong>Aa Plain Text</strong> in the header to switch to plain text mode. In this mode every word is counted without any LaTeX interpretation — <code>%</code> signs, backslashes, and curly braces are all treated as ordinary characters.</p>
-    <p>The <code>\title{}</code>, <code>\author{}</code>, and <code>\date{}</code> text within your document body are counted as body words — if these commands appear in the preamble (before <code>\begin{document}</code>), they are not counted.</p>
+<div class="help-section" id="about-section">
+  <h3>About this tool</h3>
+  <p>Existing word counting solutions are poorly suited to LaTeX documents. General-purpose counters process raw source as plain text, producing inflated totals that include commands, preamble declarations, and environment syntax. TeXcount and Overleaf's built-in counter offer greater accuracy but present their own limitations: Overleaf's default "Total Words" counts only body text as interpreted by TeXcount, systematically excluding bibliography entries, citations, captions, and footnotes. TeXcount itself can be configured to include these elements, but doing so requires modifying command-line flags or compilation settings—a process that introduces friction disproportionate to the task of checking a document against a word limit.</p>
+  <p>This tool was developed to provide a purpose-built alternative. It performs single-pass parsing of LaTeX source entirely within the browser, requiring no server, no compilation step, and no external dependencies. The parser identifies and classifies the full structure of a <code>.tex</code> file: preamble content, sectioning commands, citation keys, figure captions, table environments, footnotes, mathematical expressions, and bibliography entries. Each element is assigned a typed token, and the word count is computed from whichever categories the user has toggled on. A colour-coded verbose view offers full transparency over every classification decision.</p>
+  <p>A plain text mode is also available for counting essays and other documents not written in LaTeX — use the toggle beside the input area to switch. In plain text mode every word is counted without LaTeX parsing, and the structure tab shows word counts per paragraph.</p>
+  <p style="margin-top:0.75rem;font-size:0.82rem;color:var(--text-muted);">Affan &middot; Land Economy Tripos &middot; University of Cambridge</p>
+</div>
 
-    <h3>Target word count</h3>
-    <p>If your assignment has a word limit, enter it in the <strong>Target</strong> field. A progress bar will show your count, percentage, and signed difference. The bar turns red if you exceed the target.</p>
+<div class="help-section" id="privacy-section">
+  <h3>Privacy</h3>
+  <p>All word counting happens entirely within the browser. No LaTeX source is transmitted, uploaded, or stored on any server at any point. The tool runs as a self-contained HTML file, so document content never leaves the machine it is opened on.</p>
+  <p>The site uses <a href="https://umami.is" style="color:var(--green-muted);">Umami</a> for anonymous, cookie-free analytics. Umami collects only aggregate usage data such as page views and visitor counts &mdash; it does not track individual users, does not use cookies, and does not collect any personal information or document content.</p>
+  <p>The entire source code is visible and open-source (MIT License). Any preferences you set (such as dark mode or toggle states) are stored only in your browser's local storage and are never transmitted.</p>
+</div>
 
-    <h3>Toggles (LaTeX mode only)</h3>
-    <dl class="help-dl">
-      <dt>Citations</dt><dd>Each <code>\cite</code>-family command counts as 1 word per citation key.</dd>
-      <dt>Figure captions</dt><dd>All text inside <code>\begin{figure}...\end{figure}</code> environments.</dd>
-      <dt>Tables</dt><dd>All text inside <code>table</code>, <code>tabular</code>, <code>tabularx</code>, and <code>longtable</code> environments.</dd>
-      <dt>Footnotes</dt><dd>Text inside <code>\footnote{}</code> commands.</dd>
-      <dt>Mathematics</dt><dd>Display math and inline math. Each variable, number, or symbol command counts as 1 word.</dd>
-      <dt>Headings</dt><dd>The text inside <code>\section{}</code>, <code>\subsection{}</code>, and <code>\subsubsection{}</code> commands.</dd>
-      <dt>Abstract</dt><dd>All text inside <code>\begin{abstract}...\end{abstract}</code> environments.</dd>
-      <dt>Bibliography</dt><dd>Everything inside <code>\begin{thebibliography}...\end{thebibliography}</code>.</dd>
-    </dl>
+<div class="help-section" id="help-section">
+  <h3>Getting started</h3>
+  <p>Paste your entire <code>.tex</code> file into the text area &mdash; preamble, <code>\begin{document}</code>, bibliography and all. The counter automatically strips the preamble and parses the rest. Press <strong>Count Words</strong> or <strong>Ctrl+Enter</strong>.</p>
+  <h3>LaTeX mode vs Plain text mode</h3>
+  <p>By default the tool is in <strong>LaTeX mode</strong>, where commands, environments, and <code>%</code> comments are parsed and classified. This is what you want for <code>.tex</code> source files.</p>
+  <p>If you are counting a plain essay or any document not written as LaTeX source &mdash; for example, a Word document pasted as plain text &mdash; use the <strong>Change to plain text</strong> toggle beside the input area. In plain text mode every word is counted without any LaTeX interpretation: <code>%</code> signs, backslashes, and curly braces are treated as ordinary characters. Switch back with <strong>Change to LaTeX source</strong>.</p>
+  <h3>Target word count</h3>
+  <p>If your assignment has a word limit, enter it in the <strong>Target</strong> field. A progress bar will show your count, percentage, and signed difference. The bar turns red if you exceed the target.</p>
+  <h3>Toggles (LaTeX mode only)</h3>
+  <dl class="help-dl">
+    <dt>Citations</dt><dd>Each <code>\cite</code>-family command counts as 1 word per citation key.</dd>
+    <dt>Figure captions</dt><dd>All text inside <code>\begin{figure}...\end{figure}</code> environments.</dd>
+    <dt>Tables</dt><dd>All text inside <code>table</code>, <code>tabular</code>, <code>tabularx</code>, and <code>longtable</code> environments.</dd>
+    <dt>Footnotes</dt><dd>Text inside <code>\footnote{}</code> commands.</dd>
+    <dt>Mathematics</dt><dd>Display math and inline math. Each variable, number, or symbol command counts as 1 word.</dd>
+    <dt>Headings</dt><dd>The text inside <code>\section{}</code>, <code>\subsection{}</code>, and <code>\subsubsection{}</code> commands.</dd>
+    <dt>Abstract</dt><dd>All text inside <code>\begin{abstract}...\end{abstract}</code> environments.</dd>
+    <dt>Bibliography</dt><dd>Everything inside <code>\begin{thebibliography}...\end{thebibliography}</code>.</dd>
+  </dl>
+  <h3>Tabs</h3>
+  <dl class="help-dl">
+    <dt>Summary</dt><dd>Categorised word counts, progress bar (if target is set), and keyword density for the 20 most frequent non-trivial words. In plain text mode only the total and keywords are shown.</dd>
+    <dt>Structure</dt><dd>LaTeX mode: a hierarchical breakdown by section. Plain text mode: word counts per paragraph (separated by blank lines).</dd>
+    <dt>Verbose</dt><dd>Your full document with colour highlighting. In LaTeX mode you can switch between Categories (every token coloured by type) and Included / Excluded (word-by-word green/red chips showing exactly what counts as a word). In plain text mode only the Included / Excluded view is available.</dd>
+  </dl>
+  <table class="help-colour-table">
+    <tr><td><span class="help-swatch" style="background:var(--clr-body)"></span></td><td>Body text</td></tr>
+    <tr><td><span class="help-swatch" style="background:var(--clr-cite)"></span></td><td>Citations</td></tr>
+    <tr><td><span class="help-swatch" style="background:var(--clr-caption)"></span></td><td>Figure captions</td></tr>
+    <tr><td><span class="help-swatch" style="background:var(--clr-table)"></span></td><td>Table contents</td></tr>
+    <tr><td><span class="help-swatch" style="background:var(--clr-footnote)"></span></td><td>Footnotes</td></tr>
+    <tr><td><span class="help-swatch" style="background:var(--clr-math)"></span></td><td>Mathematics</td></tr>
+    <tr><td><span class="help-swatch" style="background:var(--clr-heading)"></span></td><td>Headings</td></tr>
+    <tr><td><span class="help-swatch" style="background:var(--clr-abstract)"></span></td><td>Abstract</td></tr>
+    <tr><td><span class="help-swatch" style="background:var(--clr-bib)"></span></td><td>Bibliography</td></tr>
+    <tr><td><span class="help-swatch" style="background:var(--clr-command)"></span></td><td>LaTeX commands &mdash; never counted</td></tr>
+    <tr><td><span class="help-swatch" style="background:var(--clr-comment)"></span></td><td>Comments &mdash; never counted</td></tr>
+    <tr><td><span class="help-swatch" style="background:var(--clr-preamble)"></span></td><td>Preamble &mdash; never counted</td></tr>
+    <tr><td><span class="help-swatch" style="background:var(--clr-structural)"></span></td><td>Structural markers &mdash; never counted</td></tr>
+  </table>
+</div>
 
-    <h3>Tabs</h3>
-    <dl class="help-dl">
-      <dt>Summary</dt><dd>Categorised word counts, progress bar (if target is set), and keyword density for the 20 most frequent non-trivial words. In plain text mode only the total and keywords are shown.</dd>
-      <dt>Structure</dt><dd>LaTeX mode: a hierarchical breakdown by section. Plain text mode: a list of paragraphs (separated by blank lines) with their individual word counts.</dd>
-      <dt>Verbose</dt><dd>Your full document rendered with colour highlighting. The Included / Excluded view highlights each individual word that contributes to your total, making it clear exactly what counts as one word.</dd>
-    </dl>
-    <table class="help-colour-table">
-      <tr><td><span class="help-swatch" style="background:var(--clr-body)"></span></td><td>Body text</td></tr>
-      <tr><td><span class="help-swatch" style="background:var(--clr-cite)"></span></td><td>Citations</td></tr>
-      <tr><td><span class="help-swatch" style="background:var(--clr-caption)"></span></td><td>Figure captions</td></tr>
-      <tr><td><span class="help-swatch" style="background:var(--clr-table)"></span></td><td>Table contents</td></tr>
-      <tr><td><span class="help-swatch" style="background:var(--clr-footnote)"></span></td><td>Footnotes</td></tr>
-      <tr><td><span class="help-swatch" style="background:var(--clr-math)"></span></td><td>Mathematics</td></tr>
-      <tr><td><span class="help-swatch" style="background:var(--clr-heading)"></span></td><td>Headings</td></tr>
-      <tr><td><span class="help-swatch" style="background:var(--clr-abstract)"></span></td><td>Abstract</td></tr>
-      <tr><td><span class="help-swatch" style="background:var(--clr-bib)"></span></td><td>Bibliography</td></tr>
-      <tr><td><span class="help-swatch" style="background:var(--clr-command)"></span></td><td>LaTeX commands — never counted</td></tr>
-      <tr><td><span class="help-swatch" style="background:var(--clr-comment)"></span></td><td>Comments — never counted</td></tr>
-      <tr><td><span class="help-swatch" style="background:var(--clr-preamble)"></span></td><td>Preamble — never counted</td></tr>
-      <tr><td><span class="help-swatch" style="background:var(--clr-structural)"></span></td><td>Structural markers — never counted</td></tr>
-    </table>
+<div class="help-section" id="changelog-section">
+  <h3>Changelog</h3>
+  <p style="font-weight:600;color:var(--green);margin-bottom:0.25rem;">v1.1 &mdash; 21 Feb 2026</p>
+  <ul style="margin-left:1.2rem;font-size:0.82rem;line-height:1.7;margin-bottom:0.75rem;">
+    <li>Plain text mode &mdash; count essays and non-LaTeX documents; toggle sits beside the input label</li>
+    <li>Included / Excluded verbose view now highlights each word individually</li>
+    <li>Help panels auto-close when another is opened</li>
+    <li>Fixed mobile emoji rendering for dark mode toggle</li>
+    <li>Verbose mode switching no longer crashes on rapid toggling</li>
+  </ul>
+  <p style="font-weight:600;color:var(--green);margin-bottom:0.25rem;">v1.0 &mdash; 20 Feb 2026</p>
+  <ul style="margin-left:1.2rem;font-size:0.82rem;line-height:1.7;">
+    <li>Single-pass LaTeX parser with token classification</li>
+    <li>Toggleable categories: citations, captions, tables, footnotes, math, headings, abstract, bibliography</li>
+    <li>Hierarchical structure breakdown with collapsible section tree</li>
+    <li>Dual-mode verbose view: category colours and included/excluded</li>
+    <li>Keyword density analysis (top 20 words)</li>
+    <li>Progress bar with percentage and signed difference</li>
+    <li>Dark mode, zoom slider, fully offline</li>
+  </ul>
+</div>
+
+<div class="help-section" id="bug-section">
+  <h3>Report a bug</h3>
+  <p>If you encounter unexpected behaviour, an incorrect word count, or a parsing error, please report it so it can be fixed.</p>
+  <p style="margin-top:0.5rem;"><strong>Issue tracker:</strong> <a href="https://github.com/dziyaulaffan/latexwordcounter/issues" style="color:var(--green-muted);">github.com/dziyaulaffan/latexwordcounter/issues</a></p>
+  <p style="margin-top:0.5rem;font-size:0.82rem;color:var(--text-muted);">When reporting, it helps to include the LaTeX source (or a minimal example) that produces the incorrect result, the expected word count, and which toggles were active.</p>
+</div>
+
+<!-- INPUT -->
+<div class="input-section">
+  <div class="input-label-row">
+    <div class="input-label-left">
+      <label for="latex-input" id="input-label">Paste LaTeX source</label>
+      <button class="mode-toggle-btn" id="mode-btn">Change to plain text</button>
+    </div>
+    <span style="font-size:0.72rem;color:var(--text-light);font-style:italic;">All counting happens locally in your browser. Your text is not uploaded or stored.</span>
   </div>
-
-  <!-- CHANGELOG -->
-  <div class="help-section" id="changelog-section">
-    <h3>Changelog</h3>
-    <p style="font-weight:600; color:var(--green); margin-bottom:0.25rem;">v1.1 — 21 Feb 2026</p>
-    <ul style="margin-left:1.2rem; font-size:0.82rem; line-height:1.7; margin-bottom:0.75rem;">
-      <li>Plain text mode — count essays and non-LaTeX documents with <code>%</code> signs treated as ordinary characters</li>
-      <li>Included / Excluded verbose view now highlights each word <em>individually</em>, making word boundaries explicit</li>
-      <li>Fixed mobile emoji rendering for the dark mode toggle icon</li>
-    </ul>
-    <p style="font-weight:600; color:var(--green); margin-bottom:0.25rem;">v1.0 — 20 Feb 2026</p>
-    <p style="margin-bottom:0.15rem;">Initial release.</p>
-    <ul style="margin-left:1.2rem; font-size:0.82rem; line-height:1.7;">
-      <li>Single-pass LaTeX parser with token classification</li>
-      <li>Toggleable categories: citations, figure captions, tables, footnotes, mathematics, headings, bibliography</li>
-      <li>Hierarchical structure breakdown with collapsible section tree</li>
-      <li>Dual-mode verbose view: category colours and included/excluded</li>
-      <li>Keyword density analysis (top 20 words)</li>
-      <li>Progress bar with percentage and signed difference</li>
-      <li>Dark mode, zoom slider, fully offline</li>
-    </ul>
-  </div>
-
-  <!-- BUG REPORT -->
-  <div class="help-section" id="bug-section">
-    <h3>Report a bug</h3>
-    <p>If you encounter unexpected behaviour, an incorrect word count, or a parsing error, please report it so it can be fixed.</p>
-    <p style="margin-top:0.5rem;"><strong>Issue tracker:</strong> <a href="https://github.com/dziyaulaffan/latexwordcounter/issues" style="color:var(--green-muted);">github.com/dziyaulaffan/latexwordcounter/issues</a></p>
-    <p style="margin-top:0.5rem; font-size:0.82rem; color:var(--text-muted);">When reporting, it would be helpful to include the LaTeX source (or a minimal example) that produces the incorrect result, the expected word count, and which toggles were active.</p>
-  </div>
-
-  <!-- INPUT -->
-  <div class="input-section">
-    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.4rem;">
-      <label for="latex-input" style="margin-bottom:0;" id="input-label">Paste LaTeX source</label>
-      <span style="font-size:0.72rem; color:var(--text-light); font-style:italic;">All counting happens locally in your browser. Your text is not uploaded or stored.</span>
-    </div>
-    <textarea id="latex-input" placeholder="Paste your entire .tex file here — preamble and all."></textarea>
-    <div class="zoom-bar">
-      <label>Zoom</label>
-      <input type="range" id="zoom-slider" min="6" max="28" value="13" step="0.5">
-      <span class="zoom-val" id="zoom-val">13px</span>
-      <button class="zoom-lock-btn" id="zoom-lock">Lock</button>
-    </div>
-  </div>
-
-  <!-- CONTROLS -->
-  <div class="controls latex-only" id="latex-controls">
-    <div class="toggles">
-      <label class="toggle-item"><input type="checkbox" id="tog-cite" checked> Citations</label>
-      <label class="toggle-item"><input type="checkbox" id="tog-caption" checked> Figure captions</label>
-      <label class="toggle-item"><input type="checkbox" id="tog-table" checked> Tables</label>
-      <label class="toggle-item"><input type="checkbox" id="tog-footnote" checked> Footnotes</label>
-      <label class="toggle-item"><input type="checkbox" id="tog-math" checked> Mathematics</label>
-      <label class="toggle-item"><input type="checkbox" id="tog-headings" checked> Headings</label>
-      <label class="toggle-item"><input type="checkbox" id="tog-abstract" checked> Abstract</label>
-      <label class="toggle-item"><input type="checkbox" id="tog-bib" checked> Bibliography</label>
-    </div>
-    <div class="target-input">
-      <label for="target-wc">Target:</label>
-      <input type="number" id="target-wc" placeholder="e.g. 15000" min="0">
-    </div>
-  </div>
-
-  <!-- Plain text controls (target only) -->
-  <div class="controls" id="plain-controls" style="display:none;">
-    <div class="target-input">
-      <label for="target-wc-plain">Target:</label>
-      <input type="number" id="target-wc-plain" placeholder="e.g. 2000" min="0">
-    </div>
-  </div>
-
-  <button class="count-btn" id="count-btn">Count Words</button>
-
-  <!-- RESULTS -->
-  <div class="results" id="results">
-    <div class="tab-bar">
-      <button class="tab-btn active" data-tab="summary">Summary</button>
-      <button class="tab-btn" data-tab="structure">Structure</button>
-      <button class="tab-btn" data-tab="verbose">Verbose</button>
-    </div>
-
-    <!-- SUMMARY -->
-    <div class="tab-panel active" id="tab-summary">
-      <!-- LaTeX summary -->
-      <div id="latex-summary-grid">
-        <div class="summary-grid">
-          <div class="summary-card"><span class="label">Body text</span><span class="value" id="wc-body">0</span></div>
-          <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-cite)"></span>Citations</span><span class="value" id="wc-cite">0</span></div>
-          <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-caption)"></span>Captions</span><span class="value" id="wc-caption">0</span></div>
-          <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-table)"></span>Tables</span><span class="value" id="wc-table">0</span></div>
-          <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-footnote)"></span>Footnotes</span><span class="value" id="wc-footnote">0</span></div>
-          <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-math)"></span>Math words</span><span class="value" id="wc-math">0</span></div>
-          <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-heading)"></span>Headings</span><span class="value" id="wc-headings">0</span></div>
-          <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-abstract)"></span>Abstract</span><span class="value" id="wc-abstract">0</span></div>
-          <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-bib)"></span>Bibliography</span><span class="value" id="wc-bib">0</span></div>
-          <div class="summary-card"><span class="label">Math expressions</span><span class="value" id="wc-mathblocks">0</span></div>
-          <div class="summary-card total"><span class="label">Total counted words</span><span class="value" id="wc-total">0</span></div>
-        </div>
-      </div>
-      <!-- Plain text summary -->
-      <div id="plain-summary-grid" style="display:none;">
-        <div class="plain-summary-grid">
-          <div class="summary-card total"><span class="label">Total words</span><span class="value" id="wc-plain-total">0</span></div>
-        </div>
-      </div>
-      <div class="progress-section hidden" id="progress-section">
-        <div class="progress-bar-container"><div class="progress-bar-fill" id="progress-fill"></div></div>
-        <div class="progress-label" id="progress-label"></div>
-      </div>
-      <div class="keyword-section" id="keyword-section" style="display:none;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
-          <h4 style="margin-bottom:0;">Keyword density (top 20)</h4>
-          <label class="toggle-item" style="font-size:0.72rem; color:var(--text-light);"><input type="checkbox" id="tog-stopwords" checked style="accent-color:var(--green-muted); width:12px; height:12px;"> Exclude common words</label>
-        </div>
-        <div class="keyword-grid" id="keyword-grid"></div>
-      </div>
-    </div>
-
-    <!-- STRUCTURE -->
-    <div class="tab-panel" id="tab-structure">
-      <div id="structure-panel"></div>
-    </div>
-
-    <!-- VERBOSE -->
-    <div class="tab-panel" id="tab-verbose">
-      <div class="verbose-controls" id="verbose-controls-row">
-        <div class="verbose-mode-toggle" id="verbose-mode-toggle">
-          <button class="verbose-mode-btn active" data-mode="categories">Categories</button>
-          <button class="verbose-mode-btn" data-mode="incexc">Included / Excluded</button>
-        </div>
-      </div>
-      <div id="legend-categories" class="legend">
-        <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-body)"></span> Body</div>
-        <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-cite)"></span> Citation</div>
-        <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-caption)"></span> Caption</div>
-        <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-table)"></span> Table</div>
-        <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-footnote)"></span> Footnote</div>
-        <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-math)"></span> Math</div>
-        <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-heading)"></span> Heading</div>
-        <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-abstract)"></span> Abstract</div>
-        <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-bib)"></span> Bibliography</div>
-        <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-command)"></span> Command</div>
-        <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-comment)"></span> Comment</div>
-        <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-preamble)"></span> Preamble</div>
-        <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-structural)"></span> Structural</div>
-        <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-excluded)"></span> Excluded</div>
-      </div>
-      <div id="legend-incexc" class="legend" style="display:none;">
-        <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-included)"></span> Included<span class="inc-breakdown" id="inc-breakdown"></span></div>
-        <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-excluded-red)"></span> Excluded<span class="inc-breakdown" id="exc-breakdown"></span></div>
-      </div>
-      <div class="verbose-view" id="verbose-view"></div>
-    </div>
+  <textarea id="latex-input" placeholder="Paste your entire .tex file here &mdash; preamble and all."></textarea>
+  <div class="zoom-bar">
+    <label>Zoom</label>
+    <input type="range" id="zoom-slider" min="6" max="28" value="13" step="0.5">
+    <span class="zoom-val" id="zoom-val">13px</span>
+    <button class="zoom-lock-btn" id="zoom-lock">Lock</button>
   </div>
 </div>
 
+<!-- LATEX CONTROLS -->
+<div class="controls" id="latex-controls">
+  <div class="toggles">
+    <label class="toggle-item"><input type="checkbox" id="tog-cite" checked> Citations</label>
+    <label class="toggle-item"><input type="checkbox" id="tog-caption" checked> Figure captions</label>
+    <label class="toggle-item"><input type="checkbox" id="tog-table" checked> Tables</label>
+    <label class="toggle-item"><input type="checkbox" id="tog-footnote" checked> Footnotes</label>
+    <label class="toggle-item"><input type="checkbox" id="tog-math" checked> Mathematics</label>
+    <label class="toggle-item"><input type="checkbox" id="tog-headings" checked> Headings</label>
+    <label class="toggle-item"><input type="checkbox" id="tog-abstract" checked> Abstract</label>
+    <label class="toggle-item"><input type="checkbox" id="tog-bib" checked> Bibliography</label>
+  </div>
+  <div class="target-input">
+    <label for="target-wc">Target:</label>
+    <input type="number" id="target-wc" placeholder="e.g. 15000" min="0">
+  </div>
+</div>
+
+<!-- PLAIN TEXT CONTROLS -->
+<div class="controls" id="plain-controls" style="display:none;">
+  <div class="target-input">
+    <label for="target-wc-plain">Target:</label>
+    <input type="number" id="target-wc-plain" placeholder="e.g. 2000" min="0">
+  </div>
+</div>
+
+<button class="count-btn" id="count-btn">Count Words</button>
+
+<!-- RESULTS -->
+<div class="results" id="results">
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="summary">Summary</button>
+    <button class="tab-btn" data-tab="structure">Structure</button>
+    <button class="tab-btn" data-tab="verbose">Verbose</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-summary">
+    <div id="latex-summary-grid">
+      <div class="summary-grid">
+        <div class="summary-card"><span class="label">Body text</span><span class="value" id="wc-body">0</span></div>
+        <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-cite)"></span>Citations</span><span class="value" id="wc-cite">0</span></div>
+        <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-caption)"></span>Captions</span><span class="value" id="wc-caption">0</span></div>
+        <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-table)"></span>Tables</span><span class="value" id="wc-table">0</span></div>
+        <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-footnote)"></span>Footnotes</span><span class="value" id="wc-footnote">0</span></div>
+        <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-math)"></span>Math words</span><span class="value" id="wc-math">0</span></div>
+        <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-heading)"></span>Headings</span><span class="value" id="wc-headings">0</span></div>
+        <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-abstract)"></span>Abstract</span><span class="value" id="wc-abstract">0</span></div>
+        <div class="summary-card"><span class="label"><span class="swatch" style="background:var(--clr-bib)"></span>Bibliography</span><span class="value" id="wc-bib">0</span></div>
+        <div class="summary-card"><span class="label">Math expressions</span><span class="value" id="wc-mathblocks">0</span></div>
+        <div class="summary-card total"><span class="label">Total counted words</span><span class="value" id="wc-total">0</span></div>
+      </div>
+    </div>
+    <div id="plain-summary-grid" style="display:none;">
+      <div class="plain-summary-grid">
+        <div class="summary-card total"><span class="label">Total words</span><span class="value" id="wc-plain-total">0</span></div>
+      </div>
+    </div>
+    <div class="progress-section hidden" id="progress-section">
+      <div class="progress-bar-container"><div class="progress-bar-fill" id="progress-fill"></div></div>
+      <div class="progress-label" id="progress-label"></div>
+    </div>
+    <div class="keyword-section" id="keyword-section" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem;">
+        <h4 style="margin-bottom:0;">Keyword density (top 20)</h4>
+        <label class="toggle-item" style="font-size:0.72rem;color:var(--text-light);"><input type="checkbox" id="tog-stopwords" checked style="accent-color:var(--green-muted);width:12px;height:12px;"> Exclude common words</label>
+      </div>
+      <div class="keyword-grid" id="keyword-grid"></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-structure">
+    <div id="structure-panel"></div>
+  </div>
+
+  <div class="tab-panel" id="tab-verbose">
+    <div class="verbose-controls">
+      <div class="verbose-mode-toggle">
+        <button class="verbose-mode-btn active" id="vbtn-categories" data-mode="categories">Categories</button>
+        <button class="verbose-mode-btn" id="vbtn-incexc" data-mode="incexc">Included / Excluded</button>
+      </div>
+    </div>
+    <div id="legend-categories" class="legend">
+      <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-body)"></span> Body</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-cite)"></span> Citation</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-caption)"></span> Caption</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-table)"></span> Table</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-footnote)"></span> Footnote</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-math)"></span> Math</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-heading)"></span> Heading</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-abstract)"></span> Abstract</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-bib)"></span> Bibliography</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-command)"></span> Command</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-comment)"></span> Comment</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-preamble)"></span> Preamble</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-structural)"></span> Structural</div>
+      <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-excluded)"></span> Excluded</div>
+    </div>
+    <div id="legend-incexc" class="legend" style="display:none;">
+      <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-included)"></span> Included<span class="inc-breakdown" id="inc-breakdown"></span></div>
+      <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-excluded-red)"></span> Excluded<span class="inc-breakdown" id="exc-breakdown"></span></div>
+    </div>
+    <div class="verbose-view" id="verbose-view"></div>
+  </div>
+</div>
+</div>
+
 <script>
+
 // ================================================================
-// LaTeX Word Counter — Vanilla JavaScript
+// LaTeX Word Counter
 // ================================================================
 
-// ----------------------------------------------------------------
 // 1. PARSER
-// ----------------------------------------------------------------
-
 function parseLatex(source) {
   const tokens = [];
   let pos = 0;
   const len = source.length;
-
   const docStart = source.search(/\\begin\s*\{document\}/);
   let preambleEnd = 0;
   if (docStart !== -1) {
@@ -597,15 +436,12 @@ function parseLatex(source) {
     preambleEnd = docStart + m[0].length;
   }
   pos = preambleEnd;
-
   const envStack = ['body'];
   function currentEnv() { return envStack[envStack.length - 1]; }
-
   function textTypeForEnv(env) {
     const map = { figure:'caption', table:'table', bib:'bib', math:'math', footnote:'footnote', abstract:'abstract' };
     return map[env] || 'body';
   }
-
   function envCategory(name) {
     const n = name.replace(/\*$/, '').toLowerCase();
     if (n === 'figure') return 'figure';
@@ -615,982 +451,292 @@ function parseLatex(source) {
     if (['equation','align','gather','multline','flalign','eqnarray','displaymath','math'].includes(n)) return 'math';
     return null;
   }
-
   const displayMathEnvs = new Set(['equation','align','gather','multline','flalign','eqnarray','displaymath']);
-
-  const citeCommands = new Set([
-    'cite','citep','citet','citealt','citealp','citeauthor','citeyear','citetext',
-    'parencite','textcite','autocite','fullcite','footcite','nocite',
-    'Cite','Citep','Citet','Citeauthor','Parencite','Textcite','Autocite'
-  ]);
-
+  const citeCommands = new Set(['cite','citep','citet','citealt','citealp','citeauthor','citeyear','citetext','parencite','textcite','autocite','fullcite','footcite','nocite','Cite','Citep','Citet','Citeauthor','Parencite','Textcite','Autocite']);
   const sectionLevels = { part:0, chapter:0, section:1, subsection:2, subsubsection:3, paragraph:4 };
-
-  const textWrappers = new Set([
-    'textbf','textit','emph','underline','texttt','textrm','textsf','textsc','textsl',
-    'textnormal','mbox','hbox','fbox','section','subsection','subsubsection',
-    'paragraph','title','author','caption','chapter','part','date',
-    'enquote','textquote','foreignquote','hyphenquote',
-    'MakeUppercase','MakeLowercase','textsuperscript','textsubscript',
-    'normalfont','bfseries','itshape','scshape','sffamily','ttfamily',
-    'text','mathrm','mathbf','mathit','mathsf','mathtt','mathcal','mathbb',
-    'boldsymbol','operatorname'
-  ]);
-
-  const contentSymbols = new Set([
-    'alpha','beta','gamma','delta','epsilon','varepsilon','zeta','eta','theta','vartheta',
-    'iota','kappa','lambda','mu','nu','xi','pi','varpi','rho','varrho','sigma','varsigma',
-    'tau','upsilon','phi','varphi','chi','psi','omega',
-    'Alpha','Beta','Gamma','Delta','Epsilon','Zeta','Eta','Theta','Iota','Kappa',
-    'Lambda','Mu','Nu','Xi','Pi','Rho','Sigma','Tau','Upsilon','Phi','Chi','Psi','Omega',
-    'infty','nabla','partial','forall','exists','nexists','emptyset','varnothing',
-    'ell','hbar','imath','jmath','Re','Im','wp','aleph','beth'
-  ]);
-
+  const textWrappers = new Set(['textbf','textit','emph','underline','texttt','textrm','textsf','textsc','textsl','textnormal','mbox','hbox','fbox','section','subsection','subsubsection','paragraph','title','author','caption','chapter','part','date','enquote','textquote','foreignquote','hyphenquote','MakeUppercase','MakeLowercase','textsuperscript','textsubscript','normalfont','bfseries','itshape','scshape','sffamily','ttfamily','text','mathrm','mathbf','mathit','mathsf','mathtt','mathcal','mathbb','boldsymbol','operatorname']);
+  const contentSymbols = new Set(['alpha','beta','gamma','delta','epsilon','varepsilon','zeta','eta','theta','vartheta','iota','kappa','lambda','mu','nu','xi','pi','varpi','rho','varrho','sigma','varsigma','tau','upsilon','phi','varphi','chi','psi','omega','Alpha','Beta','Gamma','Delta','Epsilon','Zeta','Eta','Theta','Iota','Kappa','Lambda','Mu','Nu','Xi','Pi','Rho','Sigma','Tau','Upsilon','Phi','Chi','Psi','Omega','infty','nabla','partial','forall','exists','nexists','emptyset','varnothing','ell','hbar','imath','jmath','Re','Im','wp','aleph','beth']);
   let bodyBuf = '';
-  function flushBody() {
-    if (bodyBuf.length > 0) {
-      tokens.push({ text: bodyBuf, type: textTypeForEnv(currentEnv()) });
-      bodyBuf = '';
-    }
-  }
-
+  function flushBody() { if (bodyBuf.length > 0) { tokens.push({ text: bodyBuf, type: textTypeForEnv(currentEnv()) }); bodyBuf = ''; } }
   while (pos < len) {
     const ch = source[pos];
-
     if (ch === '$' && currentEnv() !== 'math') {
       flushBody();
-      if (pos+1 < len && source[pos+1] === '$') {
-        const close = source.indexOf('$$', pos+2);
-        if (close !== -1) { tokens.push({ text: source.slice(pos, close+2), type:'math', isMathBlock:true }); pos = close+2; continue; }
-      }
-      const close = source.indexOf('$', pos+1);
-      if (close !== -1) { tokens.push({ text: source.slice(pos, close+1), type:'math', isMathBlock:false }); pos = close+1; continue; }
-      bodyBuf += ch; pos++; continue;
+      if (pos+1 < len && source[pos+1] === '$') { const c=source.indexOf('$$',pos+2); if(c!==-1){tokens.push({text:source.slice(pos,c+2),type:'math',isMathBlock:true});pos=c+2;continue;} }
+      const c=source.indexOf('$',pos+1); if(c!==-1){tokens.push({text:source.slice(pos,c+1),type:'math',isMathBlock:false});pos=c+1;continue;}
+      bodyBuf+=ch;pos++;continue;
     }
-
-    if (ch === '%' && (pos === 0 || source[pos-1] !== '\\')) {
+    if (ch==='%'&&(pos===0||source[pos-1]!=='\\')) {
       flushBody();
-      const lineEnd = source.indexOf('\n', pos);
-      const end = lineEnd === -1 ? len : lineEnd+1;
-      tokens.push({ text: source.slice(pos, end), type:'comment' });
-      pos = end; continue;
+      const le=source.indexOf('\n',pos); const e=le===-1?len:le+1;
+      tokens.push({text:source.slice(pos,e),type:'comment'}); pos=e; continue;
     }
-
-    if (ch === '\\') {
-      const beginMatch = source.slice(pos).match(/^\\begin\s*\{([^}]*)\}/);
-      if (beginMatch) {
-        flushBody();
-        const envName = beginMatch[1];
-        let endPos = pos + beginMatch[0].length;
-        while (endPos < len) {
-          if (source[endPos]==='[') { const cb=findClosing(source,endPos,'[',']'); if(cb!==-1){endPos=cb+1;continue;} }
-          if (source[endPos]==='{') { const cb=findClosing(source,endPos,'{','}'); if(cb!==-1){endPos=cb+1;continue;} }
-          break;
-        }
-        const isMB = displayMathEnvs.has(envName.replace(/\*$/,'').toLowerCase());
-        tokens.push({ text: source.slice(pos, endPos), type:'structural', isMathBlock:isMB });
-        pos = endPos;
-        envStack.push(envCategory(envName) || currentEnv());
+    if (ch==='\\') {
+      const bM=source.slice(pos).match(/^\\begin\s*\{([^}]*)\}/);
+      if(bM){flushBody();const en=bM[1];let ep=pos+bM[0].length;while(ep<len){if(source[ep]==='['){const cb=findClosing(source,ep,'[',']');if(cb!==-1){ep=cb+1;continue;}}if(source[ep]==='{'){const cb=findClosing(source,ep,'{','}');if(cb!==-1){ep=cb+1;continue;}}break;}const isMB=displayMathEnvs.has(en.replace(/\*$/,'').toLowerCase());tokens.push({text:source.slice(pos,ep),type:'structural',isMathBlock:isMB});pos=ep;envStack.push(envCategory(en)||currentEnv());continue;}
+      const eM=source.slice(pos).match(/^\\end\s*\{([^}]*)\}/);
+      if(eM){flushBody();tokens.push({text:eM[0],type:'structural'});pos+=eM[0].length;if(envStack.length>1)envStack.pop();continue;}
+      if(pos+1<len&&source[pos+1]==='['){flushBody();const c=source.indexOf('\\]',pos+2);if(c!==-1){tokens.push({text:source.slice(pos,c+2),type:'math',isMathBlock:true});pos=c+2;continue;}}
+      if(pos+1<len&&source[pos+1]==='('){flushBody();const c=source.indexOf('\\)',pos+2);if(c!==-1){tokens.push({text:source.slice(pos,c+2),type:'math',isMathBlock:false});pos=c+2;continue;}}
+      const citeM=source.slice(pos).match(/^\\([a-zA-Z]+)(\s*\[[^\]]*\])*\s*\{([^}]*)\}/);
+      if(citeM&&citeCommands.has(citeM[1])){flushBody();const keys=citeM[3].split(',').map(k=>k.trim()).filter(k=>k.length>0);tokens.push({text:citeM[0],type:'cite',wordCount:keys.length});pos+=citeM[0].length;continue;}
+      const fnM=source.slice(pos).match(/^\\footnote\s*\{/);
+      if(fnM){flushBody();const brS=pos+fnM[0].length-1;const brE=findClosing(source,brS,'{','}');if(brE!==-1){tokens.push({text:source.slice(pos,brS+1),type:'command'});const inner=source.slice(brS+1,brE);if(inner.length>0)tokens.push({text:inner,type:'footnote'});tokens.push({text:'}',type:'command'});pos=brE+1;continue;}}
+      const sM=source.slice(pos).match(/^\\(part|chapter|section|subsection|subsubsection|paragraph)\*?\s*(\[[^\]]*\])?\s*\{/);
+      if(sM){flushBody();const cn=sM[1];const brS=pos+sM[0].length-1;const brE=findClosing(source,brS,'{','}');if(brE!==-1){const title=source.slice(brS+1,brE);const ct=title.replace(/\\[a-zA-Z]+/g,'').replace(/[{}]/g,'').trim();tokens.push({text:source.slice(pos,brS+1),type:'command',sectionLevel:sectionLevels[cn]||1,sectionTitle:ct});if(title.length>0)tokens.push({text:title,type:'heading'});tokens.push({text:'}',type:'command'});pos=brE+1;continue;}}
+      const cmdM=source.slice(pos).match(/^\\([a-zA-Z]+|[^a-zA-Z])/);
+      if(cmdM){flushBody();let cmdText=cmdM[0],cmdEnd=pos+cmdText.length;const cmdName=cmdM[1];
+        if(contentSymbols.has(cmdName)){tokens.push({text:cmdText,type:textTypeForEnv(currentEnv())});pos=cmdEnd;continue;}
+        while(cmdEnd<len){let pk=cmdEnd;while(pk<len&&(source[pk]===' '||source[pk]==='\t'))pk++;if(source[pk]==='['){const cb=findClosing(source,pk,'[',']');if(cb!==-1){cmdEnd=cb+1;continue;}else break;}else if(source[pk]==='{'){if(textWrappers.has(cmdName)){tokens.push({text:source.slice(pos,pk+1),type:'command'});pos=pk+1;cmdText=null;break;}else{const cb=findClosing(source,pk,'{','}');if(cb!==-1){cmdEnd=cb+1;continue;}else break;}}else break;}
+        if(cmdText!==null){tokens.push({text:source.slice(pos,cmdEnd),type:'command'});pos=cmdEnd;}
         continue;
       }
-
-      const endMatch = source.slice(pos).match(/^\\end\s*\{([^}]*)\}/);
-      if (endMatch) {
-        flushBody();
-        tokens.push({ text: endMatch[0], type:'structural' });
-        pos += endMatch[0].length;
-        if (envStack.length > 1) envStack.pop();
-        continue;
-      }
-
-      if (pos+1<len && source[pos+1]==='[') {
-        flushBody();
-        const close = source.indexOf('\\]', pos+2);
-        if (close!==-1) { tokens.push({ text:source.slice(pos,close+2), type:'math', isMathBlock:true }); pos=close+2; continue; }
-      }
-      if (pos+1<len && source[pos+1]==='(') {
-        flushBody();
-        const close = source.indexOf('\\)', pos+2);
-        if (close!==-1) { tokens.push({ text:source.slice(pos,close+2), type:'math', isMathBlock:false }); pos=close+2; continue; }
-      }
-
-      const citeMatch = source.slice(pos).match(/^\\([a-zA-Z]+)(\s*\[[^\]]*\])*\s*\{([^}]*)\}/);
-      if (citeMatch && citeCommands.has(citeMatch[1])) {
-        flushBody();
-        const keys = citeMatch[3].split(',').map(k=>k.trim()).filter(k=>k.length>0);
-        tokens.push({ text:citeMatch[0], type:'cite', wordCount:keys.length });
-        pos += citeMatch[0].length; continue;
-      }
-
-      const fnMatch = source.slice(pos).match(/^\\footnote\s*\{/);
-      if (fnMatch) {
-        flushBody();
-        const brS = pos + fnMatch[0].length - 1;
-        const brE = findClosing(source, brS, '{', '}');
-        if (brE !== -1) {
-          tokens.push({ text:source.slice(pos,brS+1), type:'command' });
-          const inner = source.slice(brS+1, brE);
-          if (inner.length>0) tokens.push({ text:inner, type:'footnote' });
-          tokens.push({ text:'}', type:'command' });
-          pos = brE+1; continue;
-        }
-      }
-
-      const secMatch = source.slice(pos).match(/^\\(part|chapter|section|subsection|subsubsection|paragraph)\*?\s*(\[[^\]]*\])?\s*\{/);
-      if (secMatch) {
-        flushBody();
-        const cmdName = secMatch[1];
-        const brS = pos + secMatch[0].length - 1;
-        const brE = findClosing(source, brS, '{', '}');
-        if (brE !== -1) {
-          const title = source.slice(brS+1, brE);
-          const cleanTitle = title.replace(/\\[a-zA-Z]+/g,'').replace(/[{}]/g,'').trim();
-          tokens.push({ text: source.slice(pos, brS+1), type:'command',
-            sectionLevel: sectionLevels[cmdName] || 1, sectionTitle: cleanTitle });
-          if (title.length > 0) tokens.push({ text: title, type: 'heading' });
-          tokens.push({ text: '}', type: 'command' });
-          pos = brE+1; continue;
-        }
-      }
-
-      const cmdMatch = source.slice(pos).match(/^\\([a-zA-Z]+|[^a-zA-Z])/);
-      if (cmdMatch) {
-        flushBody();
-        let cmdText = cmdMatch[0], cmdEnd = pos+cmdText.length;
-        const cmdName = cmdMatch[1];
-
-        if (contentSymbols.has(cmdName)) {
-          tokens.push({ text: cmdText, type: textTypeForEnv(currentEnv()) });
-          pos = cmdEnd; continue;
-        }
-
-        while (cmdEnd < len) {
-          let peek = cmdEnd;
-          while (peek<len && (source[peek]===' '||source[peek]==='\t')) peek++;
-          if (source[peek]==='[') { const cb=findClosing(source,peek,'[',']'); if(cb!==-1){cmdEnd=cb+1;continue;}else break; }
-          else if (source[peek]==='{') {
-            if (textWrappers.has(cmdName)) {
-              tokens.push({ text:source.slice(pos,peek+1), type:'command' });
-              pos = peek+1; cmdText = null; break;
-            } else {
-              const cb=findClosing(source,peek,'{','}'); if(cb!==-1){cmdEnd=cb+1;continue;}else break;
-            }
-          } else break;
-        }
-        if (cmdText !== null) { tokens.push({ text:source.slice(pos,cmdEnd), type:'command' }); pos=cmdEnd; }
-        continue;
-      }
-      bodyBuf += ch; pos++; continue;
+      bodyBuf+=ch;pos++;continue;
     }
-
-    if (ch==='}' || ch==='{') { flushBody(); tokens.push({ text:ch, type:'command' }); pos++; continue; }
-    bodyBuf += ch; pos++;
+    if(ch==='}'||ch==='{'){flushBody();tokens.push({text:ch,type:'command'});pos++;continue;}
+    bodyBuf+=ch;pos++;
   }
   flushBody();
   return tokens;
 }
+function findClosing(str,start,open,close){let d=0;for(let i=start;i<str.length;i++){if(str[i]==='\\'){i++;continue;}if(str[i]===open)d++;if(str[i]===close){d--;if(d===0)return i;}}return -1;}
 
-function findClosing(str, start, open, close) {
-  let depth = 0;
-  for (let i = start; i < str.length; i++) {
-    if (str[i]==='\\') { i++; continue; }
-    if (str[i]===open) depth++;
-    if (str[i]===close) { depth--; if (depth===0) return i; }
-  }
-  return -1;
-}
+// 2. COUNTERS
+function countWords(text){return text.replace(/[~$&\\{}[\]]/g,' ').replace(/[^\w\s'-]/g,' ').split(/\s+/).filter(w=>w.length>0&&/[a-zA-Z0-9]/.test(w)).length;}
+function countMathWords(text){let c=text.replace(/^\$+|\$+$/g,'').replace(/^\\\[|\\\]$/g,'').replace(/^\\\(|\\\)$/g,'');const cm=(c.match(/\\[a-zA-Z]+/g)||[]).length;c=c.replace(/\\[a-zA-Z]+/g,' ').replace(/[{}()\[\]^_=+\-*/<>|&,;:.!~\\]/g,' ');return cm+c.split(/\s+/).filter(w=>w.length>0&&/[a-zA-Z0-9]/.test(w)).length;}
+function computeWordCounts(tokens,toggles){let body=0,cite=0,caption=0,table=0,footnote=0,math=0,headings=0,abstract=0,bib=0,mathBlocks=0;for(const t of tokens){switch(t.type){case'body':body+=countWords(t.text);break;case'cite':if(toggles.cite)cite+=t.wordCount||0;break;case'caption':if(toggles.caption)caption+=countWords(t.text);break;case'table':if(toggles.table)table+=countWords(t.text);break;case'footnote':if(toggles.footnote)footnote+=countWords(t.text);break;case'heading':if(toggles.headings)headings+=countWords(t.text);break;case'abstract':if(toggles.abstract)abstract+=countWords(t.text);break;case'math':if(t.isMathBlock)mathBlocks++;if(toggles.math)math+=countMathWords(t.text);break;case'bib':if(toggles.bib)bib+=countWords(t.text);break;case'structural':if(t.isMathBlock)mathBlocks++;break;}}return{body,cite,caption,table,footnote,math,headings,abstract,bib,mathBlocks,total:body+cite+caption+table+footnote+math+headings+abstract+bib};}
+function countWordsPlain(text){return text.split(/\s+/).filter(w=>w.length>0).length;}
+function buildParagraphStructure(source){return source.split(/\n[ \t]*\n+/).map((p,i)=>{const t=p.trim();if(!t)return null;return{index:i+1,preview:t.replace(/\n/g,' ').slice(0,70)+(t.length>70?'\u2026':''),words:countWordsPlain(t)};}).filter(Boolean);}
 
+// 3. SECTION TREE
+function buildSectionTree(tokens,toggles){const headings=[];for(let i=0;i<tokens.length;i++){if(tokens[i].sectionLevel!==undefined)headings.push({index:i,level:tokens[i].sectionLevel,title:tokens[i].sectionTitle});}if(headings.length===0){const wc=computeWordCounts(tokens,toggles);return[{level:1,title:'(Unsectioned document)',ownWords:wc.total,totalWords:wc.total,children:[]}];}const flat=[];const preWc=computeWordCounts(tokens.slice(0,headings[0].index),toggles);if(preWc.total>0)flat.push({level:headings[0].level,title:'(Before first section)',words:preWc.total});for(let h=0;h<headings.length;h++){const ei=h+1<headings.length?headings[h+1].index:tokens.length;const wc=computeWordCounts(tokens.slice(headings[h].index,ei),toggles);flat.push({level:headings[h].level,title:headings[h].title,words:wc.total});}function buildTree(items){const roots=[],stack=[];for(const item of items){const node={level:item.level,title:item.title,ownWords:item.words,totalWords:item.words,children:[]};while(stack.length>0&&stack[stack.length-1].level>=item.level)stack.pop();if(stack.length===0)roots.push(node);else stack[stack.length-1].node.children.push(node);stack.push({node,level:item.level});}function agg(n){let s=0;for(const c of n.children){agg(c);s+=c.totalWords;}n.totalWords=n.ownWords+s;}roots.forEach(agg);return roots;}return buildTree(flat);}
 
-// ----------------------------------------------------------------
-// 2. WORD COUNTER
-// ----------------------------------------------------------------
-
-function countWords(text) {
-  return text.replace(/[~$&\\{}[\]]/g,' ').replace(/[^\w\s'-]/g,' ')
-    .split(/\s+/).filter(w => w.length>0 && /[a-zA-Z0-9]/.test(w)).length;
-}
-
-function countMathWords(text) {
-  let cleaned = text.replace(/^\$+|\$+$/g,'').replace(/^\\\[|\\\]$/g,'').replace(/^\\\(|\\\)$/g,'');
-  const cmds = (cleaned.match(/\\[a-zA-Z]+/g)||[]).length;
-  cleaned = cleaned.replace(/\\[a-zA-Z]+/g,' ').replace(/[{}()\[\]^_=+\-*/<>|&,;:.!~\\]/g,' ');
-  return cmds + cleaned.split(/\s+/).filter(w => w.length>0 && /[a-zA-Z0-9]/.test(w)).length;
-}
-
-function computeWordCounts(tokens, toggles) {
-  let body=0, cite=0, caption=0, table=0, footnote=0, math=0, headings=0, abstract=0, bib=0, mathBlocks=0;
-  for (const tok of tokens) {
-    switch (tok.type) {
-      case 'body':     body += countWords(tok.text); break;
-      case 'cite':     if (toggles.cite) cite += tok.wordCount||0; break;
-      case 'caption':  if (toggles.caption) caption += countWords(tok.text); break;
-      case 'table':    if (toggles.table) table += countWords(tok.text); break;
-      case 'footnote': if (toggles.footnote) footnote += countWords(tok.text); break;
-      case 'heading':  if (toggles.headings) headings += countWords(tok.text); break;
-      case 'abstract': if (toggles.abstract) abstract += countWords(tok.text); break;
-      case 'math':     if (tok.isMathBlock) mathBlocks++; if (toggles.math) math += countMathWords(tok.text); break;
-      case 'bib':      if (toggles.bib) bib += countWords(tok.text); break;
-      case 'structural': if (tok.isMathBlock) mathBlocks++; break;
-    }
-  }
-  return { body, cite, caption, table, footnote, math, headings, abstract, bib,
-           total: body+cite+caption+table+footnote+math+headings+abstract+bib, mathBlocks };
-}
-
-// ----------------------------------------------------------------
-// 2b. PLAIN TEXT COUNTER
-// ----------------------------------------------------------------
-
-function countWordsPlain(text) {
-  // In plain text mode: split on whitespace, every non-empty token counts
-  return text.split(/\s+/).filter(w => w.length > 0).length;
-}
-
-function buildParagraphStructure(source) {
-  const paragraphs = source.split(/\n[ \t]*\n+/).map(p => p.trim()).filter(p => p.length > 0);
-  return paragraphs.map((p, i) => {
-    const words = countWordsPlain(p);
-    const preview = p.replace(/\n/g, ' ').slice(0, 70) + (p.length > 70 ? '…' : '');
-    return { index: i + 1, preview, words };
-  });
-}
-
-
-// ----------------------------------------------------------------
-// 3. STRUCTURE
-// ----------------------------------------------------------------
-
-function buildSectionTree(tokens, toggles) {
-  const headings = [];
-  for (let i = 0; i < tokens.length; i++) {
-    if (tokens[i].sectionLevel !== undefined) {
-      headings.push({ index: i, level: tokens[i].sectionLevel, title: tokens[i].sectionTitle });
-    }
-  }
-
-  if (headings.length === 0) {
-    const wc = computeWordCounts(tokens, toggles);
-    return [{ level: 1, title: '(Unsectioned document)', ownWords: wc.total, totalWords: wc.total, children: [] }];
-  }
-
-  const flat = [];
-  const preTokens = tokens.slice(0, headings[0].index);
-  const preWc = computeWordCounts(preTokens, toggles);
-  if (preWc.total > 0) flat.push({ level: headings[0].level, title: '(Before first section)', words: preWc.total });
-  for (let h = 0; h < headings.length; h++) {
-    const endIdx = h+1 < headings.length ? headings[h+1].index : tokens.length;
-    const wc = computeWordCounts(tokens.slice(headings[h].index, endIdx), toggles);
-    flat.push({ level: headings[h].level, title: headings[h].title, words: wc.total });
-  }
-
-  function buildTree(items) {
-    const roots = [];
-    const stack = [];
-    for (const item of items) {
-      const node = { level: item.level, title: item.title, ownWords: item.words, totalWords: item.words, children: [] };
-      while (stack.length > 0 && stack[stack.length-1].level >= item.level) stack.pop();
-      if (stack.length === 0) roots.push(node);
-      else stack[stack.length-1].node.children.push(node);
-      stack.push({ node, level: item.level });
-    }
-    function aggregate(node) {
-      let childSum = 0;
-      for (const child of node.children) { aggregate(child); childSum += child.totalWords; }
-      node.totalWords = node.ownWords + childSum;
-    }
-    roots.forEach(aggregate);
-    return roots;
-  }
-
-  return buildTree(flat);
-}
-
-
-// ----------------------------------------------------------------
 // 4. KEYWORDS
-// ----------------------------------------------------------------
+const STOP_WORDS=new Set(['the','be','to','of','and','a','in','that','have','i','it','for','not','on','with','he','as','you','do','at','this','but','his','by','from','they','we','say','her','she','or','an','will','my','one','all','would','there','their','what','so','up','out','if','about','who','get','which','go','me','when','make','can','like','time','no','just','him','know','take','people','into','year','your','good','some','could','them','see','other','than','then','now','look','only','come','its','over','think','also','back','after','use','two','how','our','work','first','well','way','even','new','want','because','any','these','give','day','most','us','is','are','was','were','been','has','had','may','more','very','such','much','should','between','each','own','same','both','where','does','did','while','however','since','through','being','those','still','here','must','before','during','without','within','et','al','pp','eg','ie','cf','p','e','de','la','le','el','von','van','der']);
+function computeKeywords(tokens,toggles,total,filterStop){const freq={};const ml=filterStop?3:1;function add(text){text.replace(/[~$&\\{}[\]]/g,' ').replace(/[^\w\s'-]/g,' ').toLowerCase().split(/\s+/).forEach(w=>{if(w.length>=ml&&/[a-z]/.test(w)&&(!filterStop||!STOP_WORDS.has(w)))freq[w]=(freq[w]||0)+1;});}for(const t of tokens){if(t.type==='body')add(t.text);if(t.type==='caption'&&toggles.caption)add(t.text);if(t.type==='table'&&toggles.table)add(t.text);if(t.type==='footnote'&&toggles.footnote)add(t.text);if(t.type==='abstract'&&toggles.abstract)add(t.text);if(t.type==='bib'&&toggles.bib)add(t.text);}return Object.entries(freq).map(([w,c])=>({word:w,count:c,pct:total>0?((c/total)*100).toFixed(1):'0.0'})).sort((a,b)=>b.count-a.count).slice(0,20);}
+function computeKeywordsPlain(source,total,filterStop){const freq={};const ml=filterStop?3:1;source.toLowerCase().replace(/[^\w\s'-]/g,' ').split(/\s+/).forEach(w=>{if(w.length>=ml&&/[a-z]/.test(w)&&(!filterStop||!STOP_WORDS.has(w)))freq[w]=(freq[w]||0)+1;});return Object.entries(freq).map(([w,c])=>({word:w,count:c,pct:total>0?((c/total)*100).toFixed(1):'0.0'})).sort((a,b)=>b.count-a.count).slice(0,20);}
 
-const STOP_WORDS = new Set([
-  'the','be','to','of','and','a','in','that','have','i','it','for','not','on',
-  'with','he','as','you','do','at','this','but','his','by','from','they','we',
-  'say','her','she','or','an','will','my','one','all','would','there','their',
-  'what','so','up','out','if','about','who','get','which','go','me','when',
-  'make','can','like','time','no','just','him','know','take','people','into',
-  'year','your','good','some','could','them','see','other','than','then','now',
-  'look','only','come','its','over','think','also','back','after','use','two',
-  'how','our','work','first','well','way','even','new','want','because','any',
-  'these','give','day','most','us','is','are','was','were','been','has','had',
-  'may','more','very','such','much','should','between','each','own','same',
-  'both','where','does','did','while','however','since','through','being',
-  'those','still','here','must','before','during','without','within',
-  'et','al','pp','eg','ie','cf','p','e','de','la','le','el','von','van','der'
-]);
+// 5. VERBOSE
+function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function renderVerboseCategories(tokens,toggles){const p=[];for(const t of tokens){const e=escapeHtml(t.text);let c;switch(t.type){case'body':c='tok-body';break;case'cite':c=toggles.cite?'tok-cite':'tok-excluded';break;case'caption':c=toggles.caption?'tok-caption':'tok-excluded';break;case'table':c=toggles.table?'tok-table':'tok-excluded';break;case'footnote':c=toggles.footnote?'tok-footnote':'tok-excluded';break;case'math':c=toggles.math?'tok-math':'tok-excluded';break;case'heading':c=toggles.headings?'tok-heading':'tok-excluded';break;case'abstract':c=toggles.abstract?'tok-abstract':'tok-excluded';break;case'bib':c=toggles.bib?'tok-bib':'tok-excluded';break;case'command':c='tok-command';break;case'comment':c='tok-comment';break;case'preamble':c='tok-preamble';break;case'structural':c='tok-structural';break;default:c='tok-body';}p.push('<span class="'+c+'">'+e+'</span>');}return p.join('');}
+function renderVerboseIncExc(tokens,toggles){const contentTypes=new Set(['body','cite','caption','table','footnote','math','heading','abstract','bib']);const p=[];function spanWords(text,cls){const segs=text.split(/(\s+)/);for(const seg of segs){if(/^\s+$/.test(seg)){p.push(escapeHtml(seg));}else if(seg.length>0){p.push('<span class="'+cls+'">'+escapeHtml(seg)+'</span>');}}}for(const t of tokens){if(!contentTypes.has(t.type)){p.push('<span class="tok-exc">'+escapeHtml(t.text)+'</span>');continue;}let inc=false;switch(t.type){case'body':inc=true;break;case'cite':inc=toggles.cite;break;case'caption':inc=toggles.caption;break;case'table':inc=toggles.table;break;case'footnote':inc=toggles.footnote;break;case'math':inc=toggles.math;break;case'heading':inc=toggles.headings;break;case'abstract':inc=toggles.abstract;break;case'bib':inc=toggles.bib;break;}spanWords(t.text,inc?'tok-inc':'tok-exc');}return p.join('');}
+function renderVerbosePlainText(source){const p=[];const segs=source.split(/(\s+)/);for(const seg of segs){if(/^\s+$/.test(seg))p.push(escapeHtml(seg));else if(seg.length>0)p.push('<span class="tok-inc">'+escapeHtml(seg)+'</span>');}return p.join('');}
+function getIncExcBreakdown(toggles){const inc=['body'],exc=['commands','comments','preamble','structural'];if(toggles.cite)inc.push('citations');else exc.push('citations');if(toggles.caption)inc.push('captions');else exc.push('captions');if(toggles.table)inc.push('tables');else exc.push('tables');if(toggles.footnote)inc.push('footnotes');else exc.push('footnotes');if(toggles.math)inc.push('math');else exc.push('math');if(toggles.headings)inc.push('headings');else exc.push('headings');if(toggles.abstract)inc.push('abstract');else exc.push('abstract');if(toggles.bib)inc.push('bibliography');else exc.push('bibliography');return{inc:inc.join(', '),exc:exc.join(', ')};}
 
-function computeKeywords(tokens, toggles, totalWords, filterStopWords) {
-  const freq = {};
-  const minLen = filterStopWords ? 3 : 1;
-  function add(text) {
-    text.replace(/[~$&\\{}[\]]/g,' ').replace(/[^\w\s'-]/g,' ').toLowerCase()
-      .split(/\s+/).forEach(w => {
-        if (w.length >= minLen && /[a-z]/.test(w) && (!filterStopWords || !STOP_WORDS.has(w)))
-          freq[w]=(freq[w]||0)+1;
-      });
-  }
-  for (const tok of tokens) {
-    if (tok.type==='body') add(tok.text);
-    if (tok.type==='caption' && toggles.caption) add(tok.text);
-    if (tok.type==='table' && toggles.table) add(tok.text);
-    if (tok.type==='footnote' && toggles.footnote) add(tok.text);
-    if (tok.type==='abstract' && toggles.abstract) add(tok.text);
-    if (tok.type==='bib' && toggles.bib) add(tok.text);
-  }
-  return Object.entries(freq)
-    .map(([w,c])=>({word:w,count:c,pct:totalWords>0?((c/totalWords)*100).toFixed(1):'0.0'}))
-    .sort((a,b)=>b.count-a.count).slice(0,20);
-}
-
-function computeKeywordsPlain(source, totalWords, filterStopWords) {
-  const freq = {};
-  const minLen = filterStopWords ? 3 : 1;
-  source.toLowerCase().replace(/[^\w\s'-]/g,' ').split(/\s+/).forEach(w => {
-    if (w.length >= minLen && /[a-z]/.test(w) && (!filterStopWords || !STOP_WORDS.has(w)))
-      freq[w] = (freq[w] || 0) + 1;
-  });
-  return Object.entries(freq)
-    .map(([w,c])=>({word:w,count:c,pct:totalWords>0?((c/totalWords)*100).toFixed(1):'0.0'}))
-    .sort((a,b)=>b.count-a.count).slice(0,20);
-}
-
-
-// ----------------------------------------------------------------
-// 5. VERBOSE RENDERER
-// ----------------------------------------------------------------
-
-function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-
-/** Mode 1: Category colours */
-function renderVerboseCategories(tokens, toggles) {
-  const parts = [];
-  for (const tok of tokens) {
-    const e = escapeHtml(tok.text);
-    let cls;
-    switch (tok.type) {
-      case 'body':      cls='tok-body'; break;
-      case 'cite':      cls=toggles.cite?'tok-cite':'tok-excluded'; break;
-      case 'caption':   cls=toggles.caption?'tok-caption':'tok-excluded'; break;
-      case 'table':     cls=toggles.table?'tok-table':'tok-excluded'; break;
-      case 'footnote':  cls=toggles.footnote?'tok-footnote':'tok-excluded'; break;
-      case 'math':      cls=toggles.math?'tok-math':'tok-excluded'; break;
-      case 'heading':   cls=toggles.headings?'tok-heading':'tok-excluded'; break;
-      case 'abstract':  cls=toggles.abstract?'tok-abstract':'tok-excluded'; break;
-      case 'bib':       cls=toggles.bib?'tok-bib':'tok-excluded'; break;
-      case 'command':   cls='tok-command'; break;
-      case 'comment':   cls='tok-comment'; break;
-      case 'preamble':  cls='tok-preamble'; break;
-      case 'structural':cls='tok-structural'; break;
-      default:          cls='tok-body';
-    }
-    parts.push('<span class="', cls, '">', e, '</span>');
-  }
-  return parts.join('');
-}
-
-/**
- * Mode 2: Included / Excluded — word-by-word highlighting.
- * Each individual word gets its own span so word boundaries are visible.
- * Whitespace between words is left unstyled so highlights appear discrete.
- */
-function renderVerboseIncExc(tokens, toggles) {
-  const contentTypes = new Set(['body','cite','caption','table','footnote','math','heading','abstract','bib']);
-  const parts = [];
-
-  function spanWords(text, cls) {
-    // Split into alternating non-whitespace / whitespace segments
-    const segs = text.split(/(\s+)/);
-    for (const seg of segs) {
-      if (/^\s+$/.test(seg)) {
-        // Preserve whitespace (including newlines) unstyled for readability
-        parts.push(escapeHtml(seg));
-      } else if (seg.length > 0) {
-        parts.push('<span class="', cls, '">', escapeHtml(seg), '</span>');
-      }
-    }
-  }
-
-  for (const tok of tokens) {
-    let included = false;
-    switch (tok.type) {
-      case 'body':      included = true; break;
-      case 'cite':      included = toggles.cite; break;
-      case 'caption':   included = toggles.caption; break;
-      case 'table':     included = toggles.table; break;
-      case 'footnote':  included = toggles.footnote; break;
-      case 'math':      included = toggles.math; break;
-      case 'heading':   included = toggles.headings; break;
-      case 'abstract':  included = toggles.abstract; break;
-      case 'bib':       included = toggles.bib; break;
-      default:          included = false;
-    }
-
-    if (contentTypes.has(tok.type)) {
-      spanWords(tok.text, included ? 'tok-inc' : 'tok-exc');
-    } else {
-      // Non-content tokens: commands, structural, comments, preamble — highlight as excluded blocks
-      parts.push('<span class="tok-exc">', escapeHtml(tok.text), '</span>');
-    }
-  }
-  return parts.join('');
-}
-
-/**
- * Plain text verbose: every word highlighted green, word by word.
- */
-function renderVerbosePlainText(source) {
-  const parts = [];
-  const segs = source.split(/(\s+)/);
-  for (const seg of segs) {
-    if (/^\s+$/.test(seg)) {
-      parts.push(escapeHtml(seg));
-    } else if (seg.length > 0) {
-      parts.push('<span class="tok-inc">', escapeHtml(seg), '</span>');
-    }
-  }
-  return parts.join('');
-}
-
-function getIncExcBreakdown(toggles) {
-  const inc = ['body'];
-  const exc = ['commands', 'comments', 'preamble', 'structural'];
-  if (toggles.cite) inc.push('citations'); else exc.push('citations');
-  if (toggles.caption) inc.push('captions'); else exc.push('captions');
-  if (toggles.table) inc.push('tables'); else exc.push('tables');
-  if (toggles.footnote) inc.push('footnotes'); else exc.push('footnotes');
-  if (toggles.math) inc.push('math'); else exc.push('math');
-  if (toggles.headings) inc.push('headings'); else exc.push('headings');
-  if (toggles.abstract) inc.push('abstract'); else exc.push('abstract');
-  if (toggles.bib) inc.push('bibliography'); else exc.push('bibliography');
-  return { inc: inc.join(', '), exc: exc.join(', ') };
-}
-
-
-// ----------------------------------------------------------------
 // 6. UI
-// ----------------------------------------------------------------
+(function(){
+  const inputEl=document.getElementById('latex-input');
+  const inputLabel=document.getElementById('input-label');
+  const countBtn=document.getElementById('count-btn');
+  const resultsEl=document.getElementById('results');
+  const targetEl=document.getElementById('target-wc');
+  const targetPlainEl=document.getElementById('target-wc-plain');
+  const progressSec=document.getElementById('progress-section');
+  const progressFill=document.getElementById('progress-fill');
+  const progressLabel=document.getElementById('progress-label');
+  const verboseView=document.getElementById('verbose-view');
+  const structPanel=document.getElementById('structure-panel');
+  const keywordSec=document.getElementById('keyword-section');
+  const keywordGrid=document.getElementById('keyword-grid');
+  const legendCat=document.getElementById('legend-categories');
+  const legendInc=document.getElementById('legend-incexc');
+  const incBreakdown=document.getElementById('inc-breakdown');
+  const excBreakdown=document.getElementById('exc-breakdown');
+  const modeSubtitle=document.getElementById('mode-subtitle');
+  const modeBtn=document.getElementById('mode-btn');
+  const latexControls=document.getElementById('latex-controls');
+  const plainControls=document.getElementById('plain-controls');
+  const latexSummGrid=document.getElementById('latex-summary-grid');
+  const plainSummGrid=document.getElementById('plain-summary-grid');
+  const vbtnCat=document.getElementById('vbtn-categories');
+  const vbtnInc=document.getElementById('vbtn-incexc');
+  const darkBtn=document.getElementById('dark-btn');
+  const zoomSlider=document.getElementById('zoom-slider');
+  const zoomValEl=document.getElementById('zoom-val');
+  const zoomLockBtn=document.getElementById('zoom-lock');
+  const wcEls={body:document.getElementById('wc-body'),cite:document.getElementById('wc-cite'),caption:document.getElementById('wc-caption'),table:document.getElementById('wc-table'),footnote:document.getElementById('wc-footnote'),math:document.getElementById('wc-math'),headings:document.getElementById('wc-headings'),abstract:document.getElementById('wc-abstract'),bib:document.getElementById('wc-bib'),mathBlocks:document.getElementById('wc-mathblocks'),total:document.getElementById('wc-total'),plainTotal:document.getElementById('wc-plain-total')};
+  const togs={cite:document.getElementById('tog-cite'),caption:document.getElementById('tog-caption'),table:document.getElementById('tog-table'),footnote:document.getElementById('tog-footnote'),math:document.getElementById('tog-math'),headings:document.getElementById('tog-headings'),abstract:document.getElementById('tog-abstract'),bib:document.getElementById('tog-bib')};
+  let currentTokens=null,currentPlainSource='',verboseMode='categories',isPlainText=false,zoomLocked=false;
 
-(function() {
-  const inputEl         = document.getElementById('latex-input');
-  const inputLabel      = document.getElementById('input-label');
-  const countBtn        = document.getElementById('count-btn');
-  const resultsEl       = document.getElementById('results');
-  const targetEl        = document.getElementById('target-wc');
-  const targetPlainEl   = document.getElementById('target-wc-plain');
-  const progressSec     = document.getElementById('progress-section');
-  const progressFill    = document.getElementById('progress-fill');
-  const progressLabel   = document.getElementById('progress-label');
-  const verboseView     = document.getElementById('verbose-view');
-  const structPanel     = document.getElementById('structure-panel');
-  const keywordSec      = document.getElementById('keyword-section');
-  const keywordGrid     = document.getElementById('keyword-grid');
-  const legendCat       = document.getElementById('legend-categories');
-  const legendInc       = document.getElementById('legend-incexc');
-  const incBreakdown    = document.getElementById('inc-breakdown');
-  const excBreakdown    = document.getElementById('exc-breakdown');
-  const modeSubtitle    = document.getElementById('mode-subtitle');
-  const modeBtn         = document.getElementById('mode-btn');
-  const latexControls   = document.getElementById('latex-controls');
-  const plainControls   = document.getElementById('plain-controls');
-  const latexSummGrid   = document.getElementById('latex-summary-grid');
-  const plainSummGrid   = document.getElementById('plain-summary-grid');
-  const verboseModeToggle = document.getElementById('verbose-mode-toggle');
+  function track(ev,data){try{if(typeof umami!=='undefined')umami.track(ev,data);}catch(e){}}
 
-  const wcEls = {
-    body:document.getElementById('wc-body'), cite:document.getElementById('wc-cite'),
-    caption:document.getElementById('wc-caption'), table:document.getElementById('wc-table'),
-    footnote:document.getElementById('wc-footnote'), math:document.getElementById('wc-math'),
-    headings:document.getElementById('wc-headings'), abstract:document.getElementById('wc-abstract'),
-    bib:document.getElementById('wc-bib'), mathBlocks:document.getElementById('wc-mathblocks'),
-    total:document.getElementById('wc-total'),
-    plainTotal:document.getElementById('wc-plain-total')
-  };
-
-  const togs = {
-    cite:document.getElementById('tog-cite'), caption:document.getElementById('tog-caption'),
-    table:document.getElementById('tog-table'), footnote:document.getElementById('tog-footnote'),
-    math:document.getElementById('tog-math'), headings:document.getElementById('tog-headings'),
-    abstract:document.getElementById('tog-abstract'), bib:document.getElementById('tog-bib')
-  };
-
-  let currentTokens = null;
-  let currentPlainSource = '';
-  let verboseMode = 'categories';
-  let isPlainText = false;
-
-  // --- Analytics helper ---
-  function track(event, data) {
-    try { if (typeof umami !== 'undefined') umami.track(event, data); } catch(e) {}
-  }
-
-  // --- Mode toggle ---
-  modeBtn.addEventListener('click', () => {
-    isPlainText = !isPlainText;
-    applyModeUI();
-    // If results are showing, re-run count in new mode
-    if (resultsEl.classList.contains('visible') && inputEl.value.trim()) runCount();
-    savePrefs();
-    track('mode-switch', { mode: isPlainText ? 'plain' : 'latex' });
-  });
-
-  function applyModeUI() {
-    if (isPlainText) {
-      modeBtn.textContent = '\u2261 LaTeX';
-      modeBtn.classList.add('plain');
-      modeSubtitle.textContent = 'Plain text mode \u2014 every word is counted, no LaTeX parsing';
-      inputEl.placeholder = 'Paste your essay or plain text here.';
-      inputLabel.textContent = 'Paste plain text';
-      latexControls.style.display = 'none';
-      plainControls.style.display = '';
-      latexSummGrid.style.display = 'none';
-      plainSummGrid.style.display = '';
-      // In plain text mode, hide Categories verbose option, force inc/exc
-      document.querySelectorAll('.verbose-mode-btn[data-mode="categories"]').forEach(b => {
-        b.style.display = 'none';
-      });
-      document.querySelectorAll('.verbose-mode-btn[data-mode="incexc"]').forEach(b => {
-        b.classList.add('active');
-      });
-      verboseMode = 'incexc';
-      legendCat.style.display = 'none';
-      legendInc.style.display = '';
-      incBreakdown.textContent = ' (all words)';
-      excBreakdown.textContent = '';
-    } else {
-      modeBtn.textContent = 'Aa Plain Text';
-      modeBtn.classList.remove('plain');
-      modeSubtitle.textContent = 'LaTeX mode \u2014 commands, environments, and % comments are parsed';
-      inputEl.placeholder = 'Paste your entire .tex file here \u2014 preamble and all.';
-      inputLabel.textContent = 'Paste LaTeX source';
-      latexControls.style.display = '';
-      plainControls.style.display = 'none';
-      latexSummGrid.style.display = '';
-      plainSummGrid.style.display = 'none';
-      document.querySelectorAll('.verbose-mode-btn[data-mode="categories"]').forEach(b => {
-        b.style.display = '';
-      });
+  // Help panels — auto-close others when one opens
+  const PANELS=[
+    {btnId:'about-btn',secId:'about-section',label:'About',openLabel:'Hide about'},
+    {btnId:'privacy-btn',secId:'privacy-section',label:'Privacy',openLabel:'Hide privacy'},
+    {btnId:'help-btn',secId:'help-section',label:'How this works',openLabel:'Hide guide'},
+    {btnId:'changelog-btn',secId:'changelog-section',label:'Changelog',openLabel:'Hide changelog'},
+    {btnId:'bug-btn',secId:'bug-section',label:null,openLabel:null}, // bug btn keeps icon, handled separately
+  ];
+  function closeAllPanels(exceptId){
+    for(const p of PANELS){
+      if(p.secId===exceptId)continue;
+      const sec=document.getElementById(p.secId);
+      if(sec&&sec.classList.contains('visible')){
+        sec.classList.remove('visible');
+        if(p.label){const btn=document.getElementById(p.btnId);if(btn)btn.textContent=p.label;}
+      }
     }
   }
-
-  // Help toggles
-  function makeHelpToggle(btnId, sectionId, label) {
-    const btn = document.getElementById(btnId);
-    const sec = document.getElementById(sectionId);
-    btn.addEventListener('click', () => {
-      const open = sec.classList.toggle('visible');
-      btn.textContent = open ? 'Hide ' + label.toLowerCase() : label;
-      if (open) track('panel-open', { panel: btnId });
+  for(const p of PANELS.filter(p=>p.label!==null)){
+    const btn=document.getElementById(p.btnId);
+    const sec=document.getElementById(p.secId);
+    btn.addEventListener('click',()=>{
+      const wasOpen=sec.classList.contains('visible');
+      closeAllPanels(p.secId);
+      if(!wasOpen){sec.classList.add('visible');btn.textContent=p.openLabel;track('panel-open',{panel:p.btnId});}
+      else{sec.classList.remove('visible');btn.textContent=p.label;}
     });
   }
-  makeHelpToggle('about-btn', 'about-section', 'About');
-  makeHelpToggle('privacy-btn', 'privacy-section', 'Privacy');
-  makeHelpToggle('changelog-btn', 'changelog-section', 'Changelog');
-  document.getElementById('help-btn').addEventListener('click', () => {
-    const sec = document.getElementById('help-section');
-    const open = sec.classList.toggle('visible');
-    document.getElementById('help-btn').textContent = open ? 'Hide guide' : 'How this works';
-    if (open) track('panel-open', { panel: 'help' });
-  });
-  document.getElementById('bug-btn').addEventListener('click', () => {
-    document.getElementById('bug-section').classList.toggle('visible');
-    track('panel-open', { panel: 'bug-report' });
-  });
+  // Bug button — preserve icon HTML
+  (function(){
+    const bugBtn=document.getElementById('bug-btn');
+    const bugSec=document.getElementById('bug-section');
+    const bugInner=bugBtn.innerHTML;
+    bugBtn.addEventListener('click',()=>{
+      const wasOpen=bugSec.classList.contains('visible');
+      closeAllPanels('bug-section');
+      bugBtn.innerHTML=bugInner; // restore icon after closeAllPanels may have touched it
+      if(!wasOpen){bugSec.classList.add('visible');track('panel-open',{panel:'bug'});}
+      else{bugSec.classList.remove('visible');}
+    });
+  })();
 
-  function getToggles() {
-    return { cite:togs.cite.checked, caption:togs.caption.checked, table:togs.table.checked,
-             footnote:togs.footnote.checked, math:togs.math.checked, headings:togs.headings.checked,
-             abstract:togs.abstract.checked, bib:togs.bib.checked };
-  }
+  function getToggles(){return{cite:togs.cite.checked,caption:togs.caption.checked,table:togs.table.checked,footnote:togs.footnote.checked,math:togs.math.checked,headings:togs.headings.checked,abstract:togs.abstract.checked,bib:togs.bib.checked};}
+  function getActiveTarget(){return isPlainText?(parseInt(targetPlainEl.value)||0):(parseInt(targetEl.value)||0);}
 
-  function getActiveTarget() {
-    return isPlainText ? parseInt(targetPlainEl.value) : parseInt(targetEl.value);
-  }
-
-  function runCount() {
-    const source = inputEl.value;
-    if (!source.trim()) return;
-
-    if (isPlainText) {
-      currentTokens = null;
-      currentPlainSource = source;
-      updateDisplayPlain();
-    } else {
-      currentTokens = parseLatex(source);
-      currentPlainSource = '';
-      updateDisplay();
+  function applyModeUI(){
+    if(isPlainText){
+      modeBtn.textContent='Change to LaTeX source';modeBtn.classList.add('plain');
+      modeSubtitle.textContent='Plain text mode \u2014 every word is counted, no LaTeX parsing';
+      inputEl.placeholder='Paste your essay or plain text here.';inputLabel.textContent='Paste plain text';
+      latexControls.style.display='none';plainControls.style.display='';
+      latexSummGrid.style.display='none';plainSummGrid.style.display='';
+      vbtnCat.style.display='none';vbtnInc.classList.add('active');vbtnCat.classList.remove('active');
+      verboseMode='incexc';
+    }else{
+      modeBtn.textContent='Change to plain text';modeBtn.classList.remove('plain');
+      modeSubtitle.textContent='LaTeX mode \u2014 commands, environments, and % comments are parsed';
+      inputEl.placeholder='Paste your entire .tex file here \u2014 preamble and all.';inputLabel.textContent='Paste LaTeX source';
+      latexControls.style.display='';plainControls.style.display='none';
+      latexSummGrid.style.display='';plainSummGrid.style.display='none';
+      vbtnCat.style.display='';
     }
+  }
+  modeBtn.addEventListener('click',()=>{isPlainText=!isPlainText;applyModeUI();if(resultsEl.classList.contains('visible')&&inputEl.value.trim())runCount();savePrefs();track('mode-switch',{mode:isPlainText?'plain':'latex'});});
 
+  function runCount(){
+    const source=inputEl.value;if(!source.trim())return;
+    if(isPlainText){currentTokens=null;currentPlainSource=source;updateDisplayPlain();}
+    else{currentTokens=parseLatex(source);currentPlainSource='';updateDisplay();}
     resultsEl.classList.add('visible');
-
-    if (!isPlainText) {
-      const toggles = getToggles();
-      const c = computeWordCounts(currentTokens, toggles);
-      const target = getActiveTarget();
-      track('count-words', { mode: 'latex', total: c.total, has_target: target > 0 });
-    } else {
-      const total = countWordsPlain(currentPlainSource);
-      track('count-words', { mode: 'plain', total });
-    }
+    if(!isPlainText&&currentTokens){const c=computeWordCounts(currentTokens,getToggles());track('count-words',{mode:'latex',total:c.total,has_target:getActiveTarget()>0});}
+    else{track('count-words',{mode:'plain',total:countWordsPlain(currentPlainSource)});}
   }
+  countBtn.addEventListener('click',runCount);
+  inputEl.addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();runCount();}});
 
-  // --- Plain text display ---
-  function updateDisplayPlain() {
-    const source = currentPlainSource;
-    const total = countWordsPlain(source);
-    wcEls.plainTotal.textContent = total.toLocaleString();
-
-    // Progress
-    const target = getActiveTarget();
-    if (target > 0) {
+  function updateProgress(total){
+    const target=getActiveTarget();
+    if(target>0){
       progressSec.classList.remove('hidden');
-      const pct = Math.min((total/target)*100, 100);
-      const pctExact = (total/target)*100;
-      progressFill.style.width = pct+'%';
-      progressFill.classList.toggle('over', total>target);
-      const diff = total-target, sign = diff>0?'+':'';
-      progressLabel.textContent = `${total.toLocaleString()} / ${target.toLocaleString()}  ·  ${pctExact.toFixed(1)}%  ·  ${sign}${diff.toLocaleString()}`;
-    } else { progressSec.classList.add('hidden'); }
-
-    // Keywords
-    const filterStop = document.getElementById('tog-stopwords').checked;
-    const kw = computeKeywordsPlain(source, total, filterStop);
-    if (kw.length > 0) {
-      keywordSec.style.display = '';
-      keywordGrid.innerHTML = kw.map(k =>
-        `<div class="keyword-row"><span class="keyword-word">${escapeHtml(k.word)}</span><span class="keyword-stats">${k.count} (${k.pct}%)</span></div>`
-      ).join('');
-    } else { keywordSec.style.display = 'none'; }
-
-    // Structure: paragraph breakdown
-    renderPlainStructure(source);
-
-    // Verbose
-    if (document.getElementById('tab-verbose').classList.contains('active')) {
-      updateVerbosePlain();
-    }
+      const pct=Math.min((total/target)*100,100),pctE=(total/target)*100;
+      progressFill.style.width=pct+'%';progressFill.classList.toggle('over',total>target);
+      const diff=total-target,sign=diff>0?'+':'';
+      progressLabel.textContent=total.toLocaleString()+' / '+target.toLocaleString()+'  \u00b7  '+pctE.toFixed(1)+'%  \u00b7  '+sign+diff.toLocaleString();
+    }else progressSec.classList.add('hidden');
+  }
+  function updateKeywords(kw){
+    if(kw.length>0){keywordSec.style.display='';keywordGrid.innerHTML=kw.map(k=>'<div class="keyword-row"><span class="keyword-word">'+escapeHtml(k.word)+'</span><span class="keyword-stats">'+k.count+' ('+k.pct+'%)</span></div>').join('');}
+    else keywordSec.style.display='none';
   }
 
-  function renderPlainStructure(source) {
-    const paras = buildParagraphStructure(source);
-    const total = countWordsPlain(source);
-    const maxWords = Math.max(...paras.map(p => p.words), 1);
-
-    let html = `<div class="struct-total"><span>Document total</span><span class="struct-wc">${total.toLocaleString()}</span></div>`;
-    html += `<div class="struct-tree expanded">`;
-    for (const para of paras) {
-      const barPct = (para.words / maxWords) * 100;
-      html += `<div class="plain-para-row">`;
-      html += `<span class="plain-para-preview">¶ ${escapeHtml(para.preview)}</span>`;
-      html += `<span class="plain-para-bar-wrap"><span class="plain-para-bar" style="width:${barPct}%"></span></span>`;
-      html += `<span class="plain-para-wc">${para.words.toLocaleString()}</span>`;
-      html += `</div>`;
-    }
-    if (paras.length === 0) {
-      html += `<div class="plain-para-row"><span class="plain-para-preview" style="color:var(--text-light); font-style:italic;">No paragraphs found.</span></div>`;
-    }
-    html += `</div>`;
-    structPanel.innerHTML = html;
+  function updateDisplay(){
+    if(!currentTokens)return;
+    const toggles=getToggles();const c=computeWordCounts(currentTokens,toggles);
+    wcEls.body.textContent=c.body.toLocaleString();wcEls.cite.textContent=c.cite.toLocaleString();wcEls.caption.textContent=c.caption.toLocaleString();wcEls.table.textContent=c.table.toLocaleString();wcEls.footnote.textContent=c.footnote.toLocaleString();wcEls.math.textContent=c.math.toLocaleString();wcEls.headings.textContent=c.headings.toLocaleString();wcEls.abstract.textContent=c.abstract.toLocaleString();wcEls.bib.textContent=c.bib.toLocaleString();wcEls.mathBlocks.textContent=c.mathBlocks.toLocaleString();wcEls.total.textContent=c.total.toLocaleString();
+    updateProgress(c.total);renderStructure(currentTokens,toggles,c.total);
+    updateKeywords(computeKeywords(currentTokens,toggles,c.total,document.getElementById('tog-stopwords').checked));
+    if(document.getElementById('tab-verbose').classList.contains('active'))updateVerbose(toggles);
+  }
+  function updateDisplayPlain(){
+    const source=currentPlainSource;const total=countWordsPlain(source);
+    wcEls.plainTotal.textContent=total.toLocaleString();updateProgress(total);renderPlainStructure(source);
+    updateKeywords(computeKeywordsPlain(source,total,document.getElementById('tog-stopwords').checked));
+    if(document.getElementById('tab-verbose').classList.contains('active'))updateVerbosePlain();
   }
 
-  function updateVerbosePlain() {
-    legendCat.style.display = 'none';
-    legendInc.style.display = '';
-    incBreakdown.textContent = ' (all words)';
-    excBreakdown.textContent = '';
-    const scrollPos = verboseView.scrollTop;
-    const html = renderVerbosePlainText(currentPlainSource);
-    verboseView.innerHTML = html;
-    verboseView.scrollTop = scrollPos;
+  // VERBOSE — synchronous rendering with try/catch to prevent crashes on rapid mode switching
+  function updateVerbose(toggles){
+    if(isPlainText){updateVerbosePlain();return;}
+    if(!currentTokens)return;
+    if(!toggles)toggles=getToggles();
+    if(verboseMode==='categories'){legendCat.style.display='';legendInc.style.display='none';}
+    else{legendCat.style.display='none';legendInc.style.display='';const bd=getIncExcBreakdown(toggles);incBreakdown.textContent=' ('+bd.inc+')';excBreakdown.textContent=' ('+bd.exc+')';}
+    const scrollPos=verboseView.scrollTop;
+    try{verboseView.innerHTML=verboseMode==='categories'?renderVerboseCategories(currentTokens,toggles):renderVerboseIncExc(currentTokens,toggles);}
+    catch(err){verboseView.textContent='Error rendering. Please try again.';console.error(err);}
+    verboseView.scrollTop=scrollPos;
+  }
+  function updateVerbosePlain(){
+    legendCat.style.display='none';legendInc.style.display='';incBreakdown.textContent=' (all words)';excBreakdown.textContent='';
+    const scrollPos=verboseView.scrollTop;
+    try{verboseView.innerHTML=renderVerbosePlainText(currentPlainSource);}catch(err){verboseView.textContent='Error rendering. Please try again.';}
+    verboseView.scrollTop=scrollPos;
   }
 
-  // --- LaTeX display ---
-  function updateDisplay() {
-    if (!currentTokens) return;
-    const toggles = getToggles();
-
-    const c = computeWordCounts(currentTokens, toggles);
-    wcEls.body.textContent = c.body.toLocaleString();
-    wcEls.cite.textContent = c.cite.toLocaleString();
-    wcEls.caption.textContent = c.caption.toLocaleString();
-    wcEls.table.textContent = c.table.toLocaleString();
-    wcEls.footnote.textContent = c.footnote.toLocaleString();
-    wcEls.math.textContent = c.math.toLocaleString();
-    wcEls.headings.textContent = c.headings.toLocaleString();
-    wcEls.abstract.textContent = c.abstract.toLocaleString();
-    wcEls.bib.textContent = c.bib.toLocaleString();
-    wcEls.mathBlocks.textContent = c.mathBlocks.toLocaleString();
-    wcEls.total.textContent = c.total.toLocaleString();
-
-    const target = getActiveTarget();
-    if (target > 0) {
-      progressSec.classList.remove('hidden');
-      const pct = Math.min((c.total/target)*100, 100);
-      const pctExact = (c.total/target)*100;
-      progressFill.style.width = pct+'%';
-      progressFill.classList.toggle('over', c.total>target);
-      const diff = c.total-target, sign = diff>0?'+':'';
-      progressLabel.textContent = `${c.total.toLocaleString()} / ${target.toLocaleString()}  ·  ${pctExact.toFixed(1)}%  ·  ${sign}${diff.toLocaleString()}`;
-    } else { progressSec.classList.add('hidden'); }
-
-    renderStructure(currentTokens, toggles, c.total);
-
-    const filterStop = document.getElementById('tog-stopwords').checked;
-    const kw = computeKeywords(currentTokens, toggles, c.total, filterStop);
-    if (kw.length > 0) {
-      keywordSec.style.display = '';
-      keywordGrid.innerHTML = kw.map(k =>
-        `<div class="keyword-row"><span class="keyword-word">${escapeHtml(k.word)}</span><span class="keyword-stats">${k.count} (${k.pct}%)</span></div>`
-      ).join('');
-    } else { keywordSec.style.display = 'none'; }
-
-    if (document.getElementById('tab-verbose').classList.contains('active')) {
-      updateVerbose(toggles);
-    }
-  }
-
-  let verboseRafId = null;
-
-  function updateVerbose(toggles) {
-    if (isPlainText) { updateVerbosePlain(); return; }
-    if (!currentTokens) return;
-    if (!toggles) toggles = getToggles();
-
-    if (verboseRafId) { cancelAnimationFrame(verboseRafId); verboseRafId = null; }
-    const scrollPos = verboseView.scrollTop;
-
-    if (verboseMode === 'categories') {
-      legendCat.style.display = ''; legendInc.style.display = 'none';
-    } else {
-      legendCat.style.display = 'none'; legendInc.style.display = '';
-      const bd = getIncExcBreakdown(toggles);
-      incBreakdown.textContent = ' (' + bd.inc + ')';
-      excBreakdown.textContent = ' (' + bd.exc + ')';
-    }
-
-    const toks = currentTokens;
-    if (toks.length > 3000) verboseView.textContent = 'Rendering\u2026';
-
-    const mode = verboseMode;
-    verboseRafId = requestAnimationFrame(() => {
-      const html = mode === 'categories'
-        ? renderVerboseCategories(toks, toggles)
-        : renderVerboseIncExc(toks, toggles);
-      verboseView.innerHTML = html;
-      verboseView.scrollTop = scrollPos;
-      verboseRafId = null;
+  // STRUCTURE
+  function renderStructure(tokens,toggles,grandTotal){
+    const tree=buildSectionTree(tokens,toggles);const maxW=findMaxWords(tree);
+    let html='<div class="struct-total"><span>Document total</span><span class="struct-wc">'+grandTotal.toLocaleString()+'</span></div>';
+    html+='<button class="struct-expand-all visible" id="struct-expand-all">Expand all sections</button>';
+    html+='<div class="struct-tree expanded">'+renderTreeNodes(tree,maxW)+'</div>';
+    structPanel.innerHTML=html;
+    document.getElementById('struct-expand-all').addEventListener('click',()=>{
+      const ac=structPanel.querySelectorAll('.struct-children');const av=structPanel.querySelectorAll('.struct-chevron');const ap=structPanel.querySelectorAll('.struct-row.has-children');
+      const anyC=Array.from(ac).some(el=>!el.classList.contains('open'));
+      ac.forEach(el=>el.classList.toggle('open',anyC));av.forEach(el=>el.classList.toggle('open',anyC));ap.forEach(el=>el.classList.toggle('expanded-parent',anyC));
+      document.getElementById('struct-expand-all').textContent=anyC?'Collapse all sections':'Expand all sections';
     });
+    structPanel.querySelectorAll('.struct-row.has-children').forEach(row=>{row.addEventListener('click',()=>{const ch=row.nextElementSibling;if(ch&&ch.classList.contains('struct-children')){const o=ch.classList.toggle('open');row.querySelector('.struct-chevron').classList.toggle('open',o);row.classList.toggle('expanded-parent',o);}});});
+  }
+  function findMaxWords(nodes){let m=0;for(const n of nodes){if(n.totalWords>m)m=n.totalWords;if(n.children.length){const cm=findMaxWords(n.children);if(cm>m)m=cm;}}return m||1;}
+  function renderTreeNodes(nodes,maxW){let h='';for(const node of nodes){const depth=Math.min(Math.max(node.level,1),4);const bp=(node.totalWords/maxW)*100;const hk=node.children.length>0;h+='<div class="struct-row depth-'+depth+(hk?' has-children':'')+'">'+( hk?'<span class="struct-chevron">&#9654;</span>':'<span class="struct-placeholder"></span>')+'<span class="struct-name">'+escapeHtml(node.title)+'</span><span class="struct-bar-wrap"><span class="struct-bar" style="width:'+bp+'%"></span></span><span class="struct-wc">'+node.totalWords.toLocaleString()+'</span></div>';if(hk)h+='<div class="struct-children">'+renderTreeNodes(node.children,maxW)+'</div>';}return h;}
+  function renderPlainStructure(source){
+    const paras=buildParagraphStructure(source);const total=countWordsPlain(source);const maxW=Math.max(...paras.map(p=>p.words),1);
+    let h='<div class="struct-total"><span>Document total</span><span class="struct-wc">'+total.toLocaleString()+'</span></div><div class="struct-tree expanded">';
+    if(paras.length===0){h+='<div class="plain-para-row"><span class="plain-para-preview" style="color:var(--text-light);font-style:italic;">No paragraphs found.</span></div>';}
+    else{for(const para of paras){const bp=(para.words/maxW)*100;h+='<div class="plain-para-row"><span class="plain-para-preview">\u00b6 '+escapeHtml(para.preview)+'</span><span class="plain-para-bar-wrap"><span class="plain-para-bar" style="width:'+bp+'%"></span></span><span class="plain-para-wc">'+para.words.toLocaleString()+'</span></div>';}}
+    h+='</div>';structPanel.innerHTML=h;
   }
 
-  // --- Structure (LaTeX) renderer ---
-  function renderStructure(tokens, toggles, grandTotal) {
-    const tree = buildSectionTree(tokens, toggles);
-    const maxWords = findMaxWords(tree);
+  // TABS
+  document.querySelectorAll('.tab-btn').forEach(btn=>{btn.addEventListener('click',function(){document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));this.classList.add('active');document.getElementById('tab-'+this.dataset.tab).classList.add('active');track('tab-switch',{tab:this.dataset.tab});if(this.dataset.tab==='verbose'){if(isPlainText&&currentPlainSource)updateVerbosePlain();else if(currentTokens)updateVerbose();}});});
 
-    let html = `<div class="struct-total"><span>Document total</span><span class="struct-wc">${grandTotal.toLocaleString()}</span></div>`;
-    html += `<button class="struct-expand-all visible" id="struct-expand-all">Expand all sections</button>`;
-    html += `<div class="struct-tree expanded">`;
-    html += renderTreeNodes(tree, maxWords);
-    html += `</div>`;
-    structPanel.innerHTML = html;
+  // VERBOSE MODE BUTTONS
+  vbtnCat.addEventListener('click',function(){if(verboseMode==='categories')return;vbtnCat.classList.add('active');vbtnInc.classList.remove('active');verboseMode='categories';track('verbose-mode',{mode:'categories'});updateVerbose();});
+  vbtnInc.addEventListener('click',function(){if(verboseMode==='incexc')return;vbtnInc.classList.add('active');vbtnCat.classList.remove('active');verboseMode='incexc';track('verbose-mode',{mode:'incexc'});updateVerbose();});
 
-    document.getElementById('struct-expand-all').addEventListener('click', () => {
-      const allChildren = structPanel.querySelectorAll('.struct-children');
-      const allChevrons = structPanel.querySelectorAll('.struct-chevron');
-      const allParents = structPanel.querySelectorAll('.struct-row.has-children');
-      const anyCollapsed = Array.from(allChildren).some(el => !el.classList.contains('open'));
-      allChildren.forEach(el => el.classList.toggle('open', anyCollapsed));
-      allChevrons.forEach(el => el.classList.toggle('open', anyCollapsed));
-      allParents.forEach(el => el.classList.toggle('expanded-parent', anyCollapsed));
-      document.getElementById('struct-expand-all').textContent =
-        anyCollapsed ? 'Collapse all sections' : 'Expand all sections';
-    });
+  // TOGGLE CHANGES
+  Object.entries(togs).forEach(([name,el])=>el.addEventListener('change',()=>{updateDisplay();savePrefs();track('toggle',{category:name,enabled:el.checked});}));
+  document.getElementById('tog-stopwords').addEventListener('change',()=>{if(isPlainText)updateDisplayPlain();else updateDisplay();savePrefs();});
+  targetEl.addEventListener('input',updateDisplay);
+  targetPlainEl.addEventListener('input',()=>{if(isPlainText)updateDisplayPlain();});
 
-    structPanel.querySelectorAll('.struct-row.has-children').forEach(row => {
-      row.addEventListener('click', () => {
-        const childrenEl = row.nextElementSibling;
-        if (childrenEl && childrenEl.classList.contains('struct-children')) {
-          const open = childrenEl.classList.toggle('open');
-          row.querySelector('.struct-chevron').classList.toggle('open', open);
-          row.classList.toggle('expanded-parent', open);
-        }
-      });
-    });
-  }
+  // DARK MODE
+  darkBtn.addEventListener('click',()=>{document.body.classList.toggle('dark-mode');const isDark=document.body.classList.contains('dark-mode');darkBtn.innerHTML=isDark?'&#x2600;&#xFE0E;':'&#x263D;&#xFE0E;';savePrefs();track('dark-mode',{enabled:isDark});});
 
-  function findMaxWords(nodes) {
-    let max = 0;
-    for (const n of nodes) {
-      if (n.totalWords > max) max = n.totalWords;
-      if (n.children.length > 0) { const cm = findMaxWords(n.children); if (cm > max) max = cm; }
-    }
-    return max || 1;
-  }
+  // ZOOM
+  zoomSlider.addEventListener('input',()=>{const s=zoomSlider.value;inputEl.style.fontSize=s+'px';zoomValEl.textContent=Math.round(s)+'px';savePrefs();});
+  zoomLockBtn.addEventListener('click',()=>{zoomLocked=!zoomLocked;zoomSlider.classList.toggle('locked',zoomLocked);zoomLockBtn.classList.toggle('locked',zoomLocked);zoomLockBtn.textContent=zoomLocked?'Locked':'Lock';savePrefs();});
 
-  function renderTreeNodes(nodes, maxWords) {
-    let html = '';
-    for (const node of nodes) {
-      const depth = Math.min(Math.max(node.level, 1), 4);
-      const barPct = (node.totalWords / maxWords) * 100;
-      const hasKids = node.children.length > 0;
-      html += `<div class="struct-row depth-${depth}${hasKids ? ' has-children' : ''}">`;
-      html += hasKids ? `<span class="struct-chevron">&#9654;</span>` : `<span class="struct-placeholder"></span>`;
-      html += `<span class="struct-name">${escapeHtml(node.title)}</span>`;
-      html += `<span class="struct-bar-wrap"><span class="struct-bar" style="width:${barPct}%"></span></span>`;
-      html += `<span class="struct-wc">${node.totalWords.toLocaleString()}</span>`;
-      html += `</div>`;
-      if (hasKids) {
-        html += `<div class="struct-children">`;
-        html += renderTreeNodes(node.children, maxWords);
-        html += `</div>`;
-      }
-    }
-    return html;
-  }
-
-  // --- localStorage persistence ---
-  const STORAGE_KEY = 'latexwc_prefs';
-
-  function savePrefs() {
-    try {
-      const prefs = {
-        toggles: {
-          cite: togs.cite.checked, caption: togs.caption.checked,
-          table: togs.table.checked, footnote: togs.footnote.checked,
-          math: togs.math.checked, headings: togs.headings.checked,
-          abstract: togs.abstract.checked, bib: togs.bib.checked
-        },
-        zoom: zoomSlider.value,
-        zoomLocked: zoomLocked,
-        darkMode: document.body.classList.contains('dark-mode'),
-        excludeStopWords: document.getElementById('tog-stopwords').checked,
-        isPlainText: isPlainText
-      };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
-    } catch (e) {}
-  }
-
-  function loadPrefs() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return;
-      const prefs = JSON.parse(raw);
-      if (prefs.toggles) {
-        for (const key in prefs.toggles) {
-          if (togs[key]) togs[key].checked = prefs.toggles[key];
-        }
-      }
-      if (prefs.zoom !== undefined) {
-        zoomSlider.value = prefs.zoom;
-        inputEl.style.fontSize = prefs.zoom + 'px';
-        zoomVal.textContent = Math.round(prefs.zoom) + 'px';
-      }
-      if (prefs.zoomLocked) {
-        zoomLocked = true;
-        zoomSlider.classList.add('locked');
-        zoomLock.classList.add('locked');
-        zoomLock.textContent = 'Locked';
-      }
-      if (prefs.darkMode) {
-        document.body.classList.add('dark-mode');
-        darkBtn.innerHTML = '&#x2600;&#xFE0E;';
-      }
-      if (prefs.excludeStopWords !== undefined) {
-        document.getElementById('tog-stopwords').checked = prefs.excludeStopWords;
-      }
-      if (prefs.isPlainText) {
-        isPlainText = true;
-        applyModeUI();
-      }
-    } catch (e) {}
-  }
-
-  // --- Events ---
-  countBtn.addEventListener('click', runCount);
-  inputEl.addEventListener('keydown', e => {
-    if (e.key==='Enter' && (e.ctrlKey||e.metaKey)) { e.preventDefault(); runCount(); }
-  });
-  Object.entries(togs).forEach(([name, el]) => el.addEventListener('change', () => {
-    updateDisplay(); savePrefs();
-    track('toggle', { category: name, enabled: el.checked });
-  }));
-  document.getElementById('tog-stopwords').addEventListener('change', () => {
-    if (isPlainText) updateDisplayPlain(); else updateDisplay();
-    savePrefs();
-    track('toggle', { category: 'stopwords', enabled: document.getElementById('tog-stopwords').checked });
-  });
-  targetEl.addEventListener('input', updateDisplay);
-  targetPlainEl.addEventListener('input', () => { if (isPlainText) updateDisplayPlain(); });
-
-  // Tab switching
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-      this.classList.add('active');
-      document.getElementById('tab-' + this.dataset.tab).classList.add('active');
-      track('tab-switch', { tab: this.dataset.tab });
-      if (this.dataset.tab === 'verbose') {
-        if (isPlainText && currentPlainSource) updateVerbosePlain();
-        else if (currentTokens) updateVerbose();
-      }
-    });
-  });
-
-  // Verbose mode switching
-  document.querySelectorAll('.verbose-mode-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.verbose-mode-btn').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      verboseMode = this.dataset.mode;
-      track('verbose-mode', { mode: this.dataset.mode });
-      updateVerbose();
-    });
-  });
-
-  // --- Dark mode toggle ---
-  const darkBtn = document.getElementById('dark-btn');
-  darkBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    const isDark = document.body.classList.contains('dark-mode');
-    // Use variation selector &#xFE0E; to force text (not emoji) rendering on all platforms
-    darkBtn.innerHTML = isDark ? '&#x2600;&#xFE0E;' : '&#x263D;&#xFE0E;';
-    savePrefs();
-    track('dark-mode', { enabled: isDark });
-  });
-
-  // --- Zoom slider + lock ---
-  const zoomSlider = document.getElementById('zoom-slider');
-  const zoomVal    = document.getElementById('zoom-val');
-  const zoomLock   = document.getElementById('zoom-lock');
-  let zoomLocked = false;
-
-  zoomSlider.addEventListener('input', () => {
-    const size = zoomSlider.value;
-    inputEl.style.fontSize = size + 'px';
-    zoomVal.textContent = Math.round(size) + 'px';
-    savePrefs();
-  });
-
-  zoomLock.addEventListener('click', () => {
-    zoomLocked = !zoomLocked;
-    zoomSlider.classList.toggle('locked', zoomLocked);
-    zoomLock.classList.toggle('locked', zoomLocked);
-    zoomLock.textContent = zoomLocked ? 'Locked' : 'Lock';
-    savePrefs();
-  });
-
-  // --- Load saved preferences on init ---
+  // PREFS
+  const STORAGE_KEY='latexwc_prefs';
+  function savePrefs(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify({toggles:{cite:togs.cite.checked,caption:togs.caption.checked,table:togs.table.checked,footnote:togs.footnote.checked,math:togs.math.checked,headings:togs.headings.checked,abstract:togs.abstract.checked,bib:togs.bib.checked},zoom:zoomSlider.value,zoomLocked,darkMode:document.body.classList.contains('dark-mode'),excludeStopWords:document.getElementById('tog-stopwords').checked,isPlainText}));}catch(e){}}
+  function loadPrefs(){try{const raw=localStorage.getItem(STORAGE_KEY);if(!raw)return;const p=JSON.parse(raw);if(p.toggles){for(const k in p.toggles){if(togs[k])togs[k].checked=p.toggles[k];}}if(p.zoom!==undefined){zoomSlider.value=p.zoom;inputEl.style.fontSize=p.zoom+'px';zoomValEl.textContent=Math.round(p.zoom)+'px';}if(p.zoomLocked){zoomLocked=true;zoomSlider.classList.add('locked');zoomLockBtn.classList.add('locked');zoomLockBtn.textContent='Locked';}if(p.darkMode){document.body.classList.add('dark-mode');darkBtn.innerHTML='&#x2600;&#xFE0E;';}if(p.excludeStopWords!==undefined)document.getElementById('tog-stopwords').checked=p.excludeStopWords;if(p.isPlainText){isPlainText=true;applyModeUI();}}catch(e){}}
   loadPrefs();
-
 })();
+
 </script>
 </body>
 </html>
