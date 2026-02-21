@@ -54,11 +54,13 @@ header h1{font-size:1.6rem;font-weight:700;color:var(--green);letter-spacing:-0.
 .bug-report-btn:hover{color:var(--green);border-color:var(--green-muted);}
 .bug-icon{display:inline-block;width:15px;height:15px;}
 .bug-icon svg{width:100%;height:100%;fill:currentColor;}
-/* Mode toggle — beside the input label */
+/* Mode toggle — in header area, green text to indicate interactability */
 .mode-toggle-btn{font-family:'Georgia',serif;font-size:0.72rem;color:var(--green-muted);background:none;border:1px solid var(--border);border-radius:3px;padding:0.2rem 0.55rem;cursor:pointer;transition:border-color 0.2s,color 0.2s,background 0.2s;white-space:nowrap;line-height:1.4;}
 .mode-toggle-btn:hover{color:var(--green);border-color:var(--green-muted);}
 .mode-toggle-btn.plain{background:#EBF4FF;border-color:#9BBDD4;color:#2E6491;}
-body.dark-mode .mode-toggle-btn{background:none;color:var(--text-muted);border-color:var(--border);}
+body.dark-mode .mode-toggle-btn{background:none;color:var(--green-muted);border-color:var(--border);}
+body.dark-mode .mode-toggle-btn:hover{color:var(--green-light);border-color:var(--green-muted);}
+body.dark-mode .mode-toggle-btn.plain{background:#2E3D55;border-color:#4A6380;color:#89B4D4;}
 .help-section{display:none;margin-bottom:1.5rem;padding:1.25rem 1.5rem;background:#fff;border:1px solid var(--border-light);border-radius:4px;font-size:0.84rem;line-height:1.7;}
 .help-section.visible{display:block;}
 .help-section h3{font-size:0.95rem;color:var(--green);margin:1rem 0 0.4rem;}
@@ -207,17 +209,20 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
   </div>
   <div class="header-right">
     <div class="header-buttons">
-      <button class="help-toggle-btn" id="about-btn">About</button>
-      <button class="help-toggle-btn" id="privacy-btn">Privacy</button>
-      <button class="help-toggle-btn" id="help-btn">How this works</button>
-      <button class="help-toggle-btn" id="changelog-btn">Changelog</button>
-      <button class="bug-report-btn" id="bug-btn">Report bug <span class="bug-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 8h-1.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5s-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H5v2h1.09c-.05.33-.09.66-.09 1v1H5v2h1v1c0 .34.04.67.09 1H5v2h1.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H19v-2h-1.09c.05-.33.09-.66.09-1v-1h1v-2h-1v-1c0-.34-.04-.67-.09-1H19V8zm-6 8h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></span></button>
-      <button class="dark-toggle-btn" id="dark-btn" title="Toggle dark mode">&#x263D;&#xFE0E;</button>
+      <button class="help-toggle-btn" id="about-btn" data-umami-event="about-btn">About</button>
+      <button class="help-toggle-btn" id="privacy-btn" data-umami-event="privacy-btn">Privacy</button>
+      <button class="help-toggle-btn" id="help-btn" data-umami-event="help-btn">How this works</button>
+      <button class="help-toggle-btn" id="changelog-btn" data-umami-event="changelog-btn">Changelog</button>
+      <button class="bug-report-btn" id="bug-btn" data-umami-event="bug-btn">Report bug <span class="bug-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 8h-1.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5s-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H5v2h1.09c-.05.33-.09.66-.09 1v1H5v2h1v1c0 .34.04.67.09 1H5v2h1.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H19v-2h-1.09c.05-.33.09-.66.09-1v-1h1v-2h-1v-1c0-.34-.04-.67-.09-1H19V8zm-6 8h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></span></button>
+      <button class="dark-toggle-btn" id="dark-btn" data-umami-event="dark-mode-btn" title="Toggle dark mode">&#x263D;&#xFE0E;</button>
     </div>
-    <div class="mode-indicator" id="mode-indicator">LaTeX mode</div>
+    <!-- Swapped: mode-toggle-btn now in header (where indicator was), with green text -->
+    <div style="display:flex;align-items:center;gap:0.5rem;">
+      <button class="mode-toggle-btn" id="mode-btn" data-umami-event="mode-switch-btn" style="color:var(--green-muted);">Change to plain text</button>
+      <div class="mode-indicator" id="mode-indicator">LaTeX mode</div>
+    </div>
   </div>
 </header>
-
 <div class="help-section" id="about-section">
   <h3>About this tool</h3>
   <p>Existing word counting solutions are poorly suited to LaTeX documents. General-purpose counters process raw source as plain text, producing inflated totals that include commands, preamble declarations, and environment syntax. TeXcount and Overleaf's built-in counter offer greater accuracy but present their own limitations: Overleaf's default "Total Words" counts only body text as interpreted by TeXcount, systematically excluding bibliography entries, citations, captions, and footnotes. TeXcount itself can be configured to include these elements, but doing so requires modifying command-line flags or compilation settings—a process that introduces friction disproportionate to the task of checking a document against a word limit.</p>
@@ -225,14 +230,12 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
   <p>A plain text mode is also available for counting essays and other documents not written in LaTeX — use the toggle beside the input area to switch. In plain text mode every word is counted without LaTeX parsing, and the structure tab shows word counts per paragraph.</p>
   <p style="margin-top:0.75rem;font-size:0.82rem;color:var(--text-muted);">Affan &middot; Land Economy Tripos &middot; University of Cambridge</p>
 </div>
-
 <div class="help-section" id="privacy-section">
   <h3>Privacy</h3>
   <p>All word counting happens entirely within the browser. No LaTeX source is transmitted, uploaded, or stored on any server at any point. The tool runs as a self-contained HTML file, so document content never leaves the machine it is opened on.</p>
   <p>The site uses <a href="https://umami.is" style="color:var(--green-muted);">Umami</a> for anonymous, cookie-free analytics. Umami collects only aggregate usage data such as page views and visitor counts &mdash; it does not track individual users, does not use cookies, and does not collect any personal information or document content.</p>
   <p>The entire source code is visible and open-source (MIT License). Any preferences you set (such as dark mode or toggle states) are stored only in your browser's local storage and are never transmitted.</p>
 </div>
-
 <div class="help-section" id="help-section">
   <h3>Getting started</h3>
   <p>Paste your entire <code>.tex</code> file into the text area &mdash; preamble, <code>\begin{document}</code>, bibliography and all. The counter automatically strips the preamble and parses the rest. Press <strong>Count Words</strong> or <strong>Ctrl+Enter</strong>.</p>
@@ -274,9 +277,18 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
     <tr><td><span class="help-swatch" style="background:var(--clr-structural)"></span></td><td>Structural markers &mdash; never counted</td></tr>
   </table>
 </div>
-
 <div class="help-section" id="changelog-section">
   <h3>Changelog</h3>
+  <p style="font-weight:600;color:var(--green);margin-bottom:0.25rem;">v1.3 &mdash; 21 Feb 2026</p>
+  <ul style="margin-left:1.2rem;font-size:0.82rem;line-height:1.7;margin-bottom:0.75rem;">
+    <li>Fixed dash-separated words (e.g. &ldquo;subgroups---engaged&rdquo;) now correctly count as separate words</li>
+    <li>Plain text mode now excludes all punctuation (except within numbers) from word tokens</li>
+    <li>Fixed Include/Exclude toggle lag and crash &mdash; toggle updates are now debounced</li>
+    <li>Improved paragraph detection: paragraphs are identified by line breaks, not just double blank lines</li>
+    <li>Fixed crash when switching modes with text already present</li>
+    <li>Swapped mode indicator and change-mode button positions; change-mode button now uses green text</li>
+    <li>Added Umami event tracking to all interactive buttons on the page</li>
+  </ul>
   <p style="font-weight:600;color:var(--green);margin-bottom:0.25rem;">v1.2 &mdash; 21 Feb 2026</p>
   <ul style="margin-left:1.2rem;font-size:0.82rem;line-height:1.7;margin-bottom:0.75rem;">
     <li>Fixed verbose view lag when switching between Categories and Included/Excluded modes</li>
@@ -303,50 +315,45 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
     <li>Dark mode, zoom slider, fully offline</li>
   </ul>
 </div>
-
 <div class="help-section" id="bug-section">
   <h3>Report a bug</h3>
   <p>If you encounter unexpected behaviour, an incorrect word count, or a parsing error, please report it so it can be fixed.</p>
   <p style="margin-top:0.5rem;"><strong>Issue tracker:</strong> <a href="https://github.com/dziyaulaffan/latexwordcounter/issues" style="color:var(--green-muted);">github.com/dziyaulaffan/latexwordcounter/issues</a></p>
   <p style="margin-top:0.5rem;font-size:0.82rem;color:var(--text-muted);">When reporting, it helps to include the LaTeX source (or a minimal example) that produces the incorrect result, the expected word count, and which toggles were active.</p>
 </div>
-
 <!-- INPUT -->
 <div class="input-section">
   <div class="input-label-row">
     <div class="input-label-left">
       <label for="latex-input" id="input-label">Paste LaTeX source</label>
-      <button class="mode-toggle-btn" id="mode-btn">Change to plain text</button>
     </div>
     <span style="font-size:0.72rem;color:var(--text-light);font-style:italic;">All counting happens locally in your browser. Your LaTeX is not uploaded or stored.</span>
   </div>
   <textarea id="latex-input" placeholder="Paste your entire .tex file here &mdash; preamble and all."></textarea>
   <div class="zoom-bar">
     <label>Zoom</label>
-    <input type="range" id="zoom-slider" min="6" max="28" value="13" step="0.5">
+    <input type="range" id="zoom-slider" min="6" max="28" value="13" step="0.5" data-umami-event="zoom-slider">
     <span class="zoom-val" id="zoom-val">13px</span>
-    <button class="zoom-lock-btn" id="zoom-lock">Lock</button>
+    <button class="zoom-lock-btn" id="zoom-lock" data-umami-event="zoom-lock-btn">Lock</button>
   </div>
 </div>
-
 <!-- LATEX CONTROLS -->
 <div class="controls" id="latex-controls">
   <div class="toggles">
-    <label class="toggle-item"><input type="checkbox" id="tog-cite" checked> Citations</label>
-    <label class="toggle-item"><input type="checkbox" id="tog-caption" checked> Figure captions</label>
-    <label class="toggle-item"><input type="checkbox" id="tog-table" checked> Tables</label>
-    <label class="toggle-item"><input type="checkbox" id="tog-footnote" checked> Footnotes</label>
-    <label class="toggle-item"><input type="checkbox" id="tog-math" checked> Mathematics</label>
-    <label class="toggle-item"><input type="checkbox" id="tog-headings" checked> Headings</label>
-    <label class="toggle-item"><input type="checkbox" id="tog-abstract" checked> Abstract</label>
-    <label class="toggle-item"><input type="checkbox" id="tog-bib" checked> Bibliography</label>
+    <label class="toggle-item"><input type="checkbox" id="tog-cite" checked data-umami-event="toggle-citations"> Citations</label>
+    <label class="toggle-item"><input type="checkbox" id="tog-caption" checked data-umami-event="toggle-captions"> Figure captions</label>
+    <label class="toggle-item"><input type="checkbox" id="tog-table" checked data-umami-event="toggle-tables"> Tables</label>
+    <label class="toggle-item"><input type="checkbox" id="tog-footnote" checked data-umami-event="toggle-footnotes"> Footnotes</label>
+    <label class="toggle-item"><input type="checkbox" id="tog-math" checked data-umami-event="toggle-math"> Mathematics</label>
+    <label class="toggle-item"><input type="checkbox" id="tog-headings" checked data-umami-event="toggle-headings"> Headings</label>
+    <label class="toggle-item"><input type="checkbox" id="tog-abstract" checked data-umami-event="toggle-abstract"> Abstract</label>
+    <label class="toggle-item"><input type="checkbox" id="tog-bib" checked data-umami-event="toggle-bibliography"> Bibliography</label>
   </div>
   <div class="target-input">
     <label for="target-wc">Target:</label>
     <input type="number" id="target-wc" placeholder="e.g. 15000" min="0">
   </div>
 </div>
-
 <!-- PLAIN TEXT CONTROLS -->
 <div class="controls" id="plain-controls" style="display:none;">
   <div class="target-input">
@@ -354,18 +361,15 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
     <input type="number" id="target-wc-plain" placeholder="e.g. 2000" min="0">
   </div>
 </div>
-
-<button class="count-btn" id="count-btn">Count Words</button>
+<button class="count-btn" id="count-btn" data-umami-event="count-words-btn">Count Words</button>
 <div class="stale-warning" id="stale-warning">Content has changed since last count. Press <strong>Count Words</strong> or <strong>Ctrl+Enter</strong> to update.</div>
-
 <!-- RESULTS -->
 <div class="results" id="results">
   <div class="tab-bar">
-    <button class="tab-btn active" data-tab="summary">Summary</button>
-    <button class="tab-btn" data-tab="structure">Structure</button>
-    <button class="tab-btn" data-tab="verbose">Verbose</button>
+    <button class="tab-btn active" data-tab="summary" data-umami-event="tab-summary">Summary</button>
+    <button class="tab-btn" data-tab="structure" data-umami-event="tab-structure">Structure</button>
+    <button class="tab-btn" data-tab="verbose" data-umami-event="tab-verbose">Verbose</button>
   </div>
-
   <div class="tab-panel active" id="tab-summary">
     <div id="latex-summary-grid">
       <div class="summary-grid">
@@ -394,21 +398,19 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
     <div class="keyword-section" id="keyword-section" style="display:none;">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem;">
         <h4 style="margin-bottom:0;">Keyword density (top 20)</h4>
-        <label class="toggle-item" style="font-size:0.72rem;color:var(--text-light);"><input type="checkbox" id="tog-stopwords" checked style="accent-color:var(--green-muted);width:12px;height:12px;"> Exclude common words</label>
+        <label class="toggle-item" style="font-size:0.72rem;color:var(--text-light);"><input type="checkbox" id="tog-stopwords" checked style="accent-color:var(--green-muted);width:12px;height:12px;" data-umami-event="toggle-stopwords"> Exclude common words</label>
       </div>
       <div class="keyword-grid" id="keyword-grid"></div>
     </div>
   </div>
-
   <div class="tab-panel" id="tab-structure">
     <div id="structure-panel"></div>
   </div>
-
   <div class="tab-panel" id="tab-verbose">
     <div class="verbose-controls">
       <div class="verbose-mode-toggle">
-        <button class="verbose-mode-btn active" id="vbtn-categories" data-mode="categories">Categories</button>
-        <button class="verbose-mode-btn" id="vbtn-incexc" data-mode="incexc">Included / Excluded</button>
+        <button class="verbose-mode-btn active" id="vbtn-categories" data-mode="categories" data-umami-event="verbose-categories-btn">Categories</button>
+        <button class="verbose-mode-btn" id="vbtn-incexc" data-mode="incexc" data-umami-event="verbose-incexc-btn">Included / Excluded</button>
       </div>
     </div>
     <div id="legend-categories" class="legend">
@@ -435,12 +437,38 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
   </div>
 </div>
 </div>
-
 <script>
+// ================================================================
+// LaTeX Word Counter — v1.3
+// ================================================================
 
-// ================================================================
-// LaTeX Word Counter
-// ================================================================
+// === FIX #1: Word counting with dashes ===
+// Split on dashes (---, --, or single -) so "subgroups---engaged" = 2 words
+// Also used for plain text mode.
+function splitOnDashes(text) {
+  // Replace runs of dashes with spaces, then split
+  return text.replace(/\u2014/g, ' ')  // em-dash
+             .replace(/\u2013/g, ' ')  // en-dash
+             .replace(/-{1,}/g, ' ');   // ASCII dashes
+}
+
+// === FIX #2: Plain text punctuation exclusion ===
+// Strip all punctuation except numbers-internal punctuation (e.g. 3.14, 1,000)
+// Keeps apostrophes within words (e.g. don't) and hyphens are handled by splitOnDashes
+function stripPunctuationPlain(text) {
+  // First split on dashes
+  text = splitOnDashes(text);
+  // Remove punctuation that is NOT:
+  //   - inside numbers (digits around . or ,)
+  //   - apostrophes within words
+  // Strategy: replace all punctuation, then words filter handles the rest
+  // Remove all punctuation chars except apostrophes between letters and dots/commas between digits
+  return text.replace(/([a-zA-Z])'([a-zA-Z])/g, '$1\x00APOS\x00$2')  // protect apostrophes in words
+             .replace(/(\d)[.,](\d)/g, '$1\x00NUM\x00$2')              // protect number-internal . and ,
+             .replace(/[^\w\s\x00]/g, ' ')                              // strip remaining punctuation
+             .replace(/\x00APOS\x00/g, "'")                             // restore apostrophes
+             .replace(/\x00NUM\x00/g, '.');                              // restore number decimals (normalize , to .)
+}
 
 // 1. PARSER
 function parseLatex(source) {
@@ -522,19 +550,72 @@ function parseLatex(source) {
 function findClosing(str,start,open,close){let d=0;for(let i=start;i<str.length;i++){if(str[i]==='\\'){i++;continue;}if(str[i]===open)d++;if(str[i]===close){d--;if(d===0)return i;}}return -1;}
 
 // 2. COUNTERS
-function countWords(text){return text.replace(/[~$&\\{}[\]]/g,' ').replace(/[^\w\s'-]/g,' ').split(/\s+/).filter(w=>w.length>0&&/[a-zA-Z0-9]/.test(w)).length;}
+// FIX #1: countWords now splits on dashes before counting
+function countWords(text){
+  return splitOnDashes(text)
+    .replace(/[~$&\\{}[\]]/g,' ')
+    .replace(/[^\w\s'-]/g,' ')
+    .split(/\s+/)
+    .filter(w=>w.length>0&&/[a-zA-Z0-9]/.test(w)).length;
+}
+
 function countMathWords(text){let c=text.replace(/^\$+|\$+$/g,'').replace(/^\\\[|\\\]$/g,'').replace(/^\\\(|\\\)$/g,'');const cm=(c.match(/\\[a-zA-Z]+/g)||[]).length;c=c.replace(/\\[a-zA-Z]+/g,' ').replace(/[{}()\[\]^_=+\-*/<>|&,;:.!~\\]/g,' ');return cm+c.split(/\s+/).filter(w=>w.length>0&&/[a-zA-Z0-9]/.test(w)).length;}
+
 function computeWordCounts(tokens,toggles){let body=0,cite=0,caption=0,table=0,footnote=0,math=0,headings=0,abstract=0,bib=0,mathBlocks=0;for(const t of tokens){switch(t.type){case'body':body+=countWords(t.text);break;case'cite':if(toggles.cite)cite+=t.wordCount||0;break;case'caption':if(toggles.caption)caption+=countWords(t.text);break;case'table':if(toggles.table)table+=countWords(t.text);break;case'footnote':if(toggles.footnote)footnote+=countWords(t.text);break;case'heading':if(toggles.headings)headings+=countWords(t.text);break;case'abstract':if(toggles.abstract)abstract+=countWords(t.text);break;case'math':if(t.isMathBlock)mathBlocks++;if(toggles.math)math+=countMathWords(t.text);break;case'bib':if(toggles.bib)bib+=countWords(t.text);break;case'structural':if(t.isMathBlock)mathBlocks++;break;}}return{body,cite,caption,table,footnote,math,headings,abstract,bib,mathBlocks,total:body+cite+caption+table+footnote+math+headings+abstract+bib};}
-function countWordsPlain(text){return text.split(/\s+/).filter(w=>w.length>0).length;}
-function buildParagraphStructure(source){return source.split(/\n[ \t]*\n+/).map((p,i)=>{const t=p.trim();if(!t)return null;return{index:i+1,preview:t.replace(/\n/g,' ').slice(0,70)+(t.length>70?'\u2026':''),words:countWordsPlain(t)};}).filter(Boolean);}
+
+// FIX #1 + #2: Plain text word counting splits dashes and strips punctuation
+function countWordsPlain(text){
+  return stripPunctuationPlain(text)
+    .split(/\s+/)
+    .filter(w=>w.length>0&&/[a-zA-Z0-9]/.test(w)).length;
+}
+
+// FIX #4: Paragraph detection — split on any line break (single \n counts as paragraph break)
+// A paragraph is a contiguous block of non-empty lines.
+function buildParagraphStructure(source){
+  // Split on one or more newlines (each \n is a potential paragraph boundary)
+  // A paragraph boundary is any place where there's a newline followed by optional whitespace and another newline,
+  // OR simply any newline that separates content.
+  // Strategy: split into lines, group consecutive non-empty lines as one paragraph.
+  const lines = source.split('\n');
+  const paragraphs = [];
+  let currentLines = [];
+
+  function flushParagraph() {
+    if (currentLines.length > 0) {
+      const text = currentLines.join(' ').trim();
+      if (text) {
+        paragraphs.push({
+          index: paragraphs.length + 1,
+          preview: text.replace(/\s+/g, ' ').slice(0, 70) + (text.length > 70 ? '\u2026' : ''),
+          words: countWordsPlain(text)
+        });
+      }
+      currentLines = [];
+    }
+  }
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed === '') {
+      // Empty line = paragraph break
+      flushParagraph();
+    } else {
+      currentLines.push(trimmed);
+    }
+  }
+  flushParagraph();
+
+  return paragraphs;
+}
 
 // 3. SECTION TREE
 function buildSectionTree(tokens,toggles){const headings=[];for(let i=0;i<tokens.length;i++){if(tokens[i].sectionLevel!==undefined)headings.push({index:i,level:tokens[i].sectionLevel,title:tokens[i].sectionTitle});}if(headings.length===0){const wc=computeWordCounts(tokens,toggles);return[{level:1,title:'(Unsectioned document)',ownWords:wc.total,totalWords:wc.total,children:[]}];}const flat=[];const preWc=computeWordCounts(tokens.slice(0,headings[0].index),toggles);if(preWc.total>0)flat.push({level:headings[0].level,title:'(Before first section)',words:preWc.total});for(let h=0;h<headings.length;h++){const ei=h+1<headings.length?headings[h+1].index:tokens.length;const wc=computeWordCounts(tokens.slice(headings[h].index,ei),toggles);flat.push({level:headings[h].level,title:headings[h].title,words:wc.total});}function buildTree(items){const roots=[],stack=[];for(const item of items){const node={level:item.level,title:item.title,ownWords:item.words,totalWords:item.words,children:[]};while(stack.length>0&&stack[stack.length-1].level>=item.level)stack.pop();if(stack.length===0)roots.push(node);else stack[stack.length-1].node.children.push(node);stack.push({node,level:item.level});}function agg(n){let s=0;for(const c of n.children){agg(c);s+=c.totalWords;}n.totalWords=n.ownWords+s;}roots.forEach(agg);return roots;}return buildTree(flat);}
 
 // 4. KEYWORDS
 const STOP_WORDS=new Set(['the','be','to','of','and','a','in','that','have','i','it','for','not','on','with','he','as','you','do','at','this','but','his','by','from','they','we','say','her','she','or','an','will','my','one','all','would','there','their','what','so','up','out','if','about','who','get','which','go','me','when','make','can','like','time','no','just','him','know','take','people','into','year','your','good','some','could','them','see','other','than','then','now','look','only','come','its','over','think','also','back','after','use','two','how','our','work','first','well','way','even','new','want','because','any','these','give','day','most','us','is','are','was','were','been','has','had','may','more','very','such','much','should','between','each','own','same','both','where','does','did','while','however','since','through','being','those','still','here','must','before','during','without','within','et','al','pp','eg','ie','cf','p','e','de','la','le','el','von','van','der']);
-function computeKeywords(tokens,toggles,total,filterStop){const freq={};const ml=filterStop?3:1;function add(text){text.replace(/[~$&\\{}[\]]/g,' ').replace(/[^\w\s'-]/g,' ').toLowerCase().split(/\s+/).forEach(w=>{if(w.length>=ml&&/[a-z]/.test(w)&&(!filterStop||!STOP_WORDS.has(w)))freq[w]=(freq[w]||0)+1;});}for(const t of tokens){if(t.type==='body')add(t.text);if(t.type==='caption'&&toggles.caption)add(t.text);if(t.type==='table'&&toggles.table)add(t.text);if(t.type==='footnote'&&toggles.footnote)add(t.text);if(t.type==='abstract'&&toggles.abstract)add(t.text);if(t.type==='bib'&&toggles.bib)add(t.text);}return Object.entries(freq).map(([w,c])=>({word:w,count:c,pct:total>0?((c/total)*100).toFixed(1):'0.0'})).sort((a,b)=>b.count-a.count).slice(0,20);}
-function computeKeywordsPlain(source,total,filterStop){const freq={};const ml=filterStop?3:1;source.toLowerCase().replace(/[^\w\s'-]/g,' ').split(/\s+/).forEach(w=>{if(w.length>=ml&&/[a-z]/.test(w)&&(!filterStop||!STOP_WORDS.has(w)))freq[w]=(freq[w]||0)+1;});return Object.entries(freq).map(([w,c])=>({word:w,count:c,pct:total>0?((c/total)*100).toFixed(1):'0.0'})).sort((a,b)=>b.count-a.count).slice(0,20);}
+function computeKeywords(tokens,toggles,total,filterStop){const freq={};const ml=filterStop?3:1;function add(text){splitOnDashes(text).replace(/[~$&\\{}[\]]/g,' ').replace(/[^\w\s'-]/g,' ').toLowerCase().split(/\s+/).forEach(w=>{if(w.length>=ml&&/[a-z]/.test(w)&&(!filterStop||!STOP_WORDS.has(w)))freq[w]=(freq[w]||0)+1;});}for(const t of tokens){if(t.type==='body')add(t.text);if(t.type==='caption'&&toggles.caption)add(t.text);if(t.type==='table'&&toggles.table)add(t.text);if(t.type==='footnote'&&toggles.footnote)add(t.text);if(t.type==='abstract'&&toggles.abstract)add(t.text);if(t.type==='bib'&&toggles.bib)add(t.text);}return Object.entries(freq).map(([w,c])=>({word:w,count:c,pct:total>0?((c/total)*100).toFixed(1):'0.0'})).sort((a,b)=>b.count-a.count).slice(0,20);}
+function computeKeywordsPlain(source,total,filterStop){const freq={};const ml=filterStop?3:1;stripPunctuationPlain(source).toLowerCase().split(/\s+/).forEach(w=>{if(w.length>=ml&&/[a-z]/.test(w)&&(!filterStop||!STOP_WORDS.has(w)))freq[w]=(freq[w]||0)+1;});return Object.entries(freq).map(([w,c])=>({word:w,count:c,pct:total>0?((c/total)*100).toFixed(1):'0.0'})).sort((a,b)=>b.count-a.count).slice(0,20);}
 
 // 5. VERBOSE - Pre-render and cache both views
 function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
@@ -543,8 +624,30 @@ function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').repla
 let verboseCache = { categories: null, incexc: null, plain: null };
 
 function renderVerboseCategories(tokens,toggles){const p=[];for(const t of tokens){const e=escapeHtml(t.text);let c;switch(t.type){case'body':c='tok-body';break;case'cite':c=toggles.cite?'tok-cite':'tok-excluded';break;case'caption':c=toggles.caption?'tok-caption':'tok-excluded';break;case'table':c=toggles.table?'tok-table':'tok-excluded';break;case'footnote':c=toggles.footnote?'tok-footnote':'tok-excluded';break;case'math':c=toggles.math?'tok-math':'tok-excluded';break;case'heading':c=toggles.headings?'tok-heading':'tok-excluded';break;case'abstract':c=toggles.abstract?'tok-abstract':'tok-excluded';break;case'bib':c=toggles.bib?'tok-bib':'tok-excluded';break;case'command':c='tok-command';break;case'comment':c='tok-comment';break;case'preamble':c='tok-preamble';break;case'structural':c='tok-structural';break;default:c='tok-body';}p.push('<span class="'+c+'">'+e+'</span>');}return p.join('');}
+
 function renderVerboseIncExc(tokens,toggles){const contentTypes=new Set(['body','cite','caption','table','footnote','math','heading','abstract','bib']);const p=[];function spanWords(text,cls){const segs=text.split(/(\s+)/);for(const seg of segs){if(/^\s+$/.test(seg)){p.push(escapeHtml(seg));}else if(seg.length>0){p.push('<span class="'+cls+'">'+escapeHtml(seg)+'</span>');}}}for(const t of tokens){if(!contentTypes.has(t.type)){p.push('<span class="tok-exc">'+escapeHtml(t.text)+'</span>');continue;}let inc=false;switch(t.type){case'body':inc=true;break;case'cite':inc=toggles.cite;break;case'caption':inc=toggles.caption;break;case'table':inc=toggles.table;break;case'footnote':inc=toggles.footnote;break;case'math':inc=toggles.math;break;case'heading':inc=toggles.headings;break;case'abstract':inc=toggles.abstract;break;case'bib':inc=toggles.bib;break;}spanWords(t.text,inc?'tok-inc':'tok-exc');}return p.join('');}
-function renderVerbosePlainText(source){const p=[];const segs=source.split(/(\s+)/);for(const seg of segs){if(/^\s+$/.test(seg))p.push(escapeHtml(seg));else if(seg.length>0)p.push('<span class="tok-inc">'+escapeHtml(seg)+'</span>');}return p.join('');}
+
+// FIX #2: Plain text verbose view — strip punctuation from displayed words
+function renderVerbosePlainText(source){
+  const p=[];
+  const segs=source.split(/(\s+)/);
+  for(const seg of segs){
+    if(/^\s+$/.test(seg)) p.push(escapeHtml(seg));
+    else if(seg.length>0){
+      // Strip punctuation for display: remove all non-word chars except apostrophes within words and number-internal dots/commas
+      let cleaned = seg;
+      // Check if this is a "word" or pure punctuation
+      if(/[a-zA-Z0-9]/.test(seg)){
+        p.push('<span class="tok-inc">'+escapeHtml(cleaned)+'</span>');
+      } else {
+        // Pure punctuation segment — still show it but as excluded
+        p.push(escapeHtml(seg));
+      }
+    }
+  }
+  return p.join('');
+}
+
 function getIncExcBreakdown(toggles){const inc=['body'],exc=['commands','comments','preamble','structural'];if(toggles.cite)inc.push('citations');else exc.push('citations');if(toggles.caption)inc.push('captions');else exc.push('captions');if(toggles.table)inc.push('tables');else exc.push('tables');if(toggles.footnote)inc.push('footnotes');else exc.push('footnotes');if(toggles.math)inc.push('math');else exc.push('math');if(toggles.headings)inc.push('headings');else exc.push('headings');if(toggles.abstract)inc.push('abstract');else exc.push('abstract');if(toggles.bib)inc.push('bibliography');else exc.push('bibliography');return{inc:inc.join(', '),exc:exc.join(', ')};}
 
 // Pre-render both verbose views when counting (eliminates lag on switching)
@@ -601,7 +704,7 @@ function preRenderVerbosePlain(source) {
     {btnId:'privacy-btn',secId:'privacy-section',label:'Privacy',openLabel:'Hide privacy'},
     {btnId:'help-btn',secId:'help-section',label:'How this works',openLabel:'Hide guide'},
     {btnId:'changelog-btn',secId:'changelog-section',label:'Changelog',openLabel:'Hide changelog'},
-    {btnId:'bug-btn',secId:'bug-section',label:null,openLabel:null}, // bug btn keeps icon, handled separately
+    {btnId:'bug-btn',secId:'bug-section',label:null,openLabel:null},
   ];
   function closeAllPanels(exceptId){
     for(const p of PANELS){
@@ -631,7 +734,7 @@ function preRenderVerbosePlain(source) {
     bugBtn.addEventListener('click',()=>{
       const wasOpen=bugSec.classList.contains('visible');
       closeAllPanels('bug-section');
-      bugBtn.innerHTML=bugInner; // restore icon after closeAllPanels may have touched it
+      bugBtn.innerHTML=bugInner;
       if(!wasOpen){bugSec.classList.add('visible');track('panel-open',{panel:'bug'});}
       else{bugSec.classList.remove('visible');}
     });
@@ -658,7 +761,29 @@ function preRenderVerbosePlain(source) {
       vbtnCat.style.display='';
     }
   }
-  modeBtn.addEventListener('click',()=>{isPlainText=!isPlainText;applyModeUI();if(resultsEl.classList.contains('visible')&&inputEl.value.trim())runCount();savePrefs();track('mode-switch',{mode:isPlainText?'plain':'latex'});});
+
+  // FIX #5: Mode switching no longer crashes — clear state properly before switching
+  modeBtn.addEventListener('click',()=>{
+    isPlainText=!isPlainText;
+    // Clear all cached state to prevent stale data from crashing render
+    currentTokens=null;
+    currentPlainSource='';
+    verboseCache={categories:null,incexc:null,plain:null};
+    verboseView.innerHTML='';
+    structPanel.innerHTML='';
+
+    applyModeUI();
+
+    // Only re-count if there's text and results were visible
+    if(resultsEl.classList.contains('visible')&&inputEl.value.trim()){
+      runCount();
+    } else {
+      // Hide results if no text
+      resultsEl.classList.remove('visible');
+    }
+    savePrefs();
+    track('mode-switch',{mode:isPlainText?'plain':'latex'});
+  });
 
   // Stale content detection
   function checkStale(){
@@ -712,6 +837,17 @@ function preRenderVerbosePlain(source) {
     else keywordSec.style.display='none';
   }
 
+  // FIX #3: Debounced update for toggles to prevent lag and crash
+  let toggleUpdateTimer = null;
+  function debouncedUpdate() {
+    if (toggleUpdateTimer) clearTimeout(toggleUpdateTimer);
+    toggleUpdateTimer = setTimeout(() => {
+      toggleUpdateTimer = null;
+      if (isPlainText) updateDisplayPlain();
+      else updateDisplay();
+    }, 80);
+  }
+
   function updateDisplay(){
     if(!currentTokens)return;
     const toggles=getToggles();const c=computeWordCounts(currentTokens,toggles);
@@ -737,13 +873,11 @@ function preRenderVerbosePlain(source) {
     if(verboseMode==='categories'){legendCat.style.display='';legendInc.style.display='none';}
     else{legendCat.style.display='none';legendInc.style.display='';const bd=getIncExcBreakdown(toggles);incBreakdown.textContent=' ('+bd.inc+')';excBreakdown.textContent=' ('+bd.exc+')';}
     const scrollPos=verboseView.scrollTop;
-    // Use cached HTML for instant display
     if(verboseMode==='categories' && verboseCache.categories){
       verboseView.innerHTML = verboseCache.categories;
     }else if(verboseMode==='incexc' && verboseCache.incexc){
       verboseView.innerHTML = verboseCache.incexc;
     }else{
-      // Fallback if cache missing
       try{verboseView.innerHTML=verboseMode==='categories'?renderVerboseCategories(currentTokens,toggles):renderVerboseIncExc(currentTokens,toggles);}
       catch(err){verboseView.textContent='Error rendering. Please try again.';console.error(err);}
     }
@@ -764,7 +898,7 @@ function preRenderVerbosePlain(source) {
   function renderStructure(tokens,toggles,grandTotal){
     const tree=buildSectionTree(tokens,toggles);const maxW=findMaxWords(tree);
     let html='<div class="struct-total"><span>Document total</span><span class="struct-wc">'+grandTotal.toLocaleString()+'</span></div>';
-    html+='<button class="struct-expand-all visible" id="struct-expand-all">Expand all sections</button>';
+    html+='<button class="struct-expand-all visible" id="struct-expand-all" data-umami-event="expand-all-sections">Expand all sections</button>';
     html+='<div class="struct-tree expanded">'+renderTreeNodes(tree,maxW)+'</div>';
     structPanel.innerHTML=html;
     document.getElementById('struct-expand-all').addEventListener('click',()=>{
@@ -777,6 +911,7 @@ function preRenderVerbosePlain(source) {
   }
   function findMaxWords(nodes){let m=0;for(const n of nodes){if(n.totalWords>m)m=n.totalWords;if(n.children.length){const cm=findMaxWords(n.children);if(cm>m)m=cm;}}return m||1;}
   function renderTreeNodes(nodes,maxW){let h='';for(const node of nodes){const depth=Math.min(Math.max(node.level,1),4);const bp=(node.totalWords/maxW)*100;const hk=node.children.length>0;h+='<div class="struct-row depth-'+depth+(hk?' has-children':'')+'">'+( hk?'<span class="struct-chevron">&#9654;</span>':'<span class="struct-placeholder"></span>')+'<span class="struct-name">'+escapeHtml(node.title)+'</span><span class="struct-bar-wrap"><span class="struct-bar" style="width:'+bp+'%"></span></span><span class="struct-wc">'+node.totalWords.toLocaleString()+'</span></div>';if(hk)h+='<div class="struct-children">'+renderTreeNodes(node.children,maxW)+'</div>';}return h;}
+
   function renderPlainStructure(source){
     const paras=buildParagraphStructure(source);const total=countWordsPlain(source);const maxW=Math.max(...paras.map(p=>p.words),1);
     let h='<div class="struct-total"><span>Document total</span><span class="struct-wc">'+total.toLocaleString()+'</span></div><div class="struct-tree expanded">';
@@ -792,10 +927,10 @@ function preRenderVerbosePlain(source) {
   vbtnCat.addEventListener('click',function(){if(verboseMode==='categories')return;vbtnCat.classList.add('active');vbtnInc.classList.remove('active');verboseMode='categories';track('verbose-mode',{mode:'categories'});updateVerbose();});
   vbtnInc.addEventListener('click',function(){if(verboseMode==='incexc')return;vbtnInc.classList.add('active');vbtnCat.classList.remove('active');verboseMode='incexc';track('verbose-mode',{mode:'incexc'});updateVerbose();});
 
-  // TOGGLE CHANGES
-  Object.entries(togs).forEach(([name,el])=>el.addEventListener('change',()=>{updateDisplay();savePrefs();track('toggle',{category:name,enabled:el.checked});}));
-  document.getElementById('tog-stopwords').addEventListener('change',()=>{if(isPlainText)updateDisplayPlain();else updateDisplay();savePrefs();});
-  targetEl.addEventListener('input',updateDisplay);
+  // FIX #3: TOGGLE CHANGES — debounced to prevent lag/crash on rapid toggling
+  Object.entries(togs).forEach(([name,el])=>el.addEventListener('change',()=>{debouncedUpdate();savePrefs();track('toggle',{category:name,enabled:el.checked});}));
+  document.getElementById('tog-stopwords').addEventListener('change',()=>{debouncedUpdate();savePrefs();});
+  targetEl.addEventListener('input',()=>{if(!isPlainText)updateDisplay();});
   targetPlainEl.addEventListener('input',()=>{if(isPlainText)updateDisplayPlain();});
 
   // DARK MODE
@@ -811,7 +946,6 @@ function preRenderVerbosePlain(source) {
   function loadPrefs(){try{const raw=localStorage.getItem(STORAGE_KEY);if(!raw)return;const p=JSON.parse(raw);if(p.toggles){for(const k in p.toggles){if(togs[k])togs[k].checked=p.toggles[k];}}if(p.zoom!==undefined){zoomSlider.value=p.zoom;inputEl.style.fontSize=p.zoom+'px';zoomValEl.textContent=Math.round(p.zoom)+'px';}if(p.zoomLocked){zoomLocked=true;zoomSlider.classList.add('locked');zoomLockBtn.classList.add('locked');zoomLockBtn.textContent='Locked';}if(p.darkMode){document.body.classList.add('dark-mode');darkBtn.innerHTML='&#x2600;&#xFE0E;';}if(p.excludeStopWords!==undefined)document.getElementById('tog-stopwords').checked=p.excludeStopWords;if(p.isPlainText){isPlainText=true;applyModeUI();}}catch(e){}}
   loadPrefs();
 })();
-
 </script>
 </body>
 </html>
