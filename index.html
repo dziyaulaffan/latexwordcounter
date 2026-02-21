@@ -35,16 +35,22 @@ body.dark-mode .tok-exc{color:#A06060;}
 body.dark-mode .keyword-section{background:var(--bg-alt);}
 body.dark-mode .plain-para-row{background:var(--bg-alt);}
 body.dark-mode .mode-toggle-btn.plain{background:#2E3D55;border-color:#4A6380;color:#89B4D4;}
+body.dark-mode .mode-indicator{background:var(--bg-alt);border-color:var(--border);}
+body.dark-mode .stale-warning{background:#3D3520;border-color:#5A4D2A;color:#D4C090;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Georgia','Times New Roman',serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;}
 .app{max-width:960px;margin:0 auto;padding:2rem 1.5rem 4rem;}
-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);}
+header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);}
 header h1{font-size:1.6rem;font-weight:700;color:var(--green);letter-spacing:-0.02em;}
+.header-left{flex-shrink:0;}
+.header-right{display:flex;flex-direction:column;align-items:flex-end;gap:0.5rem;flex-shrink:0;}
+.header-buttons{display:flex;gap:0.5rem;align-items:center;flex-wrap:nowrap;}
+.mode-indicator{font-size:0.72rem;color:var(--text-muted);padding:0.25rem 0.6rem;background:var(--bg-alt);border:1px solid var(--border-light);border-radius:3px;white-space:nowrap;}
 .dark-toggle-btn{font-family:'Georgia',serif;font-size:0.82rem;color:var(--green-muted);background:none;border:1px solid var(--border);border-radius:3px;padding:0.3rem 0.6rem;cursor:pointer;transition:border-color 0.2s,color 0.2s;line-height:1;font-variant-emoji:text;}
 .dark-toggle-btn:hover{color:var(--green);border-color:var(--green-muted);}
-.help-toggle-btn{font-family:'Georgia',serif;font-size:0.82rem;color:var(--green-muted);background:none;border:1px solid var(--border);border-radius:3px;padding:0.3rem 0.75rem;cursor:pointer;transition:border-color 0.2s,color 0.2s;}
+.help-toggle-btn{font-family:'Georgia',serif;font-size:0.82rem;color:var(--green-muted);background:none;border:1px solid var(--border);border-radius:3px;padding:0.3rem 0.75rem;cursor:pointer;transition:border-color 0.2s,color 0.2s;white-space:nowrap;}
 .help-toggle-btn:hover{color:var(--green);border-color:var(--green-muted);}
-.bug-report-btn{font-family:'Georgia',serif;font-size:0.82rem;color:var(--green-muted);background:none;border:1px solid var(--border);border-radius:3px;padding:0.3rem 0.75rem;cursor:pointer;transition:border-color 0.2s,color 0.2s;display:flex;align-items:center;gap:0.3rem;}
+.bug-report-btn{font-family:'Georgia',serif;font-size:0.82rem;color:var(--green-muted);background:none;border:1px solid var(--border);border-radius:3px;padding:0.3rem 0.75rem;cursor:pointer;transition:border-color 0.2s,color 0.2s;display:flex;align-items:center;gap:0.3rem;white-space:nowrap;}
 .bug-report-btn:hover{color:var(--green);border-color:var(--green-muted);}
 .bug-icon{display:inline-block;width:15px;height:15px;}
 .bug-icon svg{width:100%;height:100%;fill:currentColor;}
@@ -91,9 +97,12 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
 .target-input input[type="number"]{width:140px;padding:0.25rem 0.45rem;font-family:'Courier New',monospace;font-size:0.8rem;border:1px solid var(--border);border-radius:3px;background:#fff;}
 .target-input input:focus{outline:none;border-color:var(--green-muted);}
 /* Button */
-.count-btn{display:block;width:100%;padding:0.7rem;font-family:'Georgia',serif;font-size:0.95rem;font-weight:600;color:#fff;background:var(--green);border:none;border-radius:4px;cursor:pointer;transition:background 0.2s;margin-bottom:1.5rem;}
+.count-btn{display:block;width:100%;padding:0.7rem;font-family:'Georgia',serif;font-size:0.95rem;font-weight:600;color:#fff;background:var(--green);border:none;border-radius:4px;cursor:pointer;transition:background 0.2s;margin-bottom:0.5rem;}
 .count-btn:hover{background:var(--green-light);}
 .count-btn:active{background:#143728;}
+/* Stale warning */
+.stale-warning{display:none;padding:0.5rem 0.85rem;margin-bottom:1rem;background:#FFF8E6;border:1px solid #E6D9A8;border-radius:4px;font-size:0.78rem;color:#8B7A3D;text-align:center;}
+.stale-warning.visible{display:block;}
 /* Results */
 .results{display:none;}.results.visible{display:block;}
 .tab-bar{display:flex;justify-content:center;border-bottom:2px solid var(--border);margin-bottom:1.25rem;}
@@ -186,23 +195,26 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
 .tok-inc{background:var(--clr-included);border-radius:2px;padding:0 1px;}
 .tok-exc{background:var(--clr-excluded-red);border-radius:2px;padding:0 1px;color:#9E5A5A;}
 .inc-breakdown{font-size:0.72rem;color:var(--text-muted);margin-left:0.15rem;}
-@media(max-width:640px){.summary-grid{grid-template-columns:1fr;}.keyword-grid{grid-template-columns:1fr;}.controls{flex-direction:column;}.app{padding:1rem;}header{flex-direction:column;gap:0.5rem;}}
+@media(max-width:640px){.summary-grid{grid-template-columns:1fr;}.keyword-grid{grid-template-columns:1fr;}.controls{flex-direction:column;}.app{padding:1rem;}header{flex-direction:column;gap:0.75rem;align-items:flex-start;}.header-right{align-items:flex-start;width:100%;}.header-buttons{flex-wrap:wrap;}}
 </style>
 </head>
 <body>
 <div class="app">
 <header>
-  <div>
+  <div class="header-left">
     <h1>LaTeX Word Counter</h1>
-    <p style="font-size:0.72rem;color:var(--text-light);margin-top:0.1rem;font-style:italic;">created by Affan :) &nbsp;&middot;&nbsp; <span id="mode-subtitle">LaTeX mode &mdash; commands, environments, and % comments are parsed</span></p>
+    <p style="font-size:0.72rem;color:var(--text-light);margin-top:0.1rem;font-style:italic;">created by Affan :)</p>
   </div>
-  <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
-    <button class="help-toggle-btn" id="about-btn">About</button>
-    <button class="help-toggle-btn" id="privacy-btn">Privacy</button>
-    <button class="help-toggle-btn" id="help-btn">How this works</button>
-    <button class="help-toggle-btn" id="changelog-btn">Changelog</button>
-    <button class="bug-report-btn" id="bug-btn">Report bug <span class="bug-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 8h-1.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5s-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H5v2h1.09c-.05.33-.09.66-.09 1v1H5v2h1v1c0 .34.04.67.09 1H5v2h1.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H19v-2h-1.09c.05-.33.09-.66.09-1v-1h1v-2h-1v-1c0-.34-.04-.67-.09-1H19V8zm-6 8h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></span></button>
-    <button class="dark-toggle-btn" id="dark-btn" title="Toggle dark mode">&#x263D;&#xFE0E;</button>
+  <div class="header-right">
+    <div class="header-buttons">
+      <button class="help-toggle-btn" id="about-btn">About</button>
+      <button class="help-toggle-btn" id="privacy-btn">Privacy</button>
+      <button class="help-toggle-btn" id="help-btn">How this works</button>
+      <button class="help-toggle-btn" id="changelog-btn">Changelog</button>
+      <button class="bug-report-btn" id="bug-btn">Report bug <span class="bug-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 8h-1.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5s-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H5v2h1.09c-.05.33-.09.66-.09 1v1H5v2h1v1c0 .34.04.67.09 1H5v2h1.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H19v-2h-1.09c.05-.33.09-.66.09-1v-1h1v-2h-1v-1c0-.34-.04-.67-.09-1H19V8zm-6 8h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></span></button>
+      <button class="dark-toggle-btn" id="dark-btn" title="Toggle dark mode">&#x263D;&#xFE0E;</button>
+    </div>
+    <div class="mode-indicator" id="mode-indicator">LaTeX mode</div>
   </div>
 </header>
 
@@ -265,6 +277,13 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
 
 <div class="help-section" id="changelog-section">
   <h3>Changelog</h3>
+  <p style="font-weight:600;color:var(--green);margin-bottom:0.25rem;">v1.2 &mdash; 21 Feb 2026</p>
+  <ul style="margin-left:1.2rem;font-size:0.82rem;line-height:1.7;margin-bottom:0.75rem;">
+    <li>Fixed verbose view lag when switching between Categories and Included/Excluded modes</li>
+    <li>Moved mode indicator to header area for cleaner layout</li>
+    <li>Added stale content warning when text is edited after counting</li>
+    <li>Fixed header buttons layout to remain stable across mode switches</li>
+  </ul>
   <p style="font-weight:600;color:var(--green);margin-bottom:0.25rem;">v1.1 &mdash; 21 Feb 2026</p>
   <ul style="margin-left:1.2rem;font-size:0.82rem;line-height:1.7;margin-bottom:0.75rem;">
     <li>Plain text mode &mdash; count essays and non-LaTeX documents; toggle sits beside the input label</li>
@@ -337,6 +356,7 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
 </div>
 
 <button class="count-btn" id="count-btn">Count Words</button>
+<div class="stale-warning" id="stale-warning">Content has changed since last count. Press <strong>Count Words</strong> or <strong>Ctrl+Enter</strong> to update.</div>
 
 <!-- RESULTS -->
 <div class="results" id="results">
@@ -516,12 +536,25 @@ const STOP_WORDS=new Set(['the','be','to','of','and','a','in','that','have','i',
 function computeKeywords(tokens,toggles,total,filterStop){const freq={};const ml=filterStop?3:1;function add(text){text.replace(/[~$&\\{}[\]]/g,' ').replace(/[^\w\s'-]/g,' ').toLowerCase().split(/\s+/).forEach(w=>{if(w.length>=ml&&/[a-z]/.test(w)&&(!filterStop||!STOP_WORDS.has(w)))freq[w]=(freq[w]||0)+1;});}for(const t of tokens){if(t.type==='body')add(t.text);if(t.type==='caption'&&toggles.caption)add(t.text);if(t.type==='table'&&toggles.table)add(t.text);if(t.type==='footnote'&&toggles.footnote)add(t.text);if(t.type==='abstract'&&toggles.abstract)add(t.text);if(t.type==='bib'&&toggles.bib)add(t.text);}return Object.entries(freq).map(([w,c])=>({word:w,count:c,pct:total>0?((c/total)*100).toFixed(1):'0.0'})).sort((a,b)=>b.count-a.count).slice(0,20);}
 function computeKeywordsPlain(source,total,filterStop){const freq={};const ml=filterStop?3:1;source.toLowerCase().replace(/[^\w\s'-]/g,' ').split(/\s+/).forEach(w=>{if(w.length>=ml&&/[a-z]/.test(w)&&(!filterStop||!STOP_WORDS.has(w)))freq[w]=(freq[w]||0)+1;});return Object.entries(freq).map(([w,c])=>({word:w,count:c,pct:total>0?((c/total)*100).toFixed(1):'0.0'})).sort((a,b)=>b.count-a.count).slice(0,20);}
 
-// 5. VERBOSE
+// 5. VERBOSE - Pre-render and cache both views
 function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+// Cache for verbose HTML to eliminate lag on mode switching
+let verboseCache = { categories: null, incexc: null, plain: null };
+
 function renderVerboseCategories(tokens,toggles){const p=[];for(const t of tokens){const e=escapeHtml(t.text);let c;switch(t.type){case'body':c='tok-body';break;case'cite':c=toggles.cite?'tok-cite':'tok-excluded';break;case'caption':c=toggles.caption?'tok-caption':'tok-excluded';break;case'table':c=toggles.table?'tok-table':'tok-excluded';break;case'footnote':c=toggles.footnote?'tok-footnote':'tok-excluded';break;case'math':c=toggles.math?'tok-math':'tok-excluded';break;case'heading':c=toggles.headings?'tok-heading':'tok-excluded';break;case'abstract':c=toggles.abstract?'tok-abstract':'tok-excluded';break;case'bib':c=toggles.bib?'tok-bib':'tok-excluded';break;case'command':c='tok-command';break;case'comment':c='tok-comment';break;case'preamble':c='tok-preamble';break;case'structural':c='tok-structural';break;default:c='tok-body';}p.push('<span class="'+c+'">'+e+'</span>');}return p.join('');}
 function renderVerboseIncExc(tokens,toggles){const contentTypes=new Set(['body','cite','caption','table','footnote','math','heading','abstract','bib']);const p=[];function spanWords(text,cls){const segs=text.split(/(\s+)/);for(const seg of segs){if(/^\s+$/.test(seg)){p.push(escapeHtml(seg));}else if(seg.length>0){p.push('<span class="'+cls+'">'+escapeHtml(seg)+'</span>');}}}for(const t of tokens){if(!contentTypes.has(t.type)){p.push('<span class="tok-exc">'+escapeHtml(t.text)+'</span>');continue;}let inc=false;switch(t.type){case'body':inc=true;break;case'cite':inc=toggles.cite;break;case'caption':inc=toggles.caption;break;case'table':inc=toggles.table;break;case'footnote':inc=toggles.footnote;break;case'math':inc=toggles.math;break;case'heading':inc=toggles.headings;break;case'abstract':inc=toggles.abstract;break;case'bib':inc=toggles.bib;break;}spanWords(t.text,inc?'tok-inc':'tok-exc');}return p.join('');}
 function renderVerbosePlainText(source){const p=[];const segs=source.split(/(\s+)/);for(const seg of segs){if(/^\s+$/.test(seg))p.push(escapeHtml(seg));else if(seg.length>0)p.push('<span class="tok-inc">'+escapeHtml(seg)+'</span>');}return p.join('');}
 function getIncExcBreakdown(toggles){const inc=['body'],exc=['commands','comments','preamble','structural'];if(toggles.cite)inc.push('citations');else exc.push('citations');if(toggles.caption)inc.push('captions');else exc.push('captions');if(toggles.table)inc.push('tables');else exc.push('tables');if(toggles.footnote)inc.push('footnotes');else exc.push('footnotes');if(toggles.math)inc.push('math');else exc.push('math');if(toggles.headings)inc.push('headings');else exc.push('headings');if(toggles.abstract)inc.push('abstract');else exc.push('abstract');if(toggles.bib)inc.push('bibliography');else exc.push('bibliography');return{inc:inc.join(', '),exc:exc.join(', ')};}
+
+// Pre-render both verbose views when counting (eliminates lag on switching)
+function preRenderVerbose(tokens, toggles) {
+  verboseCache.categories = renderVerboseCategories(tokens, toggles);
+  verboseCache.incexc = renderVerboseIncExc(tokens, toggles);
+}
+function preRenderVerbosePlain(source) {
+  verboseCache.plain = renderVerbosePlainText(source);
+}
 
 // 6. UI
 (function(){
@@ -542,7 +575,7 @@ function getIncExcBreakdown(toggles){const inc=['body'],exc=['commands','comment
   const legendInc=document.getElementById('legend-incexc');
   const incBreakdown=document.getElementById('inc-breakdown');
   const excBreakdown=document.getElementById('exc-breakdown');
-  const modeSubtitle=document.getElementById('mode-subtitle');
+  const modeIndicator=document.getElementById('mode-indicator');
   const modeBtn=document.getElementById('mode-btn');
   const latexControls=document.getElementById('latex-controls');
   const plainControls=document.getElementById('plain-controls');
@@ -554,9 +587,11 @@ function getIncExcBreakdown(toggles){const inc=['body'],exc=['commands','comment
   const zoomSlider=document.getElementById('zoom-slider');
   const zoomValEl=document.getElementById('zoom-val');
   const zoomLockBtn=document.getElementById('zoom-lock');
+  const staleWarning=document.getElementById('stale-warning');
   const wcEls={body:document.getElementById('wc-body'),cite:document.getElementById('wc-cite'),caption:document.getElementById('wc-caption'),table:document.getElementById('wc-table'),footnote:document.getElementById('wc-footnote'),math:document.getElementById('wc-math'),headings:document.getElementById('wc-headings'),abstract:document.getElementById('wc-abstract'),bib:document.getElementById('wc-bib'),mathBlocks:document.getElementById('wc-mathblocks'),total:document.getElementById('wc-total'),plainTotal:document.getElementById('wc-plain-total')};
   const togs={cite:document.getElementById('tog-cite'),caption:document.getElementById('tog-caption'),table:document.getElementById('tog-table'),footnote:document.getElementById('tog-footnote'),math:document.getElementById('tog-math'),headings:document.getElementById('tog-headings'),abstract:document.getElementById('tog-abstract'),bib:document.getElementById('tog-bib')};
   let currentTokens=null,currentPlainSource='',verboseMode='categories',isPlainText=false,zoomLocked=false;
+  let lastCountedContent='',hasCountedOnce=false;
 
   function track(ev,data){try{if(typeof umami!=='undefined')umami.track(ev,data);}catch(e){}}
 
@@ -608,7 +643,7 @@ function getIncExcBreakdown(toggles){const inc=['body'],exc=['commands','comment
   function applyModeUI(){
     if(isPlainText){
       modeBtn.textContent='Change to LaTeX source';modeBtn.classList.add('plain');
-      modeSubtitle.textContent='Plain text mode \u2014 every word is counted, no LaTeX parsing';
+      modeIndicator.textContent='Plain text mode';
       inputEl.placeholder='Paste your essay or plain text here.';inputLabel.textContent='Paste plain text';
       latexControls.style.display='none';plainControls.style.display='';
       latexSummGrid.style.display='none';plainSummGrid.style.display='';
@@ -616,7 +651,7 @@ function getIncExcBreakdown(toggles){const inc=['body'],exc=['commands','comment
       verboseMode='incexc';
     }else{
       modeBtn.textContent='Change to plain text';modeBtn.classList.remove('plain');
-      modeSubtitle.textContent='LaTeX mode \u2014 commands, environments, and % comments are parsed';
+      modeIndicator.textContent='LaTeX mode';
       inputEl.placeholder='Paste your entire .tex file here \u2014 preamble and all.';inputLabel.textContent='Paste LaTeX source';
       latexControls.style.display='';plainControls.style.display='none';
       latexSummGrid.style.display='';plainSummGrid.style.display='none';
@@ -625,10 +660,36 @@ function getIncExcBreakdown(toggles){const inc=['body'],exc=['commands','comment
   }
   modeBtn.addEventListener('click',()=>{isPlainText=!isPlainText;applyModeUI();if(resultsEl.classList.contains('visible')&&inputEl.value.trim())runCount();savePrefs();track('mode-switch',{mode:isPlainText?'plain':'latex'});});
 
+  // Stale content detection
+  function checkStale(){
+    if(!hasCountedOnce)return;
+    const currentContent=inputEl.value;
+    if(currentContent!==lastCountedContent){
+      staleWarning.classList.add('visible');
+    }else{
+      staleWarning.classList.remove('visible');
+    }
+  }
+  inputEl.addEventListener('input',checkStale);
+
   function runCount(){
     const source=inputEl.value;if(!source.trim())return;
-    if(isPlainText){currentTokens=null;currentPlainSource=source;updateDisplayPlain();}
-    else{currentTokens=parseLatex(source);currentPlainSource='';updateDisplay();}
+    lastCountedContent=source;
+    hasCountedOnce=true;
+    staleWarning.classList.remove('visible');
+    // Clear cache before recomputing
+    verboseCache = { categories: null, incexc: null, plain: null };
+    if(isPlainText){
+      currentTokens=null;
+      currentPlainSource=source;
+      preRenderVerbosePlain(source);
+      updateDisplayPlain();
+    }else{
+      currentTokens=parseLatex(source);
+      currentPlainSource='';
+      preRenderVerbose(currentTokens, getToggles());
+      updateDisplay();
+    }
     resultsEl.classList.add('visible');
     if(!isPlainText&&currentTokens){const c=computeWordCounts(currentTokens,getToggles());track('count-words',{mode:'latex',total:c.total,has_target:getActiveTarget()>0});}
     else{track('count-words',{mode:'plain',total:countWordsPlain(currentPlainSource)});}
@@ -657,6 +718,8 @@ function getIncExcBreakdown(toggles){const inc=['body'],exc=['commands','comment
     wcEls.body.textContent=c.body.toLocaleString();wcEls.cite.textContent=c.cite.toLocaleString();wcEls.caption.textContent=c.caption.toLocaleString();wcEls.table.textContent=c.table.toLocaleString();wcEls.footnote.textContent=c.footnote.toLocaleString();wcEls.math.textContent=c.math.toLocaleString();wcEls.headings.textContent=c.headings.toLocaleString();wcEls.abstract.textContent=c.abstract.toLocaleString();wcEls.bib.textContent=c.bib.toLocaleString();wcEls.mathBlocks.textContent=c.mathBlocks.toLocaleString();wcEls.total.textContent=c.total.toLocaleString();
     updateProgress(c.total);renderStructure(currentTokens,toggles,c.total);
     updateKeywords(computeKeywords(currentTokens,toggles,c.total,document.getElementById('tog-stopwords').checked));
+    // Re-render verbose cache when toggles change
+    preRenderVerbose(currentTokens, toggles);
     if(document.getElementById('tab-verbose').classList.contains('active'))updateVerbose(toggles);
   }
   function updateDisplayPlain(){
@@ -666,7 +729,7 @@ function getIncExcBreakdown(toggles){const inc=['body'],exc=['commands','comment
     if(document.getElementById('tab-verbose').classList.contains('active'))updateVerbosePlain();
   }
 
-  // VERBOSE — synchronous rendering with try/catch to prevent crashes on rapid mode switching
+  // VERBOSE — use pre-rendered cache for instant switching
   function updateVerbose(toggles){
     if(isPlainText){updateVerbosePlain();return;}
     if(!currentTokens)return;
@@ -674,14 +737,26 @@ function getIncExcBreakdown(toggles){const inc=['body'],exc=['commands','comment
     if(verboseMode==='categories'){legendCat.style.display='';legendInc.style.display='none';}
     else{legendCat.style.display='none';legendInc.style.display='';const bd=getIncExcBreakdown(toggles);incBreakdown.textContent=' ('+bd.inc+')';excBreakdown.textContent=' ('+bd.exc+')';}
     const scrollPos=verboseView.scrollTop;
-    try{verboseView.innerHTML=verboseMode==='categories'?renderVerboseCategories(currentTokens,toggles):renderVerboseIncExc(currentTokens,toggles);}
-    catch(err){verboseView.textContent='Error rendering. Please try again.';console.error(err);}
+    // Use cached HTML for instant display
+    if(verboseMode==='categories' && verboseCache.categories){
+      verboseView.innerHTML = verboseCache.categories;
+    }else if(verboseMode==='incexc' && verboseCache.incexc){
+      verboseView.innerHTML = verboseCache.incexc;
+    }else{
+      // Fallback if cache missing
+      try{verboseView.innerHTML=verboseMode==='categories'?renderVerboseCategories(currentTokens,toggles):renderVerboseIncExc(currentTokens,toggles);}
+      catch(err){verboseView.textContent='Error rendering. Please try again.';console.error(err);}
+    }
     verboseView.scrollTop=scrollPos;
   }
   function updateVerbosePlain(){
     legendCat.style.display='none';legendInc.style.display='';incBreakdown.textContent=' (all words)';excBreakdown.textContent='';
     const scrollPos=verboseView.scrollTop;
-    try{verboseView.innerHTML=renderVerbosePlainText(currentPlainSource);}catch(err){verboseView.textContent='Error rendering. Please try again.';}
+    if(verboseCache.plain){
+      verboseView.innerHTML = verboseCache.plain;
+    }else{
+      try{verboseView.innerHTML=renderVerbosePlainText(currentPlainSource);}catch(err){verboseView.textContent='Error rendering. Please try again.';}
+    }
     verboseView.scrollTop=scrollPos;
   }
 
@@ -713,7 +788,7 @@ function getIncExcBreakdown(toggles){const inc=['body'],exc=['commands','comment
   // TABS
   document.querySelectorAll('.tab-btn').forEach(btn=>{btn.addEventListener('click',function(){document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));this.classList.add('active');document.getElementById('tab-'+this.dataset.tab).classList.add('active');track('tab-switch',{tab:this.dataset.tab});if(this.dataset.tab==='verbose'){if(isPlainText&&currentPlainSource)updateVerbosePlain();else if(currentTokens)updateVerbose();}});});
 
-  // VERBOSE MODE BUTTONS
+  // VERBOSE MODE BUTTONS — now instant due to caching
   vbtnCat.addEventListener('click',function(){if(verboseMode==='categories')return;vbtnCat.classList.add('active');vbtnInc.classList.remove('active');verboseMode='categories';track('verbose-mode',{mode:'categories'});updateVerbose();});
   vbtnInc.addEventListener('click',function(){if(verboseMode==='incexc')return;vbtnInc.classList.add('active');vbtnCat.classList.remove('active');verboseMode='incexc';track('verbose-mode',{mode:'incexc'});updateVerbose();});
 
