@@ -8,13 +8,19 @@
 <script defer src="https://cloud.umami.is/script.js" data-website-id="94d8458d-34b9-4858-beb1-d650b54ed88b"></script>
 <style>
 :root{--bg:#FDFBF7;--bg-alt:#F5F1EB;--green:#1B4332;--green-light:#2D6A4F;--green-muted:#40916C;--text:#1A1A1A;--text-muted:#6B6B6B;--text-light:#999;--border:#D5CEBC;--border-light:#E8E2D6;--clr-body:#EDEDED;--clr-cite:#D4EDDA;--clr-caption:#CCE5FF;--clr-table:#FFE8CC;--clr-bib:#E8D5F5;--clr-footnote:#FFF3CD;--clr-math:#DAEEF8;--clr-heading:#E0E8D0;--clr-abstract:#D5EAF0;--clr-command:#F5E6D3;--clr-comment:#FFD6D6;--clr-preamble:#FDDEDE;--clr-structural:#E5DAF0;--clr-excluded:#F0EDE8;--clr-included:#D4EDDA;--clr-excluded-red:#FDDEDE;}
-body.dark-mode{--bg:#1E1D26;--bg-alt:#272631;--green:#7FBFA0;--green-light:#9AD4B5;--green-muted:#6BAF8D;--text:#E0DDD8;--text-muted:#A09B93;--text-light:#706C66;--border:#3D3B47;--border-light:#33313C;--clr-body:#2C2B35;--clr-cite:#253D2D;--clr-caption:#1E3348;--clr-table:#3D3020;--clr-bib:#312540;--clr-footnote:#3A3520;--clr-math:#1E3040;--clr-heading:#2D3425;--clr-abstract:#1E3338;--clr-command:#352E25;--clr-comment:#3D2525;--clr-preamble:#3D2828;--clr-structural:#2E2840;--clr-excluded:#2A2930;--clr-included:#253D2D;--clr-excluded-red:#3D2828;}
+body.dark-mode{--bg:#1E1D26;--bg-alt:#272631;--green:#7FBFA0;--green-light:#9AD4B5;--green-muted:#6BAF8D;--text:#E0DDD8;--text-muted:#A09B93;--text-light:#706C66;--border:#3D3B47;--border-light:#33313C;--clr-body:#2C2B35;--clr-cite:#1A3D2A;--clr-caption:#1A2F48;--clr-table:#3D2D18;--clr-bib:#2E1D45;--clr-footnote:#3A3218;--clr-math:#1A2D40;--clr-heading:#283020;--clr-abstract:#1A3035;--clr-command:#352E25;--clr-comment:#3D2525;--clr-preamble:#3D2828;--clr-structural:#2E2840;--clr-excluded:#2A2930;--clr-included:#1A3D2A;--clr-excluded-red:#3D2828;}
 body.dark-mode .summary-card{background:var(--bg-alt);}
 body.dark-mode .summary-card.total{background:#2D5A42;border-color:#2D5A42;}
 body.dark-mode .summary-card.total .label{color:rgba(255,255,255,0.7);}
 body.dark-mode .summary-card.total .value{color:#fff;}
-body.dark-mode textarea{background:var(--bg-alt);color:var(--text);border-color:var(--border);}
-body.dark-mode .verbose-view{background:var(--bg-alt);color:var(--text);}
+body.dark-mode textarea{background:var(--bg-alt);color:var(--text);border-color:var(--border);scrollbar-color:#5C5868 var(--bg-alt);}
+body.dark-mode textarea::-webkit-scrollbar-track{background:var(--bg-alt);}
+body.dark-mode textarea::-webkit-scrollbar-thumb{background:#5C5868;border-radius:4px;}
+body.dark-mode textarea::-webkit-scrollbar-thumb:hover{background:#6E6A78;}
+body.dark-mode .verbose-view{background:var(--bg-alt);color:var(--text);scrollbar-color:#5C5868 var(--bg-alt);}
+body.dark-mode .verbose-view::-webkit-scrollbar-track{background:var(--bg-alt);}
+body.dark-mode .verbose-view::-webkit-scrollbar-thumb{background:#5C5868;border-radius:4px;}
+body.dark-mode .verbose-view::-webkit-scrollbar-thumb:hover{background:#6E6A78;}
 body.dark-mode .help-section{background:var(--bg-alt);}
 body.dark-mode .zoom-lock-btn{background:var(--bg-alt);color:var(--text-muted);}
 body.dark-mode .zoom-lock-btn.locked{background:var(--green);color:#1E1D26;}
@@ -27,16 +33,33 @@ body.dark-mode .struct-row.depth-1{background:var(--bg-alt);}
 body.dark-mode .struct-row.depth-2{background:#252430;}
 body.dark-mode .struct-row.depth-3{background:#22212C;}
 body.dark-mode .struct-row.has-children:hover{background:#2E2D38;}
-body.dark-mode .tok-command{color:#B0A08A;}
-body.dark-mode .tok-comment{color:#A06060;}
-body.dark-mode .tok-structural{color:#8070A0;}
-body.dark-mode .tok-excluded{color:#666;}
-body.dark-mode .tok-exc{color:#A06060;}
+body.dark-mode .tok-command{color:#C8A878;}
+body.dark-mode .tok-comment{color:#C07070;}
+body.dark-mode .tok-structural{color:#A088C8;}
+body.dark-mode .tok-excluded{color:#777;}
+body.dark-mode .tok-exc{color:#C07070;}
 body.dark-mode .keyword-section{background:var(--bg-alt);}
 body.dark-mode .plain-para-row{background:var(--bg-alt);}
 body.dark-mode .mode-toggle-btn.plain{background:#2E3D55;border-color:#4A6380;color:#89B4D4;}
-body.dark-mode .mode-indicator{background:var(--bg-alt);border-color:var(--border);}
+body.dark-mode .mode-indicator{background:#2D5A42;border-color:#3A7A5A;color:#A8E6C8;}
 body.dark-mode .stale-warning{background:#3D3520;border-color:#5A4D2A;color:#D4C090;}
+/* Dark mode neon-style verbose highlights */
+body.dark-mode .tok-body{background:rgba(160,180,200,0.18);}
+body.dark-mode .tok-cite{background:rgba(80,220,140,0.25);color:#80DDAA;}
+body.dark-mode .tok-caption{background:rgba(80,160,255,0.25);color:#80B8FF;}
+body.dark-mode .tok-table{background:rgba(255,170,60,0.25);color:#E0B878;}
+body.dark-mode .tok-bib{background:rgba(180,120,255,0.25);color:#C0A0F0;}
+body.dark-mode .tok-footnote{background:rgba(255,210,60,0.22);color:#D8C870;}
+body.dark-mode .tok-math{background:rgba(60,190,255,0.25);color:#70C0E8;}
+body.dark-mode .tok-heading{background:rgba(140,210,80,0.25);color:#A0D068;}
+body.dark-mode .tok-abstract{background:rgba(60,210,210,0.25);color:#70D0D0;}
+body.dark-mode .tok-command{background:rgba(200,170,120,0.18);}
+body.dark-mode .tok-comment{background:rgba(220,80,80,0.18);}
+body.dark-mode .tok-preamble{background:rgba(220,90,90,0.15);}
+body.dark-mode .tok-structural{background:rgba(150,110,220,0.22);}
+body.dark-mode .tok-excluded{background:rgba(120,120,130,0.15);}
+body.dark-mode .tok-inc{background:rgba(80,220,140,0.25);color:#80DDAA;}
+body.dark-mode .tok-exc{background:rgba(220,80,80,0.2);color:#D08080;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Georgia','Times New Roman',serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;}
 .app{max-width:960px;margin:0 auto;padding:2rem 1.5rem 4rem;}
@@ -45,7 +68,7 @@ header h1{font-size:1.6rem;font-weight:700;color:var(--green);letter-spacing:-0.
 .header-left{flex-shrink:0;}
 .header-right{display:flex;flex-direction:column;align-items:flex-end;gap:0.5rem;flex-shrink:0;}
 .header-buttons{display:flex;gap:0.5rem;align-items:center;flex-wrap:nowrap;}
-.mode-indicator{font-size:0.72rem;color:var(--text-muted);padding:0.25rem 0.6rem;background:var(--bg-alt);border:1px solid var(--border-light);border-radius:3px;white-space:nowrap;}
+.mode-indicator{font-size:0.72rem;font-weight:600;color:#fff;padding:0.25rem 0.6rem;background:#2D6A4F;border:1px solid #2D6A4F;border-radius:3px;white-space:nowrap;letter-spacing:0.03em;}
 .dark-toggle-btn{font-family:'Georgia',serif;font-size:0.82rem;color:var(--green-muted);background:none;border:1px solid var(--border);border-radius:3px;padding:0.3rem 0.6rem;cursor:pointer;transition:border-color 0.2s,color 0.2s;line-height:1;font-variant-emoji:text;}
 .dark-toggle-btn:hover{color:var(--green);border-color:var(--green-muted);}
 .help-toggle-btn{font-family:'Georgia',serif;font-size:0.82rem;color:var(--green-muted);background:none;border:1px solid var(--border);border-radius:3px;padding:0.3rem 0.75rem;cursor:pointer;transition:border-color 0.2s,color 0.2s;white-space:nowrap;}
@@ -54,7 +77,6 @@ header h1{font-size:1.6rem;font-weight:700;color:var(--green);letter-spacing:-0.
 .bug-report-btn:hover{color:var(--green);border-color:var(--green-muted);}
 .bug-icon{display:inline-block;width:15px;height:15px;}
 .bug-icon svg{width:100%;height:100%;fill:currentColor;}
-/* Mode toggle — in header area, green text to indicate interactability */
 .mode-toggle-btn{font-family:'Georgia',serif;font-size:0.72rem;color:var(--green-muted);background:none;border:1px solid var(--border);border-radius:3px;padding:0.2rem 0.55rem;cursor:pointer;transition:border-color 0.2s,color 0.2s,background 0.2s;white-space:nowrap;line-height:1.4;}
 .mode-toggle-btn:hover{color:var(--green);border-color:var(--green-muted);}
 .mode-toggle-btn.plain{background:#EBF4FF;border-color:#9BBDD4;color:#2E6491;}
@@ -70,10 +92,14 @@ body.dark-mode .mode-toggle-btn.plain{background:#2E3D55;border-color:#4A6380;co
 .help-dl{margin:0.4rem 0 0.5rem;}
 .help-dl dt{font-weight:600;color:var(--green);margin-top:0.35rem;}
 .help-dl dd{margin-left:1rem;margin-bottom:0.15rem;text-align:justify;}
-.help-colour-table{margin:0.5rem 0;border-collapse:collapse;width:100%;font-size:0.82rem;}
-.help-colour-table td{padding:0.3rem 0.6rem;border-bottom:1px solid var(--border-light);}
-.help-colour-table td:first-child{width:18px;padding-right:0;}
-.help-swatch{display:inline-block;width:14px;height:14px;border-radius:2px;border:1px solid rgba(0,0,0,0.1);}
+/* Changelog collapsible */
+.changelog-entry{margin-bottom:0.5rem;}
+.changelog-header{font-weight:600;color:var(--green);cursor:pointer;display:flex;align-items:center;gap:0.4rem;user-select:none;padding:0.2rem 0;}
+.changelog-header:hover{color:var(--green-light);}
+.changelog-chevron{display:inline-block;font-size:0.65rem;transition:transform 0.15s;width:10px;color:var(--text-light);}
+.changelog-chevron.open{transform:rotate(90deg);}
+.changelog-body{display:none;margin-left:1.2rem;font-size:0.82rem;line-height:1.7;margin-bottom:0.25rem;}
+.changelog-body.open{display:block;}
 /* Input area */
 .input-section{margin-bottom:1.25rem;}
 .input-label-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;}
@@ -91,27 +117,23 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
 .zoom-lock-btn.locked{background:var(--green);color:#fff;border-color:var(--green);}
 /* Controls */
 .controls{display:flex;flex-wrap:wrap;gap:0.75rem 2rem;align-items:flex-start;margin-bottom:1.25rem;padding:0.85rem 1.1rem;background:var(--bg-alt);border:1px solid var(--border-light);border-radius:4px;}
-.toggles{display:flex;flex-wrap:wrap;gap:0.4rem 1.25rem;flex:1;}
+.toggles{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0.5rem 1.25rem;flex:1;width:100%;}
 .toggle-item{display:flex;align-items:center;gap:0.35rem;cursor:pointer;font-size:0.8rem;user-select:none;}
 .toggle-item input[type="checkbox"]{accent-color:var(--green);width:14px;height:14px;cursor:pointer;}
 .target-input{display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;white-space:nowrap;}
 .target-input label{color:var(--text-muted);}
 .target-input input[type="number"]{width:140px;padding:0.25rem 0.45rem;font-family:'Courier New',monospace;font-size:0.8rem;border:1px solid var(--border);border-radius:3px;background:#fff;}
 .target-input input:focus{outline:none;border-color:var(--green-muted);}
-/* Button */
 .count-btn{display:block;width:100%;padding:0.7rem;font-family:'Georgia',serif;font-size:0.95rem;font-weight:600;color:#fff;background:var(--green);border:none;border-radius:4px;cursor:pointer;transition:background 0.2s;margin-bottom:0.5rem;}
 .count-btn:hover{background:var(--green-light);}
 .count-btn:active{background:#143728;}
-/* Stale warning */
 .stale-warning{display:none;padding:0.5rem 0.85rem;margin-bottom:1rem;background:#FFF8E6;border:1px solid #E6D9A8;border-radius:4px;font-size:0.78rem;color:#8B7A3D;text-align:center;}
 .stale-warning.visible{display:block;}
-/* Results */
 .results{display:none;}.results.visible{display:block;}
 .tab-bar{display:flex;justify-content:center;border-bottom:2px solid var(--border);margin-bottom:1.25rem;}
 .tab-btn{padding:0.55rem 1.2rem;font-family:'Georgia',serif;font-size:0.85rem;font-weight:600;color:var(--text-muted);background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;cursor:pointer;transition:color 0.2s,border-color 0.2s;flex:1;text-align:center;}
 .tab-btn:hover{color:var(--green-light);}.tab-btn.active{color:var(--green);border-bottom-color:var(--green);}
 .tab-panel{display:none;}.tab-panel.active{display:block;}
-/* Summary */
 .summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-bottom:1rem;}
 .summary-card{padding:0.7rem 0.85rem;background:#fff;border:1px solid var(--border-light);border-radius:4px;display:flex;justify-content:space-between;align-items:center;}
 .summary-card .label{font-size:0.8rem;color:var(--text-muted);}
@@ -121,20 +143,17 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
 .summary-card.total .value{color:#fff;font-size:1.3rem;}
 .swatch{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:0.35rem;vertical-align:middle;border:1px solid rgba(0,0,0,0.1);}
 .plain-summary-grid{display:grid;grid-template-columns:1fr;gap:0.6rem;margin-bottom:1rem;}
-/* Progress */
 .progress-section{margin-top:0.4rem;}.progress-section.hidden{display:none;}
 .progress-bar-container{width:100%;height:20px;background:var(--bg-alt);border:1px solid var(--border);border-radius:3px;overflow:hidden;}
 .progress-bar-fill{height:100%;background:var(--green-muted);transition:width 0.4s ease;border-radius:2px;}
 .progress-bar-fill.over{background:#C0392B;}
 .progress-label{font-size:0.78rem;color:var(--text-muted);margin-top:0.25rem;text-align:right;font-family:'Courier New',monospace;}
-/* Keywords */
 .keyword-section{margin-top:1.25rem;padding:1rem 1.1rem;background:#fff;border:1px solid var(--border-light);border-radius:4px;}
 .keyword-section h4{font-size:0.82rem;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.6rem;}
 .keyword-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(10,auto);grid-auto-flow:column;gap:0.3rem 1.5rem;font-size:0.8rem;}
 .keyword-row{display:flex;justify-content:space-between;align-items:center;padding:0.2rem 0;}
 .keyword-word{color:var(--text);}
 .keyword-stats{font-family:'Courier New',monospace;font-size:0.75rem;color:var(--text-muted);white-space:nowrap;}
-/* Structure */
 .struct-total{display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1rem;background:var(--green);color:#fff;border-radius:4px;user-select:none;margin-bottom:0.5rem;font-weight:600;}
 .struct-total .struct-wc{font-family:'Courier New',monospace;font-size:1.1rem;}
 .struct-expand-all{display:none;font-family:'Georgia',serif;font-size:0.78rem;color:var(--green-muted);background:none;border:1px solid var(--border);border-radius:3px;padding:0.3rem 0.7rem;cursor:pointer;margin-bottom:0.5rem;transition:border-color 0.2s,color 0.2s;}
@@ -160,14 +179,12 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
 .struct-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0;}
 .struct-bar-wrap{width:80px;height:6px;background:var(--bg-alt);border-radius:3px;overflow:hidden;margin-left:0.75rem;flex-shrink:0;}
 .struct-bar{height:100%;background:var(--green-muted);border-radius:3px;transition:width 0.3s;}
-/* Plain paragraphs */
 .plain-para-row{display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0.85rem;border-bottom:1px solid var(--border-light);background:#fff;}
 .plain-para-row:last-child{border-bottom:none;}
 .plain-para-preview{font-size:0.8rem;color:var(--text-muted);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:'Courier New',monospace;}
 .plain-para-wc{font-family:'Courier New',monospace;font-size:0.85rem;color:var(--text);font-weight:600;white-space:nowrap;margin-left:1rem;}
 .plain-para-bar-wrap{width:80px;height:6px;background:var(--bg-alt);border-radius:3px;overflow:hidden;margin-left:0.75rem;flex-shrink:0;}
 .plain-para-bar{height:100%;background:var(--green-muted);border-radius:3px;}
-/* Verbose */
 .verbose-controls{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;}
 .verbose-mode-toggle{display:flex;border:1px solid var(--border);border-radius:4px;overflow:hidden;}
 .verbose-mode-btn{font-family:'Georgia',serif;font-size:0.78rem;padding:0.35rem 0.85rem;background:#fff;border:none;cursor:pointer;color:var(--text-muted);transition:background 0.15s,color 0.15s;border-right:1px solid var(--border);}
@@ -178,7 +195,6 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
 .legend-item{display:flex;align-items:center;gap:0.3rem;}
 .legend-swatch{display:inline-block;width:12px;height:12px;border-radius:2px;border:1px solid rgba(0,0,0,0.1);flex-shrink:0;}
 .verbose-view{font-family:'Courier New','Consolas',monospace;font-size:0.8rem;line-height:1.7;padding:1.1rem;background:#fff;border:1px solid var(--border-light);border-radius:4px;white-space:pre-wrap;word-wrap:break-word;max-height:550px;overflow-y:auto;}
-/* Token colours */
 .tok-body{background:var(--clr-body);border-radius:2px;padding:0 1px;}
 .tok-cite{background:var(--clr-cite);border-radius:2px;padding:0 2px;}
 .tok-caption{background:var(--clr-caption);border-radius:2px;padding:0 2px;}
@@ -193,11 +209,10 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
 .tok-preamble{background:var(--clr-preamble);border-radius:2px;padding:0 1px;}
 .tok-structural{background:var(--clr-structural);border-radius:2px;padding:0 1px;color:#5B4580;}
 .tok-excluded{background:var(--clr-excluded);border-radius:2px;padding:0 1px;color:#999;}
-/* Word-level inc/exc — whitespace left unstyled so chips appear discrete */
 .tok-inc{background:var(--clr-included);border-radius:2px;padding:0 1px;}
 .tok-exc{background:var(--clr-excluded-red);border-radius:2px;padding:0 1px;color:#9E5A5A;}
 .inc-breakdown{font-size:0.72rem;color:var(--text-muted);margin-left:0.15rem;}
-@media(max-width:640px){.summary-grid{grid-template-columns:1fr;}.keyword-grid{grid-template-columns:1fr;}.controls{flex-direction:column;}.app{padding:1rem;}header{flex-direction:column;gap:0.75rem;align-items:flex-start;}.header-right{align-items:flex-start;width:100%;}.header-buttons{flex-wrap:wrap;}}
+@media(max-width:640px){.summary-grid{grid-template-columns:1fr;}.keyword-grid{grid-template-columns:1fr;}.controls{flex-direction:column;}.toggles{grid-template-columns:1fr 1fr;}.app{padding:1rem;}header{flex-direction:column;gap:0.75rem;align-items:flex-start;}.header-right{align-items:flex-start;width:100%;}.header-buttons{flex-wrap:wrap;}}
 </style>
 </head>
 <body>
@@ -216,7 +231,6 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
       <button class="bug-report-btn" id="bug-btn" data-umami-event="bug-btn">Report bug <span class="bug-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 8h-1.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5s-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H5v2h1.09c-.05.33-.09.66-.09 1v1H5v2h1v1c0 .34.04.67.09 1H5v2h1.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H19v-2h-1.09c.05-.33.09-.66.09-1v-1h1v-2h-1v-1c0-.34-.04-.67-.09-1H19V8zm-6 8h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></span></button>
       <button class="dark-toggle-btn" id="dark-btn" data-umami-event="dark-mode-btn" title="Toggle dark mode">&#x263D;&#xFE0E;</button>
     </div>
-    <!-- Swapped: mode-toggle-btn now in header (where indicator was), with green text -->
     <div style="display:flex;align-items:center;gap:0.5rem;">
       <button class="mode-toggle-btn" id="mode-btn" data-umami-event="mode-switch-btn" style="color:var(--green-muted);">Change to plain text</button>
       <div class="mode-indicator" id="mode-indicator">LaTeX mode</div>
@@ -225,9 +239,9 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
 </header>
 <div class="help-section" id="about-section">
   <h3>About this tool</h3>
-  <p>Existing word counting solutions are poorly suited to LaTeX documents. General-purpose counters process raw source as plain text, producing inflated totals that include commands, preamble declarations, and environment syntax. TeXcount and Overleaf's built-in counter offer greater accuracy but present their own limitations: Overleaf's default "Total Words" counts only body text as interpreted by TeXcount, systematically excluding bibliography entries, citations, captions, and footnotes. TeXcount itself can be configured to include these elements, but doing so requires modifying command-line flags or compilation settings—a process that introduces friction disproportionate to the task of checking a document against a word limit.</p>
+  <p>Existing word counting solutions are poorly suited to LaTeX documents. General-purpose counters process raw source as plain text, producing inflated totals that include commands, preamble declarations, and environment syntax. TeXcount and Overleaf's built-in counter offer greater accuracy but present their own limitations: Overleaf's default "Total Words" counts only body text as interpreted by TeXcount, systematically excluding bibliography entries, citations, captions, and footnotes. TeXcount itself can be configured to include these elements, but doing so requires modifying command-line flags or compilation settings&mdash;a process that introduces friction disproportionate to the task of checking a document against a word limit.</p>
   <p>This tool was developed to provide a purpose-built alternative. It performs single-pass parsing of LaTeX source entirely within the browser, requiring no server, no compilation step, and no external dependencies. The parser identifies and classifies the full structure of a <code>.tex</code> file: preamble content, sectioning commands, citation keys, figure captions, table environments, footnotes, mathematical expressions, and bibliography entries. Each element is assigned a typed token, and the word count is computed from whichever categories the user has toggled on. A colour-coded verbose view offers full transparency over every classification decision.</p>
-  <p>A plain text mode is also available for counting essays and other documents not written in LaTeX — use the toggle beside the input area to switch. In plain text mode every word is counted without LaTeX parsing, and the structure tab shows word counts per paragraph.</p>
+  <p>A plain text mode is also available for counting essays and other documents not written in LaTeX &mdash; use the toggle beside the input area to switch. In plain text mode every word is counted without LaTeX parsing, and the structure tab shows word counts per paragraph.</p>
   <p style="margin-top:0.75rem;font-size:0.82rem;color:var(--text-muted);">Affan &middot; Land Economy Tripos &middot; University of Cambridge</p>
 </div>
 <div class="help-section" id="privacy-section">
@@ -242,8 +256,8 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
   <h3>LaTeX mode vs Plain text mode</h3>
   <p>By default the tool is in <strong>LaTeX mode</strong>, where commands, environments, and <code>%</code> comments are parsed and classified. This is what you want for <code>.tex</code> source files.</p>
   <p>If you are counting a plain essay or any document not written as LaTeX source &mdash; for example, a Word document pasted as plain text &mdash; use the <strong>Change to plain text</strong> toggle beside the input area. In plain text mode every word is counted without any LaTeX interpretation: <code>%</code> signs, backslashes, and curly braces are treated as ordinary characters. Switch back with <strong>Change to LaTeX source</strong>.</p>
-  <h3>Target word count</h3>
-  <p>If your assignment has a word limit, enter it in the <strong>Target</strong> field. A progress bar will show your count, percentage, and signed difference. The bar turns red if you exceed the target.</p>
+  <h3>Word limit</h3>
+  <p>If your assignment has a word limit, enter it in the <strong>Word Limit</strong> field. A progress bar will show your count, percentage, and signed difference. The bar turns red if you exceed the limit.</p>
   <h3>Toggles (LaTeX mode only)</h3>
   <dl class="help-dl">
     <dt>Citations</dt><dd>Each <code>\cite</code>-family command counts as 1 word per citation key.</dd>
@@ -257,63 +271,71 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
   </dl>
   <h3>Tabs</h3>
   <dl class="help-dl">
-    <dt>Summary</dt><dd>Categorised word counts, progress bar (if target is set), and keyword density for the 20 most frequent non-trivial words. In plain text mode only the total and keywords are shown.</dd>
+    <dt>Summary</dt><dd>Categorised word counts, progress bar (if word limit is set), and keyword density for the 20 most frequent non-trivial words. In plain text mode only the total and keywords are shown.</dd>
     <dt>Structure</dt><dd>LaTeX mode: a hierarchical breakdown by section. Plain text mode: word counts per paragraph (separated by blank lines).</dd>
-    <dt>Verbose</dt><dd>Your full document with colour highlighting. In LaTeX mode you can switch between Categories (every token coloured by type) and Included / Excluded (word-by-word green/red chips showing exactly what counts as a word). In plain text mode only the Included / Excluded view is available.</dd>
+    <dt>Verbose</dt><dd>Your full document with colour highlighting. In LaTeX mode you can switch between Included / Excluded (word-by-word green/red chips showing exactly what counts) and Categories (every token coloured by type). In plain text mode only the Included / Excluded view is available.</dd>
   </dl>
-  <table class="help-colour-table">
-    <tr><td><span class="help-swatch" style="background:var(--clr-body)"></span></td><td>Body text</td></tr>
-    <tr><td><span class="help-swatch" style="background:var(--clr-cite)"></span></td><td>Citations</td></tr>
-    <tr><td><span class="help-swatch" style="background:var(--clr-caption)"></span></td><td>Figure captions</td></tr>
-    <tr><td><span class="help-swatch" style="background:var(--clr-table)"></span></td><td>Table contents</td></tr>
-    <tr><td><span class="help-swatch" style="background:var(--clr-footnote)"></span></td><td>Footnotes</td></tr>
-    <tr><td><span class="help-swatch" style="background:var(--clr-math)"></span></td><td>Mathematics</td></tr>
-    <tr><td><span class="help-swatch" style="background:var(--clr-heading)"></span></td><td>Headings</td></tr>
-    <tr><td><span class="help-swatch" style="background:var(--clr-abstract)"></span></td><td>Abstract</td></tr>
-    <tr><td><span class="help-swatch" style="background:var(--clr-bib)"></span></td><td>Bibliography</td></tr>
-    <tr><td><span class="help-swatch" style="background:var(--clr-command)"></span></td><td>LaTeX commands &mdash; never counted</td></tr>
-    <tr><td><span class="help-swatch" style="background:var(--clr-comment)"></span></td><td>Comments &mdash; never counted</td></tr>
-    <tr><td><span class="help-swatch" style="background:var(--clr-preamble)"></span></td><td>Preamble &mdash; never counted</td></tr>
-    <tr><td><span class="help-swatch" style="background:var(--clr-structural)"></span></td><td>Structural markers &mdash; never counted</td></tr>
-  </table>
 </div>
 <div class="help-section" id="changelog-section">
   <h3>Changelog</h3>
-  <p style="font-weight:600;color:var(--green);margin-bottom:0.25rem;">v1.3 &mdash; 21 Feb 2026</p>
-  <ul style="margin-left:1.2rem;font-size:0.82rem;line-height:1.7;margin-bottom:0.75rem;">
-    <li>Fixed dash-separated words (e.g. &ldquo;subgroups---engaged&rdquo;) now correctly count as separate words</li>
-    <li>Plain text mode now excludes all punctuation (except within numbers) from word tokens</li>
-    <li>Fixed Include/Exclude toggle lag and crash &mdash; toggle updates are now debounced</li>
-    <li>Improved paragraph detection: paragraphs are identified by line breaks, not just double blank lines</li>
-    <li>Fixed crash when switching modes with text already present</li>
-    <li>Swapped mode indicator and change-mode button positions; change-mode button now uses green text</li>
-    <li>Added Umami event tracking to all interactive buttons on the page</li>
-  </ul>
-  <p style="font-weight:600;color:var(--green);margin-bottom:0.25rem;">v1.2 &mdash; 21 Feb 2026</p>
-  <ul style="margin-left:1.2rem;font-size:0.82rem;line-height:1.7;margin-bottom:0.75rem;">
-    <li>Fixed verbose view lag when switching between Categories and Included/Excluded modes</li>
-    <li>Moved mode indicator to header area for cleaner layout</li>
-    <li>Added stale content warning when text is edited after counting</li>
-    <li>Fixed header buttons layout to remain stable across mode switches</li>
-  </ul>
-  <p style="font-weight:600;color:var(--green);margin-bottom:0.25rem;">v1.1 &mdash; 21 Feb 2026</p>
-  <ul style="margin-left:1.2rem;font-size:0.82rem;line-height:1.7;margin-bottom:0.75rem;">
-    <li>Plain text mode &mdash; count essays and non-LaTeX documents; toggle sits beside the input label</li>
-    <li>Included / Excluded verbose view now highlights each word individually</li>
-    <li>Help panels auto-close when another is opened</li>
-    <li>Fixed mobile emoji rendering for dark mode toggle</li>
-    <li>Verbose mode switching no longer crashes on rapid toggling</li>
-  </ul>
-  <p style="font-weight:600;color:var(--green);margin-bottom:0.25rem;">v1.0 &mdash; 20 Feb 2026</p>
-  <ul style="margin-left:1.2rem;font-size:0.82rem;line-height:1.7;">
-    <li>Single-pass LaTeX parser with token classification</li>
-    <li>Toggleable categories: citations, captions, tables, footnotes, math, headings, abstract, bibliography</li>
-    <li>Hierarchical structure breakdown with collapsible section tree</li>
-    <li>Dual-mode verbose view: category colours and included/excluded</li>
-    <li>Keyword density analysis (top 20 words)</li>
-    <li>Progress bar with percentage and signed difference</li>
-    <li>Dark mode, zoom slider, fully offline</li>
-  </ul>
+  <div class="changelog-entry">
+    <div class="changelog-header" data-changelog="v14"><span class="changelog-chevron">&#9654;</span> v1.4 &mdash; 24 Feb 2026</div>
+    <ul class="changelog-body" data-changelog-body="v14">
+      <li>Replaced &ldquo;Target&rdquo; label with &ldquo;Word Limit&rdquo;</li>
+      <li>Verbose view now defaults to Included / Excluded; Categories available as secondary view</li>
+      <li>Fixed verbose view lag when switching modes &mdash; rendering uses requestAnimationFrame with render guard</li>
+      <li>Fixed toggle-induced lag and crashes in verbose view via improved debouncing</li>
+      <li>Toggle grid now displays as a 4&times;2 layout for even spacing</li>
+      <li>Dark mode scrollbar styling for textarea and verbose view</li>
+      <li>Mode indicator now uses high-contrast green styling</li>
+      <li>Changelog entries are now collapsible &mdash; click version headers to expand</li>
+      <li>Removed colour reference table from &ldquo;How this works&rdquo; for brevity</li>
+      <li>Dark mode verbose highlighting updated with subtle neon-style colours</li>
+    </ul>
+  </div>
+  <div class="changelog-entry">
+    <div class="changelog-header" data-changelog="v13"><span class="changelog-chevron">&#9654;</span> v1.3 &mdash; 21 Feb 2026</div>
+    <ul class="changelog-body" data-changelog-body="v13">
+      <li>Fixed dash-separated words (e.g. &ldquo;subgroups---engaged&rdquo;) now correctly count as separate words</li>
+      <li>Plain text mode now excludes all punctuation (except within numbers) from word tokens</li>
+      <li>Fixed Include/Exclude toggle lag and crash &mdash; toggle updates are now debounced</li>
+      <li>Improved paragraph detection: paragraphs are identified by line breaks, not just double blank lines</li>
+      <li>Fixed crash when switching modes with text already present</li>
+      <li>Swapped mode indicator and change-mode button positions; change-mode button now uses green text</li>
+      <li>Added Umami event tracking to all interactive buttons on the page</li>
+    </ul>
+  </div>
+  <div class="changelog-entry">
+    <div class="changelog-header" data-changelog="v12"><span class="changelog-chevron">&#9654;</span> v1.2 &mdash; 21 Feb 2026</div>
+    <ul class="changelog-body" data-changelog-body="v12">
+      <li>Fixed verbose view lag when switching between Categories and Included/Excluded modes</li>
+      <li>Moved mode indicator to header area for cleaner layout</li>
+      <li>Added stale content warning when text is edited after counting</li>
+      <li>Fixed header buttons layout to remain stable across mode switches</li>
+    </ul>
+  </div>
+  <div class="changelog-entry">
+    <div class="changelog-header" data-changelog="v11"><span class="changelog-chevron">&#9654;</span> v1.1 &mdash; 21 Feb 2026</div>
+    <ul class="changelog-body" data-changelog-body="v11">
+      <li>Plain text mode &mdash; count essays and non-LaTeX documents; toggle sits beside the input label</li>
+      <li>Included / Excluded verbose view now highlights each word individually</li>
+      <li>Help panels auto-close when another is opened</li>
+      <li>Fixed mobile emoji rendering for dark mode toggle</li>
+      <li>Verbose mode switching no longer crashes on rapid toggling</li>
+    </ul>
+  </div>
+  <div class="changelog-entry">
+    <div class="changelog-header" data-changelog="v10"><span class="changelog-chevron">&#9654;</span> v1.0 &mdash; 20 Feb 2026</div>
+    <ul class="changelog-body" data-changelog-body="v10">
+      <li>Single-pass LaTeX parser with token classification</li>
+      <li>Toggleable categories: citations, captions, tables, footnotes, math, headings, abstract, bibliography</li>
+      <li>Hierarchical structure breakdown with collapsible section tree</li>
+      <li>Dual-mode verbose view: category colours and included/excluded</li>
+      <li>Keyword density analysis (top 20 words)</li>
+      <li>Progress bar with percentage and signed difference</li>
+      <li>Dark mode, zoom slider, fully offline</li>
+    </ul>
+  </div>
 </div>
 <div class="help-section" id="bug-section">
   <h3>Report a bug</h3>
@@ -350,14 +372,14 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
     <label class="toggle-item"><input type="checkbox" id="tog-bib" checked data-umami-event="toggle-bibliography"> Bibliography</label>
   </div>
   <div class="target-input">
-    <label for="target-wc">Target:</label>
+    <label for="target-wc">Word Limit:</label>
     <input type="number" id="target-wc" placeholder="e.g. 15000" min="0">
   </div>
 </div>
 <!-- PLAIN TEXT CONTROLS -->
 <div class="controls" id="plain-controls" style="display:none;">
   <div class="target-input">
-    <label for="target-wc-plain">Target:</label>
+    <label for="target-wc-plain">Word Limit:</label>
     <input type="number" id="target-wc-plain" placeholder="e.g. 2000" min="0">
   </div>
 </div>
@@ -409,11 +431,11 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
   <div class="tab-panel" id="tab-verbose">
     <div class="verbose-controls">
       <div class="verbose-mode-toggle">
-        <button class="verbose-mode-btn active" id="vbtn-categories" data-mode="categories" data-umami-event="verbose-categories-btn">Categories</button>
-        <button class="verbose-mode-btn" id="vbtn-incexc" data-mode="incexc" data-umami-event="verbose-incexc-btn">Included / Excluded</button>
+        <button class="verbose-mode-btn active" id="vbtn-incexc" data-mode="incexc" data-umami-event="verbose-incexc-btn">Included / Excluded</button>
+        <button class="verbose-mode-btn" id="vbtn-categories" data-mode="categories" data-umami-event="verbose-categories-btn">Categories</button>
       </div>
     </div>
-    <div id="legend-categories" class="legend">
+    <div id="legend-categories" class="legend" style="display:none;">
       <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-body)"></span> Body</div>
       <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-cite)"></span> Citation</div>
       <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-caption)"></span> Caption</div>
@@ -429,7 +451,7 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
       <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-structural)"></span> Structural</div>
       <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-excluded)"></span> Excluded</div>
     </div>
-    <div id="legend-incexc" class="legend" style="display:none;">
+    <div id="legend-incexc" class="legend">
       <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-included)"></span> Included<span class="inc-breakdown" id="inc-breakdown"></span></div>
       <div class="legend-item"><span class="legend-swatch" style="background:var(--clr-excluded-red)"></span> Excluded<span class="inc-breakdown" id="exc-breakdown"></span></div>
     </div>
@@ -439,35 +461,20 @@ textarea::placeholder{color:var(--text-light);font-style:italic;}
 </div>
 <script>
 // ================================================================
-// LaTeX Word Counter — v1.3
+// LaTeX Word Counter — v1.4
 // ================================================================
 
-// === FIX #1: Word counting with dashes ===
-// Split on dashes (---, --, or single -) so "subgroups---engaged" = 2 words
-// Also used for plain text mode.
 function splitOnDashes(text) {
-  // Replace runs of dashes with spaces, then split
-  return text.replace(/\u2014/g, ' ')  // em-dash
-             .replace(/\u2013/g, ' ')  // en-dash
-             .replace(/-{1,}/g, ' ');   // ASCII dashes
+  return text.replace(/\u2014/g, ' ').replace(/\u2013/g, ' ').replace(/-{1,}/g, ' ');
 }
 
-// === FIX #2: Plain text punctuation exclusion ===
-// Strip all punctuation except numbers-internal punctuation (e.g. 3.14, 1,000)
-// Keeps apostrophes within words (e.g. don't) and hyphens are handled by splitOnDashes
 function stripPunctuationPlain(text) {
-  // First split on dashes
   text = splitOnDashes(text);
-  // Remove punctuation that is NOT:
-  //   - inside numbers (digits around . or ,)
-  //   - apostrophes within words
-  // Strategy: replace all punctuation, then words filter handles the rest
-  // Remove all punctuation chars except apostrophes between letters and dots/commas between digits
-  return text.replace(/([a-zA-Z])'([a-zA-Z])/g, '$1\x00APOS\x00$2')  // protect apostrophes in words
-             .replace(/(\d)[.,](\d)/g, '$1\x00NUM\x00$2')              // protect number-internal . and ,
-             .replace(/[^\w\s\x00]/g, ' ')                              // strip remaining punctuation
-             .replace(/\x00APOS\x00/g, "'")                             // restore apostrophes
-             .replace(/\x00NUM\x00/g, '.');                              // restore number decimals (normalize , to .)
+  return text.replace(/([a-zA-Z])'([a-zA-Z])/g, '$1\x00APOS\x00$2')
+             .replace(/(\d)[.,](\d)/g, '$1\x00NUM\x00$2')
+             .replace(/[^\w\s\x00]/g, ' ')
+             .replace(/\x00APOS\x00/g, "'")
+             .replace(/\x00NUM\x00/g, '.');
 }
 
 // 1. PARSER
@@ -550,63 +557,18 @@ function parseLatex(source) {
 function findClosing(str,start,open,close){let d=0;for(let i=start;i<str.length;i++){if(str[i]==='\\'){i++;continue;}if(str[i]===open)d++;if(str[i]===close){d--;if(d===0)return i;}}return -1;}
 
 // 2. COUNTERS
-// FIX #1: countWords now splits on dashes before counting
 function countWords(text){
-  return splitOnDashes(text)
-    .replace(/[~$&\\{}[\]]/g,' ')
-    .replace(/[^\w\s'-]/g,' ')
-    .split(/\s+/)
-    .filter(w=>w.length>0&&/[a-zA-Z0-9]/.test(w)).length;
+  return splitOnDashes(text).replace(/[~$&\\{}[\]]/g,' ').replace(/[^\w\s'-]/g,' ').split(/\s+/).filter(w=>w.length>0&&/[a-zA-Z0-9]/.test(w)).length;
 }
-
 function countMathWords(text){let c=text.replace(/^\$+|\$+$/g,'').replace(/^\\\[|\\\]$/g,'').replace(/^\\\(|\\\)$/g,'');const cm=(c.match(/\\[a-zA-Z]+/g)||[]).length;c=c.replace(/\\[a-zA-Z]+/g,' ').replace(/[{}()\[\]^_=+\-*/<>|&,;:.!~\\]/g,' ');return cm+c.split(/\s+/).filter(w=>w.length>0&&/[a-zA-Z0-9]/.test(w)).length;}
-
 function computeWordCounts(tokens,toggles){let body=0,cite=0,caption=0,table=0,footnote=0,math=0,headings=0,abstract=0,bib=0,mathBlocks=0;for(const t of tokens){switch(t.type){case'body':body+=countWords(t.text);break;case'cite':if(toggles.cite)cite+=t.wordCount||0;break;case'caption':if(toggles.caption)caption+=countWords(t.text);break;case'table':if(toggles.table)table+=countWords(t.text);break;case'footnote':if(toggles.footnote)footnote+=countWords(t.text);break;case'heading':if(toggles.headings)headings+=countWords(t.text);break;case'abstract':if(toggles.abstract)abstract+=countWords(t.text);break;case'math':if(t.isMathBlock)mathBlocks++;if(toggles.math)math+=countMathWords(t.text);break;case'bib':if(toggles.bib)bib+=countWords(t.text);break;case'structural':if(t.isMathBlock)mathBlocks++;break;}}return{body,cite,caption,table,footnote,math,headings,abstract,bib,mathBlocks,total:body+cite+caption+table+footnote+math+headings+abstract+bib};}
+function countWordsPlain(text){return stripPunctuationPlain(text).split(/\s+/).filter(w=>w.length>0&&/[a-zA-Z0-9]/.test(w)).length;}
 
-// FIX #1 + #2: Plain text word counting splits dashes and strips punctuation
-function countWordsPlain(text){
-  return stripPunctuationPlain(text)
-    .split(/\s+/)
-    .filter(w=>w.length>0&&/[a-zA-Z0-9]/.test(w)).length;
-}
-
-// FIX #4: Paragraph detection — split on any line break (single \n counts as paragraph break)
-// A paragraph is a contiguous block of non-empty lines.
 function buildParagraphStructure(source){
-  // Split on one or more newlines (each \n is a potential paragraph boundary)
-  // A paragraph boundary is any place where there's a newline followed by optional whitespace and another newline,
-  // OR simply any newline that separates content.
-  // Strategy: split into lines, group consecutive non-empty lines as one paragraph.
-  const lines = source.split('\n');
-  const paragraphs = [];
-  let currentLines = [];
-
-  function flushParagraph() {
-    if (currentLines.length > 0) {
-      const text = currentLines.join(' ').trim();
-      if (text) {
-        paragraphs.push({
-          index: paragraphs.length + 1,
-          preview: text.replace(/\s+/g, ' ').slice(0, 70) + (text.length > 70 ? '\u2026' : ''),
-          words: countWordsPlain(text)
-        });
-      }
-      currentLines = [];
-    }
-  }
-
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (trimmed === '') {
-      // Empty line = paragraph break
-      flushParagraph();
-    } else {
-      currentLines.push(trimmed);
-    }
-  }
-  flushParagraph();
-
-  return paragraphs;
+  const lines=source.split('\n');const paragraphs=[];let currentLines=[];
+  function flushParagraph(){if(currentLines.length>0){const text=currentLines.join(' ').trim();if(text){paragraphs.push({index:paragraphs.length+1,preview:text.replace(/\s+/g,' ').slice(0,70)+(text.length>70?'\u2026':''),words:countWordsPlain(text)});}currentLines=[];}}
+  for(const line of lines){const trimmed=line.trim();if(trimmed===''){flushParagraph();}else{currentLines.push(trimmed);}}
+  flushParagraph();return paragraphs;
 }
 
 // 3. SECTION TREE
@@ -617,40 +579,18 @@ const STOP_WORDS=new Set(['the','be','to','of','and','a','in','that','have','i',
 function computeKeywords(tokens,toggles,total,filterStop){const freq={};const ml=filterStop?3:1;function add(text){splitOnDashes(text).replace(/[~$&\\{}[\]]/g,' ').replace(/[^\w\s'-]/g,' ').toLowerCase().split(/\s+/).forEach(w=>{if(w.length>=ml&&/[a-z]/.test(w)&&(!filterStop||!STOP_WORDS.has(w)))freq[w]=(freq[w]||0)+1;});}for(const t of tokens){if(t.type==='body')add(t.text);if(t.type==='caption'&&toggles.caption)add(t.text);if(t.type==='table'&&toggles.table)add(t.text);if(t.type==='footnote'&&toggles.footnote)add(t.text);if(t.type==='abstract'&&toggles.abstract)add(t.text);if(t.type==='bib'&&toggles.bib)add(t.text);}return Object.entries(freq).map(([w,c])=>({word:w,count:c,pct:total>0?((c/total)*100).toFixed(1):'0.0'})).sort((a,b)=>b.count-a.count).slice(0,20);}
 function computeKeywordsPlain(source,total,filterStop){const freq={};const ml=filterStop?3:1;stripPunctuationPlain(source).toLowerCase().split(/\s+/).forEach(w=>{if(w.length>=ml&&/[a-z]/.test(w)&&(!filterStop||!STOP_WORDS.has(w)))freq[w]=(freq[w]||0)+1;});return Object.entries(freq).map(([w,c])=>({word:w,count:c,pct:total>0?((c/total)*100).toFixed(1):'0.0'})).sort((a,b)=>b.count-a.count).slice(0,20);}
 
-// 5. VERBOSE - Pre-render and cache both views
+// 5. VERBOSE
 function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-
-// Cache for verbose HTML to eliminate lag on mode switching
 let verboseCache = { categories: null, incexc: null, plain: null };
 
 function renderVerboseCategories(tokens,toggles){const p=[];for(const t of tokens){const e=escapeHtml(t.text);let c;switch(t.type){case'body':c='tok-body';break;case'cite':c=toggles.cite?'tok-cite':'tok-excluded';break;case'caption':c=toggles.caption?'tok-caption':'tok-excluded';break;case'table':c=toggles.table?'tok-table':'tok-excluded';break;case'footnote':c=toggles.footnote?'tok-footnote':'tok-excluded';break;case'math':c=toggles.math?'tok-math':'tok-excluded';break;case'heading':c=toggles.headings?'tok-heading':'tok-excluded';break;case'abstract':c=toggles.abstract?'tok-abstract':'tok-excluded';break;case'bib':c=toggles.bib?'tok-bib':'tok-excluded';break;case'command':c='tok-command';break;case'comment':c='tok-comment';break;case'preamble':c='tok-preamble';break;case'structural':c='tok-structural';break;default:c='tok-body';}p.push('<span class="'+c+'">'+e+'</span>');}return p.join('');}
 
 function renderVerboseIncExc(tokens,toggles){const contentTypes=new Set(['body','cite','caption','table','footnote','math','heading','abstract','bib']);const p=[];function spanWords(text,cls){const segs=text.split(/(\s+)/);for(const seg of segs){if(/^\s+$/.test(seg)){p.push(escapeHtml(seg));}else if(seg.length>0){p.push('<span class="'+cls+'">'+escapeHtml(seg)+'</span>');}}}for(const t of tokens){if(!contentTypes.has(t.type)){p.push('<span class="tok-exc">'+escapeHtml(t.text)+'</span>');continue;}let inc=false;switch(t.type){case'body':inc=true;break;case'cite':inc=toggles.cite;break;case'caption':inc=toggles.caption;break;case'table':inc=toggles.table;break;case'footnote':inc=toggles.footnote;break;case'math':inc=toggles.math;break;case'heading':inc=toggles.headings;break;case'abstract':inc=toggles.abstract;break;case'bib':inc=toggles.bib;break;}spanWords(t.text,inc?'tok-inc':'tok-exc');}return p.join('');}
 
-// FIX #2: Plain text verbose view — strip punctuation from displayed words
-function renderVerbosePlainText(source){
-  const p=[];
-  const segs=source.split(/(\s+)/);
-  for(const seg of segs){
-    if(/^\s+$/.test(seg)) p.push(escapeHtml(seg));
-    else if(seg.length>0){
-      // Strip punctuation for display: remove all non-word chars except apostrophes within words and number-internal dots/commas
-      let cleaned = seg;
-      // Check if this is a "word" or pure punctuation
-      if(/[a-zA-Z0-9]/.test(seg)){
-        p.push('<span class="tok-inc">'+escapeHtml(cleaned)+'</span>');
-      } else {
-        // Pure punctuation segment — still show it but as excluded
-        p.push(escapeHtml(seg));
-      }
-    }
-  }
-  return p.join('');
-}
+function renderVerbosePlainText(source){const p=[];const segs=source.split(/(\s+)/);for(const seg of segs){if(/^\s+$/.test(seg))p.push(escapeHtml(seg));else if(seg.length>0){if(/[a-zA-Z0-9]/.test(seg)){p.push('<span class="tok-inc">'+escapeHtml(seg)+'</span>');}else{p.push(escapeHtml(seg));}}}return p.join('');}
 
 function getIncExcBreakdown(toggles){const inc=['body'],exc=['commands','comments','preamble','structural'];if(toggles.cite)inc.push('citations');else exc.push('citations');if(toggles.caption)inc.push('captions');else exc.push('captions');if(toggles.table)inc.push('tables');else exc.push('tables');if(toggles.footnote)inc.push('footnotes');else exc.push('footnotes');if(toggles.math)inc.push('math');else exc.push('math');if(toggles.headings)inc.push('headings');else exc.push('headings');if(toggles.abstract)inc.push('abstract');else exc.push('abstract');if(toggles.bib)inc.push('bibliography');else exc.push('bibliography');return{inc:inc.join(', '),exc:exc.join(', ')};}
 
-// Pre-render both verbose views when counting (eliminates lag on switching)
 function preRenderVerbose(tokens, toggles) {
   verboseCache.categories = renderVerboseCategories(tokens, toggles);
   verboseCache.incexc = renderVerboseIncExc(tokens, toggles);
@@ -693,12 +633,23 @@ function preRenderVerbosePlain(source) {
   const staleWarning=document.getElementById('stale-warning');
   const wcEls={body:document.getElementById('wc-body'),cite:document.getElementById('wc-cite'),caption:document.getElementById('wc-caption'),table:document.getElementById('wc-table'),footnote:document.getElementById('wc-footnote'),math:document.getElementById('wc-math'),headings:document.getElementById('wc-headings'),abstract:document.getElementById('wc-abstract'),bib:document.getElementById('wc-bib'),mathBlocks:document.getElementById('wc-mathblocks'),total:document.getElementById('wc-total'),plainTotal:document.getElementById('wc-plain-total')};
   const togs={cite:document.getElementById('tog-cite'),caption:document.getElementById('tog-caption'),table:document.getElementById('tog-table'),footnote:document.getElementById('tog-footnote'),math:document.getElementById('tog-math'),headings:document.getElementById('tog-headings'),abstract:document.getElementById('tog-abstract'),bib:document.getElementById('tog-bib')};
-  let currentTokens=null,currentPlainSource='',verboseMode='categories',isPlainText=false,zoomLocked=false;
+  let currentTokens=null,currentPlainSource='',verboseMode='incexc',isPlainText=false,zoomLocked=false;
   let lastCountedContent='',hasCountedOnce=false;
+  let verboseRenderPending=false;
 
   function track(ev,data){try{if(typeof umami!=='undefined')umami.track(ev,data);}catch(e){}}
 
-  // Help panels — auto-close others when one opens
+  // Changelog collapsible
+  document.querySelectorAll('.changelog-header').forEach(function(header){
+    header.addEventListener('click',function(){
+      var key=header.dataset.changelog;
+      var body=document.querySelector('[data-changelog-body="'+key+'"]');
+      var chevron=header.querySelector('.changelog-chevron');
+      if(body){var isOpen=body.classList.toggle('open');chevron.classList.toggle('open',isOpen);}
+    });
+  });
+
+  // Help panels
   const PANELS=[
     {btnId:'about-btn',secId:'about-section',label:'About',openLabel:'Hide about'},
     {btnId:'privacy-btn',secId:'privacy-section',label:'Privacy',openLabel:'Hide privacy'},
@@ -707,38 +658,13 @@ function preRenderVerbosePlain(source) {
     {btnId:'bug-btn',secId:'bug-section',label:null,openLabel:null},
   ];
   function closeAllPanels(exceptId){
-    for(const p of PANELS){
-      if(p.secId===exceptId)continue;
-      const sec=document.getElementById(p.secId);
-      if(sec&&sec.classList.contains('visible')){
-        sec.classList.remove('visible');
-        if(p.label){const btn=document.getElementById(p.btnId);if(btn)btn.textContent=p.label;}
-      }
-    }
+    for(const p of PANELS){if(p.secId===exceptId)continue;const sec=document.getElementById(p.secId);if(sec&&sec.classList.contains('visible')){sec.classList.remove('visible');if(p.label){const btn=document.getElementById(p.btnId);if(btn)btn.textContent=p.label;}}}
   }
   for(const p of PANELS.filter(p=>p.label!==null)){
-    const btn=document.getElementById(p.btnId);
-    const sec=document.getElementById(p.secId);
-    btn.addEventListener('click',()=>{
-      const wasOpen=sec.classList.contains('visible');
-      closeAllPanels(p.secId);
-      if(!wasOpen){sec.classList.add('visible');btn.textContent=p.openLabel;track('panel-open',{panel:p.btnId});}
-      else{sec.classList.remove('visible');btn.textContent=p.label;}
-    });
+    const btn=document.getElementById(p.btnId);const sec=document.getElementById(p.secId);
+    btn.addEventListener('click',()=>{const wasOpen=sec.classList.contains('visible');closeAllPanels(p.secId);if(!wasOpen){sec.classList.add('visible');btn.textContent=p.openLabel;track('panel-open',{panel:p.btnId});}else{sec.classList.remove('visible');btn.textContent=p.label;}});
   }
-  // Bug button — preserve icon HTML
-  (function(){
-    const bugBtn=document.getElementById('bug-btn');
-    const bugSec=document.getElementById('bug-section');
-    const bugInner=bugBtn.innerHTML;
-    bugBtn.addEventListener('click',()=>{
-      const wasOpen=bugSec.classList.contains('visible');
-      closeAllPanels('bug-section');
-      bugBtn.innerHTML=bugInner;
-      if(!wasOpen){bugSec.classList.add('visible');track('panel-open',{panel:'bug'});}
-      else{bugSec.classList.remove('visible');}
-    });
-  })();
+  (function(){const bugBtn=document.getElementById('bug-btn');const bugSec=document.getElementById('bug-section');const bugInner=bugBtn.innerHTML;bugBtn.addEventListener('click',()=>{const wasOpen=bugSec.classList.contains('visible');closeAllPanels('bug-section');bugBtn.innerHTML=bugInner;if(!wasOpen){bugSec.classList.add('visible');track('panel-open',{panel:'bug'});}else{bugSec.classList.remove('visible');}});})();
 
   function getToggles(){return{cite:togs.cite.checked,caption:togs.caption.checked,table:togs.table.checked,footnote:togs.footnote.checked,math:togs.math.checked,headings:togs.headings.checked,abstract:togs.abstract.checked,bib:togs.bib.checked};}
   function getActiveTarget(){return isPlainText?(parseInt(targetPlainEl.value)||0):(parseInt(targetEl.value)||0);}
@@ -762,59 +688,22 @@ function preRenderVerbosePlain(source) {
     }
   }
 
-  // FIX #5: Mode switching no longer crashes — clear state properly before switching
   modeBtn.addEventListener('click',()=>{
-    isPlainText=!isPlainText;
-    // Clear all cached state to prevent stale data from crashing render
-    currentTokens=null;
-    currentPlainSource='';
-    verboseCache={categories:null,incexc:null,plain:null};
-    verboseView.innerHTML='';
-    structPanel.innerHTML='';
-
+    isPlainText=!isPlainText;currentTokens=null;currentPlainSource='';verboseCache={categories:null,incexc:null,plain:null};verboseView.innerHTML='';structPanel.innerHTML='';
     applyModeUI();
-
-    // Only re-count if there's text and results were visible
-    if(resultsEl.classList.contains('visible')&&inputEl.value.trim()){
-      runCount();
-    } else {
-      // Hide results if no text
-      resultsEl.classList.remove('visible');
-    }
-    savePrefs();
-    track('mode-switch',{mode:isPlainText?'plain':'latex'});
+    if(resultsEl.classList.contains('visible')&&inputEl.value.trim()){runCount();}else{resultsEl.classList.remove('visible');}
+    savePrefs();track('mode-switch',{mode:isPlainText?'plain':'latex'});
   });
 
-  // Stale content detection
-  function checkStale(){
-    if(!hasCountedOnce)return;
-    const currentContent=inputEl.value;
-    if(currentContent!==lastCountedContent){
-      staleWarning.classList.add('visible');
-    }else{
-      staleWarning.classList.remove('visible');
-    }
-  }
+  function checkStale(){if(!hasCountedOnce)return;if(inputEl.value!==lastCountedContent){staleWarning.classList.add('visible');}else{staleWarning.classList.remove('visible');}}
   inputEl.addEventListener('input',checkStale);
 
   function runCount(){
     const source=inputEl.value;if(!source.trim())return;
-    lastCountedContent=source;
-    hasCountedOnce=true;
-    staleWarning.classList.remove('visible');
-    // Clear cache before recomputing
-    verboseCache = { categories: null, incexc: null, plain: null };
-    if(isPlainText){
-      currentTokens=null;
-      currentPlainSource=source;
-      preRenderVerbosePlain(source);
-      updateDisplayPlain();
-    }else{
-      currentTokens=parseLatex(source);
-      currentPlainSource='';
-      preRenderVerbose(currentTokens, getToggles());
-      updateDisplay();
-    }
+    lastCountedContent=source;hasCountedOnce=true;staleWarning.classList.remove('visible');
+    verboseCache={categories:null,incexc:null,plain:null};
+    if(isPlainText){currentTokens=null;currentPlainSource=source;preRenderVerbosePlain(source);updateDisplayPlain();}
+    else{currentTokens=parseLatex(source);currentPlainSource='';preRenderVerbose(currentTokens,getToggles());updateDisplay();}
     resultsEl.classList.add('visible');
     if(!isPlainText&&currentTokens){const c=computeWordCounts(currentTokens,getToggles());track('count-words',{mode:'latex',total:c.total,has_target:getActiveTarget()>0});}
     else{track('count-words',{mode:'plain',total:countWordsPlain(currentPlainSource)});}
@@ -824,38 +713,23 @@ function preRenderVerbosePlain(source) {
 
   function updateProgress(total){
     const target=getActiveTarget();
-    if(target>0){
-      progressSec.classList.remove('hidden');
-      const pct=Math.min((total/target)*100,100),pctE=(total/target)*100;
-      progressFill.style.width=pct+'%';progressFill.classList.toggle('over',total>target);
-      const diff=total-target,sign=diff>0?'+':'';
-      progressLabel.textContent=total.toLocaleString()+' / '+target.toLocaleString()+'  \u00b7  '+pctE.toFixed(1)+'%  \u00b7  '+sign+diff.toLocaleString();
-    }else progressSec.classList.add('hidden');
+    if(target>0){progressSec.classList.remove('hidden');const pct=Math.min((total/target)*100,100),pctE=(total/target)*100;progressFill.style.width=pct+'%';progressFill.classList.toggle('over',total>target);const diff=total-target,sign=diff>0?'+':'';progressLabel.textContent=total.toLocaleString()+' / '+target.toLocaleString()+'  \u00b7  '+pctE.toFixed(1)+'%  \u00b7  '+sign+diff.toLocaleString();}
+    else progressSec.classList.add('hidden');
   }
   function updateKeywords(kw){
     if(kw.length>0){keywordSec.style.display='';keywordGrid.innerHTML=kw.map(k=>'<div class="keyword-row"><span class="keyword-word">'+escapeHtml(k.word)+'</span><span class="keyword-stats">'+k.count+' ('+k.pct+'%)</span></div>').join('');}
     else keywordSec.style.display='none';
   }
 
-  // FIX #3: Debounced update for toggles to prevent lag and crash
-  let toggleUpdateTimer = null;
-  function debouncedUpdate() {
-    if (toggleUpdateTimer) clearTimeout(toggleUpdateTimer);
-    toggleUpdateTimer = setTimeout(() => {
-      toggleUpdateTimer = null;
-      if (isPlainText) updateDisplayPlain();
-      else updateDisplay();
-    }, 80);
-  }
+  let toggleUpdateTimer=null;
+  function debouncedUpdate(){if(toggleUpdateTimer)clearTimeout(toggleUpdateTimer);toggleUpdateTimer=setTimeout(()=>{toggleUpdateTimer=null;if(isPlainText)updateDisplayPlain();else updateDisplay();},150);}
 
   function updateDisplay(){
-    if(!currentTokens)return;
-    const toggles=getToggles();const c=computeWordCounts(currentTokens,toggles);
+    if(!currentTokens)return;const toggles=getToggles();const c=computeWordCounts(currentTokens,toggles);
     wcEls.body.textContent=c.body.toLocaleString();wcEls.cite.textContent=c.cite.toLocaleString();wcEls.caption.textContent=c.caption.toLocaleString();wcEls.table.textContent=c.table.toLocaleString();wcEls.footnote.textContent=c.footnote.toLocaleString();wcEls.math.textContent=c.math.toLocaleString();wcEls.headings.textContent=c.headings.toLocaleString();wcEls.abstract.textContent=c.abstract.toLocaleString();wcEls.bib.textContent=c.bib.toLocaleString();wcEls.mathBlocks.textContent=c.mathBlocks.toLocaleString();wcEls.total.textContent=c.total.toLocaleString();
     updateProgress(c.total);renderStructure(currentTokens,toggles,c.total);
     updateKeywords(computeKeywords(currentTokens,toggles,c.total,document.getElementById('tog-stopwords').checked));
-    // Re-render verbose cache when toggles change
-    preRenderVerbose(currentTokens, toggles);
+    preRenderVerbose(currentTokens,toggles);
     if(document.getElementById('tab-verbose').classList.contains('active'))updateVerbose(toggles);
   }
   function updateDisplayPlain(){
@@ -865,53 +739,47 @@ function preRenderVerbosePlain(source) {
     if(document.getElementById('tab-verbose').classList.contains('active'))updateVerbosePlain();
   }
 
-  // VERBOSE — use pre-rendered cache for instant switching
   function updateVerbose(toggles){
     if(isPlainText){updateVerbosePlain();return;}
     if(!currentTokens)return;
     if(!toggles)toggles=getToggles();
     if(verboseMode==='categories'){legendCat.style.display='';legendInc.style.display='none';}
     else{legendCat.style.display='none';legendInc.style.display='';const bd=getIncExcBreakdown(toggles);incBreakdown.textContent=' ('+bd.inc+')';excBreakdown.textContent=' ('+bd.exc+')';}
+    if(verboseRenderPending)return;
+    verboseRenderPending=true;
+    const html=verboseMode==='categories'?verboseCache.categories:verboseCache.incexc;
     const scrollPos=verboseView.scrollTop;
-    if(verboseMode==='categories' && verboseCache.categories){
-      verboseView.innerHTML = verboseCache.categories;
-    }else if(verboseMode==='incexc' && verboseCache.incexc){
-      verboseView.innerHTML = verboseCache.incexc;
-    }else{
-      try{verboseView.innerHTML=verboseMode==='categories'?renderVerboseCategories(currentTokens,toggles):renderVerboseIncExc(currentTokens,toggles);}
-      catch(err){verboseView.textContent='Error rendering. Please try again.';console.error(err);}
-    }
-    verboseView.scrollTop=scrollPos;
+    requestAnimationFrame(()=>{
+      verboseRenderPending=false;
+      if(html){verboseView.innerHTML=html;}
+      else{try{verboseView.innerHTML=verboseMode==='categories'?renderVerboseCategories(currentTokens,toggles):renderVerboseIncExc(currentTokens,toggles);}catch(err){verboseView.textContent='Error rendering.';}}
+      verboseView.scrollTop=scrollPos;
+    });
   }
   function updateVerbosePlain(){
     legendCat.style.display='none';legendInc.style.display='';incBreakdown.textContent=' (all words)';excBreakdown.textContent='';
+    if(verboseRenderPending)return;
+    verboseRenderPending=true;
     const scrollPos=verboseView.scrollTop;
-    if(verboseCache.plain){
-      verboseView.innerHTML = verboseCache.plain;
-    }else{
-      try{verboseView.innerHTML=renderVerbosePlainText(currentPlainSource);}catch(err){verboseView.textContent='Error rendering. Please try again.';}
-    }
-    verboseView.scrollTop=scrollPos;
+    requestAnimationFrame(()=>{
+      verboseRenderPending=false;
+      if(verboseCache.plain){verboseView.innerHTML=verboseCache.plain;}
+      else{try{verboseView.innerHTML=renderVerbosePlainText(currentPlainSource);}catch(err){verboseView.textContent='Error rendering.';}}
+      verboseView.scrollTop=scrollPos;
+    });
   }
 
-  // STRUCTURE
   function renderStructure(tokens,toggles,grandTotal){
     const tree=buildSectionTree(tokens,toggles);const maxW=findMaxWords(tree);
     let html='<div class="struct-total"><span>Document total</span><span class="struct-wc">'+grandTotal.toLocaleString()+'</span></div>';
     html+='<button class="struct-expand-all visible" id="struct-expand-all" data-umami-event="expand-all-sections">Expand all sections</button>';
     html+='<div class="struct-tree expanded">'+renderTreeNodes(tree,maxW)+'</div>';
     structPanel.innerHTML=html;
-    document.getElementById('struct-expand-all').addEventListener('click',()=>{
-      const ac=structPanel.querySelectorAll('.struct-children');const av=structPanel.querySelectorAll('.struct-chevron');const ap=structPanel.querySelectorAll('.struct-row.has-children');
-      const anyC=Array.from(ac).some(el=>!el.classList.contains('open'));
-      ac.forEach(el=>el.classList.toggle('open',anyC));av.forEach(el=>el.classList.toggle('open',anyC));ap.forEach(el=>el.classList.toggle('expanded-parent',anyC));
-      document.getElementById('struct-expand-all').textContent=anyC?'Collapse all sections':'Expand all sections';
-    });
+    document.getElementById('struct-expand-all').addEventListener('click',()=>{const ac=structPanel.querySelectorAll('.struct-children');const av=structPanel.querySelectorAll('.struct-chevron');const ap=structPanel.querySelectorAll('.struct-row.has-children');const anyC=Array.from(ac).some(el=>!el.classList.contains('open'));ac.forEach(el=>el.classList.toggle('open',anyC));av.forEach(el=>el.classList.toggle('open',anyC));ap.forEach(el=>el.classList.toggle('expanded-parent',anyC));document.getElementById('struct-expand-all').textContent=anyC?'Collapse all sections':'Expand all sections';});
     structPanel.querySelectorAll('.struct-row.has-children').forEach(row=>{row.addEventListener('click',()=>{const ch=row.nextElementSibling;if(ch&&ch.classList.contains('struct-children')){const o=ch.classList.toggle('open');row.querySelector('.struct-chevron').classList.toggle('open',o);row.classList.toggle('expanded-parent',o);}});});
   }
   function findMaxWords(nodes){let m=0;for(const n of nodes){if(n.totalWords>m)m=n.totalWords;if(n.children.length){const cm=findMaxWords(n.children);if(cm>m)m=cm;}}return m||1;}
   function renderTreeNodes(nodes,maxW){let h='';for(const node of nodes){const depth=Math.min(Math.max(node.level,1),4);const bp=(node.totalWords/maxW)*100;const hk=node.children.length>0;h+='<div class="struct-row depth-'+depth+(hk?' has-children':'')+'">'+( hk?'<span class="struct-chevron">&#9654;</span>':'<span class="struct-placeholder"></span>')+'<span class="struct-name">'+escapeHtml(node.title)+'</span><span class="struct-bar-wrap"><span class="struct-bar" style="width:'+bp+'%"></span></span><span class="struct-wc">'+node.totalWords.toLocaleString()+'</span></div>';if(hk)h+='<div class="struct-children">'+renderTreeNodes(node.children,maxW)+'</div>';}return h;}
-
   function renderPlainStructure(source){
     const paras=buildParagraphStructure(source);const total=countWordsPlain(source);const maxW=Math.max(...paras.map(p=>p.words),1);
     let h='<div class="struct-total"><span>Document total</span><span class="struct-wc">'+total.toLocaleString()+'</span></div><div class="struct-tree expanded">';
@@ -923,11 +791,11 @@ function preRenderVerbosePlain(source) {
   // TABS
   document.querySelectorAll('.tab-btn').forEach(btn=>{btn.addEventListener('click',function(){document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));this.classList.add('active');document.getElementById('tab-'+this.dataset.tab).classList.add('active');track('tab-switch',{tab:this.dataset.tab});if(this.dataset.tab==='verbose'){if(isPlainText&&currentPlainSource)updateVerbosePlain();else if(currentTokens)updateVerbose();}});});
 
-  // VERBOSE MODE BUTTONS — now instant due to caching
+  // VERBOSE MODE BUTTONS
   vbtnCat.addEventListener('click',function(){if(verboseMode==='categories')return;vbtnCat.classList.add('active');vbtnInc.classList.remove('active');verboseMode='categories';track('verbose-mode',{mode:'categories'});updateVerbose();});
   vbtnInc.addEventListener('click',function(){if(verboseMode==='incexc')return;vbtnInc.classList.add('active');vbtnCat.classList.remove('active');verboseMode='incexc';track('verbose-mode',{mode:'incexc'});updateVerbose();});
 
-  // FIX #3: TOGGLE CHANGES — debounced to prevent lag/crash on rapid toggling
+  // TOGGLE CHANGES
   Object.entries(togs).forEach(([name,el])=>el.addEventListener('change',()=>{debouncedUpdate();savePrefs();track('toggle',{category:name,enabled:el.checked});}));
   document.getElementById('tog-stopwords').addEventListener('change',()=>{debouncedUpdate();savePrefs();});
   targetEl.addEventListener('input',()=>{if(!isPlainText)updateDisplay();});
